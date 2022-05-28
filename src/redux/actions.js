@@ -14,6 +14,14 @@ export const GET_PRODUCTS = createAsyncThunk(
         return await response.json()
     }
 )
+
+export const GET_PRODUCT_BY_ID = createAsyncThunk(
+    'GET_PRODUCT_BY_ID', async (id) =>{
+        const response = await fetch(`${REACT_APP_APIURL}product/${id}`)
+        return await response.json()
+    }
+)
+
 export const SEARCH_PRODUCT = createAsyncThunk(
     'SEARCH_PRODUCT', async (productName) => {
         const response = await fetch(`${REACT_APP_APIURL}product/name/${productName}`)
