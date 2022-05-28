@@ -16,15 +16,22 @@ export const GET_PRODUCTS = createAsyncThunk(
 )
 export const SEARCH_PRODUCT = createAsyncThunk(
     'SEARCH_PRODUCT', async (productName) => {
-        const response = await fetch(`${REACT_APP_APIURL}product/${productName}`)
+        const response = await fetch(`${REACT_APP_APIURL}product/name/${productName}`)
         return await response.json()
     }
 )
 export const GET_CATEGORIES = createAsyncThunk(
     'GET_CATEGORIES', async () => {
-        const response = await fetch(`${REACT_APP_APIURL}category`)
+        const response = await fetch(`${REACT_APP_APIURL}categories`)
         return await response.json()
     })
+export const GET_PRODUCTS_BYCATEGORY = createAction(
+    'GET_PRODUCTS_BYCATEGORY', (products) => {
+        return {
+            payload: products
+        }
+    }
+)
 export const ORDER_PRODUCTS = createAction('ORDER_PRODUCTS', (productsSorted) => {
     return {
         //payload tiene que existir para que el reducer funcione    

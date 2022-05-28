@@ -1,10 +1,14 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
-import { SEARCH_PRODUCT } from '../../redux/actions'
+import { GET_PRODUCTS, SEARCH_PRODUCT } from '../../redux/actions'
 
 const SearchBar = () => {
     const dispatch = useDispatch()
     const handleChanges = (e) => {
+        if (e.target.value === "") {
+            dispatch(GET_PRODUCTS())
+            return
+        }
         dispatch(SEARCH_PRODUCT(e.target.value))
     }
     return (
