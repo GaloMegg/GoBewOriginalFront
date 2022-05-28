@@ -13,6 +13,7 @@ function App() {
     <div className="App">
       <Routes>
         <Route exact path='/' element={<><Nav />, <ProductCardContainer /></>} />
+        
         <Route exact path='/admin/new' element={<CreationForm />} />
       </Routes>
     </div>
