@@ -6,7 +6,7 @@ export default function ProductsMap({products}) {
         <>
             {
                 products?.map((prod)=>{
-                    return <ProductCard productName={prod.productName} productPrice={prod.productPrice} productStock={prod.productStock}/>
+                    return <ProductCard key={prod.productId} productName={prod.productName} productPrice={prod.productPrice} productStock={prod.productStock} productId={prod.productId}/>
                 })
             }
         </>
