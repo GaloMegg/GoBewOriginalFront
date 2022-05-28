@@ -8,14 +8,7 @@ import Nav from './components/nav/Nav';
 import ProductCardContainer from './components/mainContent/ProductCardContainer';
 import CreationForm from './admin/components/products/CreationForm';
 function App() {
-  const dispatch = useDispatch()
-  const { products } = useSelector(state => state.clientReducer)
-
-  useEffect(() => {
-    dispatch(GET_PRODUCTS())
-
-  }, [dispatch])
-  console.log(products)
+  
   return (
     <div className="App">
       <Routes>
