@@ -7,7 +7,7 @@ import CreationForm from './admin/components/products/CreationForm';
 import ProductDetailContainer from './components/productDetail/ProductDetailContainer';
 function App() {
   return (
-    <div className="App">
+    <div >
       <Routes>
         <Route exact path='/' element={<><Nav />, <ProductCardContainer /></>} />
 
