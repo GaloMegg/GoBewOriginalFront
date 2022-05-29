@@ -12,15 +12,12 @@ export default function ProductDetailContainer() {
     useEffect(()=>{
         dispatch(GET_PRODUCT_BY_ID(id))
     },[dispatch, id])
-
-
-
     return (
         <div>
-            <h2>{product[0].productName}</h2>
-            <p>{product[0].productDescription}</p>
-            <p>{product[0].productPrice}</p>
-            <p>{product[0].productStock}</p>
+            <h2>{product[0]?.productName}</h2>
+            <p>{product[0]?.productDescription}</p>
+            <p>{product[0]?.productPrice}</p>
+            <p>{product[0]?.productStock}</p>
         </div>
     )
 }
