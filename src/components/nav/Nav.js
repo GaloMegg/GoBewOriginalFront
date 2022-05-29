@@ -26,7 +26,6 @@ const Nav = () => {
                 <div className={styles.navBarContainer}>
                 <SearchBar />
                 </div>
-                {/* ORDERING */}
                 <div className={styles.navIconpContainer}>
                     <img className={styles.navIcons} src={Carrito} alt='img not found'/>
                     <p className={styles.navp}>Carrito</p>
@@ -37,6 +36,7 @@ const Nav = () => {
                 </div>
              </div>
             </div>
+            {/* ORDERING */}
             {/* <OrderinContainer /> */}
             {/* HIGHLITED PRODUCTS */}
             {/* <HighLightedBtn /> */}
