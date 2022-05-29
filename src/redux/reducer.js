@@ -29,6 +29,7 @@ export const clientReducer = createReducer(initialState, (builder) => {
         console.log(action.payload);
         state.categories = action.payload
     })
+
     builder.addCase(GET_HIGHLIGHTED.fulfilled, (state, action) => {
         console.log(action.payload);
         state.products = action.payload.productList
