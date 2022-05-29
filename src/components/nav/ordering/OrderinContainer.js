@@ -23,7 +23,7 @@ const OrderinContainer = () => {
         setPriceDirection(!priceDirection)
         //logical section
         let prods = [...products]
-        let sortedProducts = alphabeticalDirection
+        let sortedProducts = priceDirection
             ?
             prods?.sort((a, b) => {
                 if (a.productPrice < b.productPrice) return -1
