@@ -9,7 +9,7 @@ const CategoriesContainer = () => {
     const { categories, productsToFilter } = useSelector(state => state.clientReducer)
     useEffect(() => {
         dispatch(GET_CATEGORIES())
-    }, [])
+    }, [dispatch])
     const handleChanges = (e) => {
         if (!e.target.value) {
             dispatch(GET_PRODUCTS())
