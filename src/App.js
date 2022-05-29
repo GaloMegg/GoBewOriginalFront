@@ -1,6 +1,6 @@
 
-import './App.css';
 import { Route, Routes } from 'react-router-dom';
+import "./scss/main.scss";
 import Nav from './components/nav/Nav';
 import ProductCardContainer from './components/mainContent/ProductCardContainer';
 import CreationForm from './admin/components/products/CreationForm';
