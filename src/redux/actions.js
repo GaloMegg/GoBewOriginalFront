@@ -46,3 +46,9 @@ export const ORDER_PRODUCTS = createAction('ORDER_PRODUCTS', (productsSorted) =>
         payload: productsSorted
     }
 })
+export const GET_PRODUCTS_BY_CATEGORY = createAsyncThunk(
+    'GET_PRODUCT_BY_ID', async (id) =>{
+        const response = await fetch(`${REACT_APP_APIURL}product/${id}`)
+        return await response.json()
+    }
+)

@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { Fragment } from "react";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { CREATE_PRODUCT, GET_CATEGORIES, GET_CATEGORIES_ADMIN } from "../../redux/actions";
+import { CREATE_PRODUCT, GET_CATEGORIES_ADMIN } from "../../redux/actions";
 
 
 export default function CreationForm() {
@@ -10,7 +10,6 @@ export default function CreationForm() {
     let dispatch = useDispatch();
     const categories = useSelector((state) => state.adminReducer.categories)
 
-    console.log(categories)
     const [input, setInput] = useState({
         productName: '',
         productIsActive: '',
@@ -23,7 +22,6 @@ export default function CreationForm() {
     })
 
     const [error, setError] = useState('');
-    const [isChecked, setIsCheaked] = useState(false);
 
     const [img, setImg] = useState("");
     const uploadImage = (files) => {
@@ -32,9 +30,9 @@ export default function CreationForm() {
         formData.append("upload_preset", "eh329sqm")
         console.log(formData)
         axios.post("https://api.cloudinary.com/v1_1/gobew10/image/upload", formData)
-        .then((res) => {
-            setImg(formData)
-        })
+            .then((res) => {
+                setImg(formData)
+            })
     }
 
     function handleChange(event) {
@@ -49,23 +47,29 @@ export default function CreationForm() {
     }
 
     function handleSelect(event) {
-        if (input.productCategory.indexOf(event.target.value) === -1) {
+        if (input.productCategory.length < 1) {
             setInput({
                 ...input,
                 productCategory: [...input.productCategory, event.target.value]
             })
         }
+        console.log(event.target.value)
+        console.log(input)
+    }
+
+    function handleDeleteBtn(e) {
+        let res = input.productCategory.filter(categ => categ !== e.target.name)
+        setInput({
+            ...input,
+            productCategory: res
+        })
     }
 
     function handleImage(event) {
-        if(event.target.value) {
+        if (event.target.value) {
             setImg(event.target.value)
         }
     }
-
-    // function handleCheckbox() {
-    //     setIsCheaked(!isChecked)
-    // }
 
     function handleSubmit(event) {
         event.preventDefault();
@@ -93,7 +97,7 @@ export default function CreationForm() {
     useEffect(() => {
         dispatch(GET_CATEGORIES_ADMIN());
     }, [dispatch])
-
+    console.log(input)
     return <div>
         <form onSubmit={(e) => handleSubmit(e)}>
             <div>
@@ -120,18 +124,22 @@ export default function CreationForm() {
                 <label>Categoria: </label>
                 {categories?.map((categ) => (
                     <Fragment key={categ._id}>
-                        <br />
-                        <span key={categ._id}>{categ.categoryName}</span>
-                        <br />
-                        {categ.childCategories?.map((child) => {
-                            return <Fragment key={child._id}>
-                                <input type="checkbox" value={child._id} onClick={(e) => handleSelect(e)} />
-                                <label>{child.categoryName}&nbsp;&nbsp;&nbsp;&nbsp;</label>
-                            </Fragment>
-                        })}
+                        <ul key={categ._id}><li>{categ.categoryName}</li></ul>
+                        <select onChange={(e) => handleSelect(e)}>
+                            {categ.childCategories?.map((child) => {
+                                return <Fragment key={child._id}>
+                                    <option key={child._id} value={child._id} >{child.categoryName}</option>
+                                </Fragment>
+                            })}
+                        </select>
                     </Fragment>
                 ))}
             </div>
+            <span>
+                <ul key={input.productCategory[0]}>
+                    <li key={input.productCategory[0]}>{input.productCategory?.map(el =><li>{el} <button name={el} onClick={(e) => handleDeleteBtn(e)}>X</button></li>)}</li>
+                </ul>
+            </span>
             <div>
                 <label> Crear categoria: </label>
                 <input type="text" placeholder="Categoria..." onChange={(e) => handleChange(e)} value={input.productCategory} name='productCategory' />
@@ -147,14 +155,14 @@ export default function CreationForm() {
             </div>
             <div>
                 <label>Activo: </label>
-                <input type="radio" onChange={(e) => handleChange(e)} value={true} name='productIsActive' /> Si
-                <input type="radio" onChange={(e) => handleChange(e)} value={false} name='productIsActive' /> No
+                <input type="radio" onClick={(e) => handleChange(e)} value={true} name='productIsActive' checked/> Si
+                <input type="radio" onClick={(e) => handleChange(e)} value={false} name='productIsActive' /> No
                 <span>{error.productIsActive}</span>
             </div>
             <div>
                 <label>Destacado: </label>
-                <input type="radio" onChange={(e) => handleChange(e)} value={true} name='productHighlight' /> Si
-                <input type="radio" onChange={(e) => handleChange(e)} value={false} name='productHighlight' /> No
+                <input type="radio" onClick={(e) => handleChange(e)} value={true} name='productHighlight' /> Si
+                <input type="radio" onClick={(e) => handleChange(e)} value={false} name='productHighlight' checked/> No
                 <span>{error.productHighlight}</span>
             </div>
             <div>

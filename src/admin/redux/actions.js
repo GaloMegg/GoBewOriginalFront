@@ -4,8 +4,6 @@ import axios from "axios"
 
 const { REACT_APP_APIURL } = process.env;
 
-console.log(REACT_APP_APIURL)
-
 export const CREATE_PRODUCT = createAsyncThunk(
     "CREATE_PRODUCT", async (productInfo) => {
         try {
