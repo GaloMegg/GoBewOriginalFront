@@ -1,5 +1,5 @@
 import { createReducer } from "@reduxjs/toolkit"
-import { GET_CATEGORIES } from "./actions"
+import { CREATE_PRODUCT, CREATE_CATEGORY } from "./actions"
 
 const initialState = {
     value: 0,
@@ -8,7 +8,14 @@ const initialState = {
 
 }
 export const adminReducer = createReducer(initialState, (builder) => {
-    builder.addCase(GET_CATEGORIES, (state, action) => {
-        state.categories = action.payload
+    builder.addCase(CREATE_PRODUCT, (state) => {
+        return {
+            ...state.product
+        }
     })
+    // builder.addCase(CREATE_CATEGORY, (state) => {
+    //     return {
+    //         ...state.categories
+    //     }
+    // })
 })

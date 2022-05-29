@@ -10,8 +10,7 @@ function App() {
     <div className="App">
       <Routes>
         <Route exact path='/' element={<><Nav />, <ProductCardContainer /></>} />
-
-        <Route exact path='/admin/new' element={<CreationForm />} />
+        <Route exact path='/new' element={<CreationForm />} />
         <Route exact path='/productDetail/:id' element={<ProductDetailContainer/>}/>
       </Routes>
     </div>

@@ -2,14 +2,15 @@ import axios from "axios";
 import React from "react";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { GET_CATEGORIES, POST_PRODUCT } from "../../redux/actions";
+import { CREATE_PRODUCT, GET_CATEGORIES } from "../../redux/actions";
 
 
 export default function CreationForm() {
 
     let dispatch = useDispatch();
-    const categories = useSelector((state) => state.categories)
+    const categories = useSelector((state) => state.adminReducer.categories)
 
+    console.log(categories)
     const [input, setInput] = useState({
         productName: '',
         productIsActive: '',
@@ -61,7 +62,7 @@ export default function CreationForm() {
             setError(1)
             alert('Error: Ingresa los datos')
         } else if (Object.keys(error).length === 0) {
-            dispatch(POST_PRODUCT(input));
+            dispatch(CREATE_PRODUCT(input));
             alert('Producto creado');
         } else {
             alert('Error: Corregi los errores')
@@ -79,7 +80,7 @@ export default function CreationForm() {
     }
 
     useEffect(() => {
-        dispatch(GET_CATEGORIES);
+        //dispatch(GET_CATEGORIES);
     }, [dispatch])
 
     return <div>
