@@ -1,8 +1,8 @@
 import axios from "axios";
-import React from "react";
+import React, { Fragment } from "react";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { CREATE_PRODUCT, GET_CATEGORIES } from "../../redux/actions";
+import { CREATE_PRODUCT, GET_CATEGORIES, GET_CATEGORIES_ADMIN } from "../../redux/actions";
 
 
 export default function CreationForm() {
@@ -18,20 +18,22 @@ export default function CreationForm() {
         productPrice: '',
         productStock: '',
         productHighlight: '',
-        productCategory: '',
+        productCategory: [],
         productImage: ''
     })
 
     const [error, setError] = useState('');
+    const [isChecked, setIsCheaked] = useState(false);
 
     const [img, setImg] = useState("");
     const uploadImage = (files) => {
         const formData = new FormData()
         formData.append("file", img)
         formData.append("upload_preset", "eh329sqm")
-
-        axios.post("https://api.cloudinary.com/v1_1/gobew10/image/upload", formData).then((res) => {
-            console.log(res)
+        console.log(formData)
+        axios.post("https://api.cloudinary.com/v1_1/gobew10/image/upload", formData)
+        .then((res) => {
+            setImg(formData)
         })
     }
 
@@ -42,18 +44,27 @@ export default function CreationForm() {
                 [event.target.name]: event.target.value
             };
             setError('')
-
             return newState;
         })
     }
 
-    // function handleSelect(event) {
-    //     if (input.categories.indexOf(event.target.value) === -1) {
-    //         setInput({
-    //             ...input,
-    //             categories: [...input.categories, event.target.value]
-    //         })
-    //     }
+    function handleSelect(event) {
+        if (input.productCategory.indexOf(event.target.value) === -1) {
+            setInput({
+                ...input,
+                productCategory: [...input.productCategory, event.target.value]
+            })
+        }
+    }
+
+    function handleImage(event) {
+        if(event.target.value) {
+            setImg(event.target.value)
+        }
+    }
+
+    // function handleCheckbox() {
+    //     setIsCheaked(!isChecked)
     // }
 
     function handleSubmit(event) {
@@ -74,13 +85,13 @@ export default function CreationForm() {
             productPrice: '',
             productStock: '',
             productHighlight: '',
-            productCategory: '',
+            productCategory: [],
             productImage: ''
         })
     }
 
     useEffect(() => {
-        //dispatch(GET_CATEGORIES);
+        dispatch(GET_CATEGORIES_ADMIN());
     }, [dispatch])
 
     return <div>
@@ -107,11 +118,19 @@ export default function CreationForm() {
             </div>
             <div>
                 <label>Categoria: </label>
-                <select>
-                    {categories?.map((categ) => (
-                        <option key={categ.id} value={categ}>{categ}</option>
-                    ))}
-                </select>
+                {categories?.map((categ) => (
+                    <Fragment key={categ._id}>
+                        <br />
+                        <span key={categ._id}>{categ.categoryName}</span>
+                        <br />
+                        {categ.childCategories?.map((child) => {
+                            return <Fragment key={child._id}>
+                                <input type="checkbox" value={child._id} onClick={(e) => handleSelect(e)} />
+                                <label>{child.categoryName}&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                            </Fragment>
+                        })}
+                    </Fragment>
+                ))}
             </div>
             <div>
                 <label> Crear categoria: </label>
