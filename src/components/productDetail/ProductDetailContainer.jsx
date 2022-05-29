@@ -13,12 +13,9 @@ export default function ProductDetailContainer() {
         dispatch(GET_PRODUCT_BY_ID(id))
     },[dispatch, id])
 
-<<<<<<< HEAD
-=======
     console.log(2,id)
     console.log(3,product)
 
->>>>>>> d22241002020296cfef8da2b6ca71f533ca17697
     return (
         <div>
             <h2>{product[0]?.productName}</h2>
