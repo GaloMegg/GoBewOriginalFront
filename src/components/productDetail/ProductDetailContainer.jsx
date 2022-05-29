@@ -12,10 +12,6 @@ export default function ProductDetailContainer() {
     useEffect(()=>{
         dispatch(GET_PRODUCT_BY_ID(id))
     },[dispatch, id])
-
-    console.log(2,id)
-    console.log(3,product)
-
     return (
         <div>
             <h2>{product[0]?.productName}</h2>
