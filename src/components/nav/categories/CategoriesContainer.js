@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { GET_CATEGORIES, GET_PRODUCTS, GET_PRODUCTS_BYCATEGORY } from '../../../redux/actions'
 import Categories from './Categories'
+import styles from '../../styles/nav.module.css'
 
 const CategoriesContainer = () => {
     //get categories
@@ -10,6 +11,10 @@ const CategoriesContainer = () => {
     useEffect(() => {
         dispatch(GET_CATEGORIES())
     }, [dispatch])
+<<<<<<< HEAD
+=======
+    
+>>>>>>> d22241002020296cfef8da2b6ca71f533ca17697
     const handleChanges = (e) => {
         if (!e.target.value) {
             dispatch(GET_PRODUCTS())
@@ -19,9 +24,11 @@ const CategoriesContainer = () => {
         dispatch(GET_PRODUCTS_BYCATEGORY(filteredProducts))
     }
     return (
-        <select onChange={handleChanges}>
-            <Categories categories={categories} />
-        </select>
+        <div >
+            <select className={styles.inputCategories} onChange={handleChanges}>
+                <Categories categories={categories} />
+            </select>
+        </div>
     )
 }
 
