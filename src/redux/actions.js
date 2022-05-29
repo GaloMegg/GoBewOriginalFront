@@ -47,13 +47,7 @@ export const GET_HIGHLIGHTED = createAsyncThunk(
 
         return await response.json()
     })
-export const GET_PRODUCTS_BYCATEGORY = createAction(
-    'GET_PRODUCTS_BYCATEGORY', (products) => {
-        return {
-            payload: products
-        }
-    }
-)
+
 export const ORDER_PRODUCTS = createAction('ORDER_PRODUCTS', (productsSorted) => {
     return {
         //payload tiene que existir para que el reducer funcione    
