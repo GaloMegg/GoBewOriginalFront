@@ -3,6 +3,7 @@ import OrderinContainer from './ordering/OrderinContainer'
 import SearchBar from './SearchBar'
 import CategoriesContainer from "./categories/CategoriesContainer"
 import HighLightedBtn from './HighLightedBtn'
+
 const Nav = () => {
     return (
         <nav>

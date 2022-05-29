@@ -1,6 +1,6 @@
 import { createReducer } from "@reduxjs/toolkit"
-
 import { ADD_VALUES, GET_CATEGORIES, GET_PRODUCTS, SEARCH_PRODUCT, ORDER_PRODUCTS, GET_PRODUCTS_BYCATEGORY, GET_HIGHLIGHTED, GET_PRODUCT_BY_ID } from "./actions"
+
 const initialState = {
     value: 0,
     products: [],
