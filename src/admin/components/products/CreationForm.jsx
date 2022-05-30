@@ -1,9 +1,10 @@
+import { eventWrapper } from "@testing-library/user-event/dist/utils";
 import axios from "axios";
 import React, { Fragment } from "react";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { CREATE_CATEGORY, CREATE_PRODUCT, GET_CATEGORIES_ADMIN } from "../../redux/actions";
-//import { validateForm } from './validateForm';
+import validateForm from "./validateForm";
 
 export default function CreationForm() {
 
@@ -17,7 +18,7 @@ export default function CreationForm() {
         productPrice: '',
         productStock: '',
         productHighlight: false,
-        productCategory: [],
+        productCategories: [],
         productImage: ''
     })
 
@@ -45,16 +46,16 @@ export default function CreationForm() {
                 ...prevState,
                 [event.target.name]: event.target.value
             };
-            setError('')
+            setError(validateForm(newState))
             return newState;
         })
     }
 
     function handleSelect(event) {
-        if (input.productCategory.length < 1) {
+        if (input.productCategories.length < 5 && input.productCategories.indexOf(event.target.value) === -1) {
             setInput({
                 ...input,
-                productCategory: [...input.productCategory, event.target.value]
+                productCategories: [...input.productCategories, event.target.value]
             })
         }
     }
@@ -68,10 +69,10 @@ export default function CreationForm() {
     }
 
     function handleDeleteBtn(e) {
-        let res = input.productCategory.filter(categ => categ !== e.target.name)
+        let res = input.productCategories.filter(categ => categ !== e.target.name)
         setInput({
             ...input,
-            productCategory: res
+            productCategories: res
         })
     }
 
@@ -81,14 +82,13 @@ export default function CreationForm() {
                 ...prevState,
                 [event.target.name]: event.target.value
             };
-            setError('')
+            setError(validateForm(newState))
             return newState;
         })
     }
 
     function handleCreateCategory(event) {
         event.preventDefault()
-        console.log(newCateg)
         if (newCateg.categoryName.length === 0) {
             setError(1);
             alert('Error: Ingresa el nombre de la categoria')
@@ -127,7 +127,7 @@ export default function CreationForm() {
             productPrice: '',
             productStock: '',
             productHighlight: '',
-            productCategory: [],
+            productCategories: [],
             productImage: ''
         })
     }
@@ -164,6 +164,7 @@ export default function CreationForm() {
                     <Fragment key={categ._id}>
                         <ul key={categ._id}><li>{categ.categoryName}</li></ul>
                         <select onChange={(e) => handleSelect(e)}>
+                            <option value="">Selecciona categoria</option>
                             {categ.childCategories?.map((child) => {
                                 return <Fragment key={child._id}>
                                     <option key={child._id} value={child._id} >{child.categoryName}</option>
@@ -174,8 +175,8 @@ export default function CreationForm() {
                 ))}
             </div>
             <div>
-                <ul key={input.productCategory[0]}>
-                    <li key={input.productCategory[0]}>{input.productCategory?.map(el => <span key={el}>{el} <button name={el} onClick={(e) => handleDeleteBtn(e)}>X</button></span>)}</li>
+                <ul key={input.productCategories[0]}>
+                    <li key={input.productCategories[0]}>{input.productCategories?.map(el => <span key={el}>{el} <button name={el} onClick={(e) => handleDeleteBtn(e)}>X</button></span>)}</li>
                 </ul>
             </div>
             <div>
