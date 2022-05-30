@@ -9,12 +9,8 @@ import User from '../../images/user-icon.png'
 
 // import HighLightedBtn from './HighLightedBtn' //las organizaciones se hacen después de que el cliente halla elegido una categoría o buscado 
 
-<<<<<<< HEAD
-const Nav = ({setViewCategories}) => {
-=======
 const Nav = ({ setViewCategories }) => {
 
->>>>>>> d3b45622386e30e5cfc4876018d5d68c51e5c336
     return (
         <nav>
             {/* LOGO */}
