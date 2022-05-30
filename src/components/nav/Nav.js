@@ -10,6 +10,7 @@ import User from '../../images/user-icon.png'
 // import HighLightedBtn from './HighLightedBtn' //las organizaciones se hacen después de que el cliente halla elegido una categoría o buscado 
 
 const Nav = ({ setViewCategories }) => {
+
     return (
         <nav>
             {/* LOGO */}
@@ -26,11 +27,11 @@ const Nav = ({ setViewCategories }) => {
                     <div className={styles.navBarContainer}>
                         <SearchBar />
                     </div>
-                    <div className={styles.navIconpContainer}>
+                    <div className={styles.navIconpContainer} onClick={() => alert("Proximamente")}>
                         <img className={styles.navIcons} src={Carrito} alt='img not found' />
                         <p className={styles.navp}>Carrito</p>
                     </div>
-                    <div className={styles.navIconpContainer}>
+                    <div className={styles.navIconpContainer} onClick={() => alert("Proximamente")}>
                         <img className={styles.navIcons} src={User} alt='img not found' />
                         <p className={styles.navp}>Acceso</p>
                     </div>

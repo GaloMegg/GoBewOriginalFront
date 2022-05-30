@@ -20,7 +20,15 @@ export default function ProductCardContainer() {
 
     return (
         <div className={styles.cardsCotainer}>
-            <ProductsMap products={products} />
+            {products.length > 0 ?
+                <ProductsMap products={products} /> :
+                <h1>
+                    No hay productos de la categoria seleccionada
+                </h1>
+
+
+
+            }
         </div>
     )
 }
