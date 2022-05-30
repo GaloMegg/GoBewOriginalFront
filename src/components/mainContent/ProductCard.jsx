@@ -1,22 +1,30 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import styles from '../styles/ProductCard.module.css'
 const { REACT_APP_CLOUDINARY_RES } = process.env
 
 export default function ProductCard({productName, productPrice, productStock, productId, images}) {
     return (
-        <div>
-            <Link to={`/productDetail/${productId}`}>
-                <h2>{productName}</h2>
-            </Link>
-            {
-                images?.map((i)=>{
+        
+        <div className={styles.cardCotainer}>
+            <Link to={`/productDetail/${productId}`} className={styles.link}>
+            <div className={styles.productCard}>
+               {images?.map((i)=>{
                     if(i.imageIsPrimary){
-                        return <img src={REACT_APP_CLOUDINARY_RES + i.imageName} alt={i.imageAlt} />
+                        return <img className={styles.img} src={REACT_APP_CLOUDINARY_RES + i.imageName} alt={i.imageAlt} key={i.imageName}/>
                     }
                 })
+<<<<<<< HEAD
             }
             <p>{"$" + productPrice}</p>
             {/* <span>{productStock}</span> */}
+=======
+               }
+                <h3>{productName}</h3>
+                <p>$ {productPrice.toLocaleString( {style: 'currency',currency: 'INR', minimumFractionDigits: 2})}</p>
+            </div>
+            </Link>
+>>>>>>> b1bace45dc2f70569d01d40e8f301bd2703ad670
         </div>
     )
 }
