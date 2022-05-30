@@ -1,4 +1,4 @@
-export default function validate (input) {
+export default function validateForm(input) {
     const errors = {};
     const regex = /[A-z\s\d][\\\^]?/
     const soloNumeros = /\D/g
@@ -21,4 +21,6 @@ export default function validate (input) {
     else if (input.productStock< 0) errors.productStock = "El stock no puede ser menor a 0"
 
     if (!input.productCategory) errors.productCategory = "Seleccione a que categoria pertenece"
+
+    return errors;
 }
