@@ -4,7 +4,10 @@ import axios from "axios"
 
 const { REACT_APP_APIURL } = process.env;
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 13fb88155eee3b3483bd5a132565633a0f53e6cc
 export const CREATE_PRODUCT = createAsyncThunk(
     "CREATE_PRODUCT", async (productInfo) => {
         try {
@@ -22,7 +25,7 @@ export const CREATE_CATEGORY = createAsyncThunk(
             const res = await axios.post(`${REACT_APP_APIURL}categories/new`, categ);
             return res
         } catch (e) {
-            console.log(e)
+            console.log(categ)
         }
     }
 )

@@ -2,8 +2,8 @@ import axios from "axios";
 import React, { Fragment } from "react";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { CREATE_PRODUCT, GET_CATEGORIES, GET_CATEGORIES_ADMIN } from "../../redux/actions";
-
+import { CREATE_CATEGORY, CREATE_PRODUCT, GET_CATEGORIES_ADMIN } from "../../redux/actions";
+//import { validateForm } from './validateForm';
 
 export default function CreationForm() {
 
@@ -12,17 +12,21 @@ export default function CreationForm() {
 
     const [input, setInput] = useState({
         productName: '',
-        productIsActive: '',
+        productIsActive: true,
         productDescription: '',
         productPrice: '',
         productStock: '',
-        productHighlight: '',
+        productHighlight: false,
         productCategory: [],
         productImage: ''
     })
 
+    const [newCateg, setNewCateg] = useState({
+        categoryName: '',
+        categoryActive: true,
+        categorySupId: ''
+    });
     const [error, setError] = useState('');
-    const [isChecked, setIsCheaked] = useState(false);
 
     const [img, setImg] = useState("");
     const uploadImage = (files) => {
@@ -30,9 +34,9 @@ export default function CreationForm() {
         formData.append("file", img)
         formData.append("upload_preset", "eh329sqm")
         axios.post("https://api.cloudinary.com/v1_1/gobew10/image/upload", formData)
-        .then((res) => {
-            setImg(formData)
-        })
+            .then((res) => {
+                setImg(formData)
+            })
     }
 
     function handleChange(event) {
@@ -47,7 +51,7 @@ export default function CreationForm() {
     }
 
     function handleSelect(event) {
-        if (input.productCategory.indexOf(event.target.value) === -1) {
+        if (input.productCategory.length < 1) {
             setInput({
                 ...input,
                 productCategory: [...input.productCategory, event.target.value]
@@ -55,15 +59,55 @@ export default function CreationForm() {
         }
     }
 
+    function handleSelectCategory(event) {
+        console.log(event.target.value)
+        setNewCateg({
+            ...newCateg,
+            categorySupId: event.target.value
+        })
+    }
+
+    function handleDeleteBtn(e) {
+        let res = input.productCategory.filter(categ => categ !== e.target.name)
+        setInput({
+            ...input,
+            productCategory: res
+        })
+    }
+
+    function handleChangeCategory(event) {
+        setNewCateg((prevState) => {
+            const newState = {
+                ...prevState,
+                [event.target.name]: event.target.value
+            };
+            setError('')
+            return newState;
+        })
+    }
+
+    function handleCreateCategory(event) {
+        event.preventDefault()
+        console.log(newCateg)
+        if (newCateg.categoryName.length === 0) {
+            setError(1);
+            alert('Error: Ingresa el nombre de la categoria')
+        } else if (Object.keys(error).length === 0) {
+            dispatch(CREATE_CATEGORY(newCateg))
+            alert('Categoria creada')
+        }
+        setNewCateg({
+            categoryNew: '',
+            categoryActive: true,
+            categorySupId: ''
+        })
+    }
+
     function handleImage(event) {
-        if(event.target.value) {
+        if (event.target.value) {
             setImg(event.target.value)
         }
     }
-
-    // function handleCheckbox() {
-    //     setIsCheaked(!isChecked)
-    // }
 
     function handleSubmit(event) {
         event.preventDefault();
@@ -118,45 +162,60 @@ export default function CreationForm() {
                 <label>Categoria: </label>
                 {categories?.map((categ) => (
                     <Fragment key={categ._id}>
-                        <br />
-                        <span key={categ._id}>{categ.categoryName}</span>
-                        <br />
-                        {categ.childCategories?.map((child) => {
-                            return <Fragment key={child._id}>
-                                <input type="checkbox" value={child._id} onClick={(e) => handleSelect(e)} />
-                                <label>{child.categoryName}&nbsp;&nbsp;&nbsp;&nbsp;</label>
-                            </Fragment>
-                        })}
+                        <ul key={categ._id}><li>{categ.categoryName}</li></ul>
+                        <select onChange={(e) => handleSelect(e)}>
+                            {categ.childCategories?.map((child) => {
+                                return <Fragment key={child._id}>
+                                    <option key={child._id} value={child._id} >{child.categoryName}</option>
+                                </Fragment>
+                            })}
+                        </select>
                     </Fragment>
                 ))}
             </div>
             <div>
-                <label> Crear categoria: </label>
-                <input type="text" placeholder="Categoria..." onChange={(e) => handleChange(e)} value={input.productCategory} name='productCategory' />
-                <span>{error.productCategory}</span>
-            </div>
-            <div>
-                <label>Imagen: </label>
-                <input type="file" placeholder="Nombre..." onChange={(e) => {
-                    setImg(e.target.files[0]);
-                }} />
-                <button onClick={uploadImage}> Subir Imagen Prueba</button>
-                <span>{error.productImage}</span>
+                <ul key={input.productCategory[0]}>
+                    <li key={input.productCategory[0]}>{input.productCategory?.map(el => <span key={el}>{el} <button name={el} onClick={(e) => handleDeleteBtn(e)}>X</button></span>)}</li>
+                </ul>
             </div>
             <div>
                 <label>Activo: </label>
-                <input type="radio" onChange={(e) => handleChange(e)} value={true} name='productIsActive' /> Si
-                <input type="radio" onChange={(e) => handleChange(e)} value={false} name='productIsActive' /> No
+                <input type="radio" onClick={(e) => handleChange(e)} value={true} name='productIsActive' /> Si
+                <input type="radio" onClick={(e) => handleChange(e)} value={false} name='productIsActive' /> No
                 <span>{error.productIsActive}</span>
             </div>
             <div>
                 <label>Destacado: </label>
-                <input type="radio" onChange={(e) => handleChange(e)} value={true} name='productHighlight' /> Si
-                <input type="radio" onChange={(e) => handleChange(e)} value={false} name='productHighlight' /> No
+                <input type="radio" onClick={(e) => handleChange(e)} value={true} name='productHighlight' /> Si
+                <input type="radio" onClick={(e) => handleChange(e)} value={false} name='productHighlight' /> No
                 <span>{error.productHighlight}</span>
             </div>
             <div>
                 <button type="submit">Crear producto</button>
+            </div>
+        </form>
+        <form onSubmit={(e) => handleCreateCategory(e)}>
+            <div>
+                <label> Crear categoria: </label>
+                <input type="text" placeholder="Categoria..." onChange={(e) => handleChangeCategory(e)} value={newCateg.categoryName} name='categoryName' />
+                <span>{error.newProductCategory || ''}</span>
+            </div>
+            <div>
+                <label>Categoria padre: </label>
+                <select onChange={(e) => handleSelectCategory(e)}>
+                    {categories?.map((categ) => {
+                        return <option key={categ._id} value={categ._id}>{categ.categoryName}</option>
+                    })}
+                </select>
+            </div>
+            <div>
+                <label>Activo: </label>
+                <input type="radio" onClick={(e) => handleChangeCategory(e)} value={true} name='categoryActive' /> Si
+                <input type="radio" onClick={(e) => handleChangeCategory(e)} value={false} name='categoryActive' /> No
+                <span>{error.productIsActive}</span>
+            </div>
+            <div>
+                <button type="submit">Crear</button>
             </div>
         </form>
     </div>
