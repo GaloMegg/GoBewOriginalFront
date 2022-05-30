@@ -21,7 +21,7 @@ export const CREATE_CATEGORY = createAsyncThunk(
             const res = await axios.post(`${REACT_APP_APIURL}categories/new`, categ);
             return res
         } catch (e) {
-            console.log(e)
+            console.log(categ)
         }
     }
 )
