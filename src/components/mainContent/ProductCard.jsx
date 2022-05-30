@@ -18,6 +18,14 @@ export default function ProductCard({ productName, productPrice, productStock, p
                     <h3>{productName}</h3>
                     <p>$ {productPrice.toLocaleString({ style: 'currency', currency: 'INR', minimumFractionDigits: 2 })}</p>
                 </div>
+                })
+            }
+            <p>{"$" + productPrice}</p>
+            {/* <span>{productStock}</span> */}
+               }
+                <h3>{productName}</h3>
+                <p>$ {productPrice.toLocaleString( {style: 'currency',currency: 'INR', minimumFractionDigits: 2})}</p>
+            </div>
             </Link>
         </div>
     )
