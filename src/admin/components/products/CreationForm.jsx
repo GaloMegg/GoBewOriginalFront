@@ -1,4 +1,3 @@
-import { eventWrapper } from "@testing-library/user-event/dist/utils";
 import axios from "axios";
 import React, { Fragment } from "react";
 import { useEffect, useState } from "react";
@@ -61,7 +60,6 @@ export default function CreationForm() {
     }
 
     function handleSelectCategory(event) {
-        console.log(event.target.value)
         setNewCateg({
             ...newCateg,
             categorySupId: event.target.value
@@ -108,7 +106,7 @@ export default function CreationForm() {
             setImg(event.target.value)
         }
     }
-
+    
     function handleSubmit(event) {
         event.preventDefault();
         if (input.productName.length === 0) {
@@ -116,8 +114,10 @@ export default function CreationForm() {
             alert('Error: Ingresa los datos')
         } else if (Object.keys(error).length === 0) {
             dispatch(CREATE_PRODUCT(input));
+            console.log(input)
             alert('Producto creado');
         } else {
+            console.log(Object.keys(error).length)
             alert('Error: Corregi los errores')
         }
         setInput({
@@ -219,6 +219,9 @@ export default function CreationForm() {
                 <button type="submit">Crear</button>
             </div>
         </form>
+        <div>
+            {/* <createImage key={'imageForm'} productId={}/> */}
+        </div>
     </div>
 
 }
