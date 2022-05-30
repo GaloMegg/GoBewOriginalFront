@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import { GET_PRODUCTS } from '../../redux/actions';
 import ProductsMap from './ProductsMap';
+import styles from '../styles/ProductCard.module.css'
 
 export default function ProductCardContainer() {
     
@@ -15,7 +16,7 @@ export default function ProductCardContainer() {
 
 
     return (
-        <div>
+        <div className={styles.cardsCotainer}>
             <ProductsMap products={products}/>
         </div>
     )
