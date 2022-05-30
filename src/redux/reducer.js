@@ -28,7 +28,7 @@ export const clientReducer = createReducer(initialState, (builder) => {
     builder.addCase(GET_HIGHLIGHTED.fulfilled, (state, action) => {
         state.products = action.payload.productList
     })
-    builder.addCase(GET_PRODUCTS_BY_CATEGORY, (state, action) => {
+    builder.addCase(GET_PRODUCTS_BYCATEGORY, (state, action) => {
         state.products = action.payload
         state.isFiltered = true
     })
