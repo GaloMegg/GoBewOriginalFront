@@ -15,9 +15,8 @@ export default function ProductCard({productName, productPrice, productStock, pr
                     }
                 })
             }
-            <p>{productPrice}</p>
-            <span>{productStock}</span>
-            <p>{productId}</p>
+            <p>{"$" + productPrice}</p>
+            {/* <span>{productStock}</span> */}
         </div>
     )
 }
