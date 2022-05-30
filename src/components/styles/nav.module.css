@@ -54,7 +54,10 @@
     color: #17252A;
 }
 .navIconpContainer{
+    display:flex;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
     margin: 0% 1%;
 }
 .navIcons{
