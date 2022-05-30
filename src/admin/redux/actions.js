@@ -1,24 +1,35 @@
 // import { createAsyncThunk, createAction } from '@reduxjs/toolkit'
 import { createAsyncThunk } from '@reduxjs/toolkit'
-
 import axios from "axios"
 
+const { REACT_APP_APIURL } = process.env;
 
-const { REACT_APP_APIURL } = process.env
-export const GET_CATEGORIES = createAsyncThunk(
-    'GET_CATEGORIES', async () => {
-        const response = await fetch(`${REACT_APP_APIURL}category`)
-        return await response.json()
-    })
+console.log(REACT_APP_APIURL)
 
-
-export const POST_PRODUCT = createAsyncThunk(
-    "POST_PRODUCT", async (productInfo) => {
+export const CREATE_PRODUCT = createAsyncThunk(
+    "CREATE_PRODUCT", async (productInfo) => {
         try {
-            const res = await axios.post(REACT_APP_APIURL + "new", productInfo);
+            const res = await axios.post(`${REACT_APP_APIURL}product/new`, productInfo);
             return res
         } catch (e) {
             console.log(e)
         }
     }
 )
+
+export const CREATE_CATEGORY = createAsyncThunk(
+    "CREATE_CATEGORY", async (categ) => {
+        try {
+            const res = await axios.post(`${REACT_APP_APIURL}categories/new`, categ);
+            return res
+        } catch (e) {
+            console.log(e)
+        }
+    }
+)
+
+export const GET_CATEGORIES_ADMIN = createAsyncThunk(
+    'GET_CATEGORIES_ADMIN', async () => {
+        const response = await fetch(`${REACT_APP_APIURL}categories`)
+        return await response.json()
+    })

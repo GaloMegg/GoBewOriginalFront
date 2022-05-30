@@ -13,9 +13,9 @@ function App() {
   return (
     <div >
       <Routes>
-        <Route exact path='/' element={<><Nav/><ProductCardContainer /></>} />
+        <Route exact path='/' element={<><Nav /> <ProductCardContainer /></>} />
+        <Route exact path='/productDetail/:id' element={<ProductDetailContainer />} />
         <Route exact path='/admin/new' element={<CreationForm />} />
-        <Route exact path='/productDetail/:id' element={<ProductDetailContainer/>}/>
       </Routes>
     </div>
   );

@@ -11,13 +11,13 @@ const CategoriesContainer = () => {
     useEffect(() => {
         dispatch(GET_CATEGORIES())
     }, [dispatch])
-    
     const handleChanges = (e) => {
         if (!e.target.value) {
             dispatch(GET_PRODUCTS())
             return
         }
-        let filteredProducts = productsToFilter.filter(product => product.categories[0].categorySupId === e.target.value || product.categories[0]._id === e.target.value)
+        console.log(e.target.value)
+        let filteredProducts = productsToFilter.filter(product => product.categories[0]?.categorySupId === e.target.value || product.categories[0]?._id === e.target.value)
         dispatch(GET_PRODUCTS_BYCATEGORY(filteredProducts))
     }
     return (
