@@ -6,6 +6,7 @@ import ProductCardContainer from './components/mainContent/ProductCardContainer'
 import CreationForm from './admin/components/products/CreationForm';
 import ProductDetailContainer from './components/productDetail/ProductDetailContainer';
 import NavBarDetail from './components/productDetail/NavBarDetail';
+import Login from './components/Login/login';
 // import CategoriesNew from './components/nav/categories/CategoriesNew.jsx';
 function App() {
 
@@ -17,6 +18,7 @@ function App() {
         <Route exact path='/' element={<><Nav /> <ProductCardContainer /></>} />
         <Route exact path='/productDetail/:id' element={<><NavBarDetail/> <ProductDetailContainer /> </>} />
         <Route exact path='/admin/new' element={<CreationForm />} />
+        <Route exact path='/login' element={<Login />} />
       </Routes>
     </div>
   );
