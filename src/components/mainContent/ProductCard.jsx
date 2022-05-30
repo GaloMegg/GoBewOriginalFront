@@ -20,10 +20,9 @@ export default function ProductCard({ productName, productPrice, productStock, p
                 </div>
             <p>{"$" + productPrice}</p>
             {/* <span>{productStock}</span> */}
-            </Link>
-            
                 <h3>{productName}</h3>
                 <p>$ {productPrice.toLocaleString( {style: 'currency',currency: 'INR', minimumFractionDigits: 2})}</p>
+            </Link>
             </div>
     )
 }
