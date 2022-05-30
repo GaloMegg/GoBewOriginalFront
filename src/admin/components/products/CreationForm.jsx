@@ -10,7 +10,6 @@ export default function CreationForm() {
     let dispatch = useDispatch();
     const categories = useSelector((state) => state.adminReducer.categories)
 
-    console.log(categories)
     const [input, setInput] = useState({
         productName: '',
         productIsActive: '',
@@ -30,7 +29,6 @@ export default function CreationForm() {
         const formData = new FormData()
         formData.append("file", img)
         formData.append("upload_preset", "eh329sqm")
-        console.log(formData)
         axios.post("https://api.cloudinary.com/v1_1/gobew10/image/upload", formData)
         .then((res) => {
             setImg(formData)

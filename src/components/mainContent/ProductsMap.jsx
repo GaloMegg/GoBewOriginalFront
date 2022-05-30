@@ -2,7 +2,6 @@ import React from 'react'
 import ProductCard from './ProductCard'
 
 export default function ProductsMap({products}) {
-    console.log(1, products)
     return (
         <>
             {
