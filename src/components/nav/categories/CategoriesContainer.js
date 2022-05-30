@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { GET_CATEGORIES, GET_PRODUCTS } from '../../../redux/actions'
+import { GET_CATEGORIES, GET_PRODUCTS, GET_PRODUCTS_BY_CATEGORY } from '../../../redux/actions'
 import Categories from './Categories'
 import styles from '../../styles/nav.module.css'
 
@@ -18,7 +18,7 @@ const CategoriesContainer = () => {
         }
         console.log(e.target.value)
         let filteredProducts = productsToFilter.filter(product => product.categories[0]?.categorySupId === e.target.value || product.categories[0]?._id === e.target.value)
-        dispatch(GET_PRODUCTS_BYCATEGORY(filteredProducts))
+        dispatch(GET_PRODUCTS_BY_CATEGORY(filteredProducts))
     }
     return (
         <div >
