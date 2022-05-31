@@ -1,5 +1,5 @@
 import { createReducer } from "@reduxjs/toolkit"
-import { GET_CATEGORIES, GET_PRODUCTS, SEARCH_PRODUCT, ORDER_PRODUCTS, GET_PRODUCTS_BYCATEGORY, GET_HIGHLIGHTED, GET_PRODUCT_BY_ID, CLEAN_UP_DETAILS } from "./actions"
+import { GET_CATEGORIES, GET_PRODUCTS, SEARCH_PRODUCT, ORDER_PRODUCTS, GET_PRODUCTS_BYCATEGORY, GET_HIGHLIGHTED, GET_PRODUCT_BY_ID, CLEAN_UP_DETAILS,POST_USER } from "./actions"
 
 const initialState = {
     products: [],
@@ -7,6 +7,7 @@ const initialState = {
     product: {},
     categories: [],
     isFiltered: false,
+    userResponse: '',
 }
 export const clientReducer = createReducer(initialState, (builder) => {
     builder.addCase(GET_PRODUCT_BY_ID.fulfilled, (state, action) => {
@@ -36,5 +37,8 @@ export const clientReducer = createReducer(initialState, (builder) => {
     })
     builder.addCase(CLEAN_UP_DETAILS, (state, action) => {
         state.product = action.payload
+    })
+    builder.addCase(POST_USER.fulfilled, (state, action) => {
+        state.userResponse = action.payload
     })
 })
