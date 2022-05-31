@@ -55,3 +55,6 @@ export const POST_USER = createAsyncThunk(
         return await response.data
     }
 )
+export const CLEAN_USER_RESPONSE = createAction('CLEAN_USER_RESPONSE', () => {
+    return {payload : ''}
+})
