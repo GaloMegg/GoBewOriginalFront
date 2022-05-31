@@ -60,6 +60,7 @@
     align-items: center;
     margin: 0% 1%;
     cursor: pointer;
+    text-decoration: none;
 }
 .navIcons{
     height: 30px;

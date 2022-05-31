@@ -1,11 +1,13 @@
 import { createReducer } from "@reduxjs/toolkit"
-import { GET_CATEGORIES, GET_PRODUCTS, SEARCH_PRODUCT, ORDER_PRODUCTS, GET_PRODUCTS_BYCATEGORY, GET_HIGHLIGHTED, GET_PRODUCT_BY_ID, CLEAN_UP_DETAILS } from "./actions"
+import { GET_CATEGORIES, GET_PRODUCTS, SET_TOTAL, SEARCH_PRODUCT, ADD_TO_CART, ORDER_PRODUCTS, GET_PRODUCTS_BYCATEGORY, GET_HIGHLIGHTED, GET_PRODUCT_BY_ID, CLEAN_UP_DETAILS } from "./actions"
 
 const initialState = {
     products: [],
     productsToFilter: [],
     product: {},
     categories: [],
+    cart: [],
+    totalCart: 0,
     isFiltered: false,
 }
 export const clientReducer = createReducer(initialState, (builder) => {
@@ -36,5 +38,19 @@ export const clientReducer = createReducer(initialState, (builder) => {
     })
     builder.addCase(CLEAN_UP_DETAILS, (state, action) => {
         state.product = action.payload
+    })
+    builder.addCase(SET_TOTAL, (state, action) => {
+        state.totalCart = action.payload
+    })
+    builder.addCase(ADD_TO_CART, (state, action) => {
+        let prod = state.cart.find(e => e._id === action.payload.product._id)
+        if (prod) {
+
+            prod.quantity = prod.quantity + action.payload.quantity
+        } else {
+            let obj = { ...action.payload.product }
+            obj.quantity = action.payload.quantity
+            state.cart.push(obj)
+        }
     })
 })

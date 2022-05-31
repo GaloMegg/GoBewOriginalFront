@@ -38,13 +38,24 @@ export const GET_PRODUCTS_BYCATEGORY = createAction(
 )
 export const ORDER_PRODUCTS = createAction('ORDER_PRODUCTS', (productsSorted) => {
     return {
-        //payload tiene que existir para que el reducer funcione    
         payload: productsSorted
     }
 })
 export const CLEAN_UP_DETAILS = createAction('CLEAN_UP_DETAILS', () => {
     return {
-        //payload tiene que existir para que el reducer funcione    
         payload: {}
+    }
+})
+export const SET_TOTAL = createAction('SET_TOTAL', (price) => {
+    return {
+        payload: price
+    }
+})
+export const ADD_TO_CART = createAction('ADD_TO_CART', (product, quantity) => {
+    return {
+        payload: {
+            product,
+            quantity
+        }
     }
 })
