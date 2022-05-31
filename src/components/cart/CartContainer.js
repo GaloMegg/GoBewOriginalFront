@@ -1,10 +1,21 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { SET_CART, SET_TOTAL } from '../../redux/actions'
+import Cart from './Cart'
 
 const CartContainer = () => {
-    return (
-        <div>
+    const { cart, totalCart } = useSelector(state => state.clientReducer)
+    const dispatch = useDispatch()
+    useEffect(() => {
+        dispatch(SET_CART(JSON.parse(localStorage.getItem('cart'))))
+        dispatch(SET_TOTAL(JSON.parse(localStorage.getItem('totalCart'))))
+    }, [dispatch])
 
-        </div>
+    return (
+        <section>
+            <h1>Cart</h1>
+            <Cart cart={cart} totalCart={totalCart} />
+        </section>
     )
 }
 

@@ -59,3 +59,8 @@ export const ADD_TO_CART = createAction('ADD_TO_CART', (product, quantity) => {
         }
     }
 })
+export const SET_CART = createAction('SET_CART', (cart) => {
+    return {
+        payload: cart
+    }
+})

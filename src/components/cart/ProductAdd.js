@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { SET_TOTAL, ADD_TO_CART } from '../../redux/actions'
 
@@ -20,10 +20,13 @@ const ProductAdd = ({ stock, price, product }) => {
         e.preventDefault()
         console.log(product)
         dispatch(ADD_TO_CART(product, localCount))
-
         dispatch(SET_TOTAL(totalCart + (localCount * price)))
         setLocalCount(0)
     }
+    useEffect(() => {
+        localStorage.setItem('cart', JSON.stringify(cart))
+        localStorage.setItem('totalCart', JSON.stringify(totalCart))
+    }, [cart, totalCart])
 
     return (
         <form onSubmit={addToCart}>

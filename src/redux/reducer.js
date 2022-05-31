@@ -1,5 +1,5 @@
 import { createReducer } from "@reduxjs/toolkit"
-import { GET_CATEGORIES, GET_PRODUCTS, SET_TOTAL, SEARCH_PRODUCT, ADD_TO_CART, ORDER_PRODUCTS, GET_PRODUCTS_BYCATEGORY, GET_HIGHLIGHTED, GET_PRODUCT_BY_ID, CLEAN_UP_DETAILS } from "./actions"
+import { GET_CATEGORIES, GET_PRODUCTS, SET_TOTAL, SET_CART, SEARCH_PRODUCT, ADD_TO_CART, ORDER_PRODUCTS, GET_PRODUCTS_BYCATEGORY, GET_HIGHLIGHTED, GET_PRODUCT_BY_ID, CLEAN_UP_DETAILS } from "./actions"
 
 const initialState = {
     products: [],
@@ -52,5 +52,8 @@ export const clientReducer = createReducer(initialState, (builder) => {
             obj.quantity = action.payload.quantity
             state.cart.push(obj)
         }
+    })
+    builder.addCase(SET_CART, (state, action) => {
+        state.cart = action.payload
     })
 })
