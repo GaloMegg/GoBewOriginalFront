@@ -30,6 +30,7 @@ export const GET_CATEGORIES_ADMIN = createAsyncThunk(
     'GET_CATEGORIES_ADMIN', async () => {
         const response = await fetch(`${REACT_APP_APIURL}categories`)
         return await response.json()
+<<<<<<< HEAD
     })
 
 export const POST_IMAGE_ADMIN = createAsyncThunk(
@@ -42,3 +43,6 @@ export const POST_IMAGE_ADMIN = createAsyncThunk(
         }
     }
 )
+=======
+    })
+>>>>>>> 4fa82ddc4c07747e2fa0b26576830dfde8991b1c

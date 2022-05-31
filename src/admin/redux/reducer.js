@@ -1,5 +1,9 @@
 import { createReducer } from "@reduxjs/toolkit"
+<<<<<<< HEAD
 import { CREATE_PRODUCT, CREATE_CATEGORY, GET_CATEGORIES_ADMIN, POST_IMAGE_ADMIN } from "./actions"
+=======
+import { CREATE_PRODUCT, CREATE_CATEGORY, GET_CATEGORIES_ADMIN } from "./actions"
+>>>>>>> 4fa82ddc4c07747e2fa0b26576830dfde8991b1c
 
 const initialState = {
     value: 0,

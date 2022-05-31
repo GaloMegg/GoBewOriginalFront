@@ -3,7 +3,11 @@ import React, { Fragment } from "react";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { CREATE_CATEGORY, CREATE_PRODUCT, GET_CATEGORIES_ADMIN } from "../../redux/actions";
+<<<<<<< HEAD
 import validateForm from "./validateForm";
+=======
+//import { validateForm } from './validateForm';
+>>>>>>> 4fa82ddc4c07747e2fa0b26576830dfde8991b1c
 
 export default function CreationForm() {
 
@@ -17,7 +21,11 @@ export default function CreationForm() {
         productPrice: '',
         productStock: '',
         productHighlight: false,
+<<<<<<< HEAD
         productCategories: [],
+=======
+        productCategory: [],
+>>>>>>> 4fa82ddc4c07747e2fa0b26576830dfde8991b1c
         productImage: ''
     })
 
@@ -45,26 +53,42 @@ export default function CreationForm() {
                 ...prevState,
                 [event.target.name]: event.target.value
             };
+<<<<<<< HEAD
             setError(validateForm(newState))
+=======
+            setError('')
+>>>>>>> 4fa82ddc4c07747e2fa0b26576830dfde8991b1c
             return newState;
         })
     }
 
     function handleSelect(event) {
+<<<<<<< HEAD
         if (input.productCategories.length < 5 && input.productCategories.indexOf(event.target.value) === -1) {
             setInput({
                 ...input,
                 productCategories: [...input.productCategories, event.target.value]
+=======
+        if (input.productCategory.length < 1) {
+            setInput({
+                ...input,
+                productCategory: [...input.productCategory, event.target.value]
+>>>>>>> 4fa82ddc4c07747e2fa0b26576830dfde8991b1c
             })
         }
     }
 
     function handleSelectCategory(event) {
+<<<<<<< HEAD
+=======
+        console.log(event.target.value)
+>>>>>>> 4fa82ddc4c07747e2fa0b26576830dfde8991b1c
         setNewCateg({
             ...newCateg,
             categorySupId: event.target.value
         })
     }
+<<<<<<< HEAD
 
     function handleDeleteBtn(e) {
         let res = input.productCategories.filter(categ => categ !== e.target.name)
@@ -74,19 +98,38 @@ export default function CreationForm() {
         })
     }
 
+=======
+
+    function handleDeleteBtn(e) {
+        let res = input.productCategory.filter(categ => categ !== e.target.name)
+        setInput({
+            ...input,
+            productCategory: res
+        })
+    }
+
+>>>>>>> 4fa82ddc4c07747e2fa0b26576830dfde8991b1c
     function handleChangeCategory(event) {
         setNewCateg((prevState) => {
             const newState = {
                 ...prevState,
                 [event.target.name]: event.target.value
             };
+<<<<<<< HEAD
             setError(validateForm(newState))
+=======
+            setError('')
+>>>>>>> 4fa82ddc4c07747e2fa0b26576830dfde8991b1c
             return newState;
         })
     }
 
     function handleCreateCategory(event) {
         event.preventDefault()
+<<<<<<< HEAD
+=======
+        console.log(newCateg)
+>>>>>>> 4fa82ddc4c07747e2fa0b26576830dfde8991b1c
         if (newCateg.categoryName.length === 0) {
             setError(1);
             alert('Error: Ingresa el nombre de la categoria')
@@ -100,6 +143,15 @@ export default function CreationForm() {
             categorySupId: ''
         })
     }
+<<<<<<< HEAD
+=======
+
+    function handleImage(event) {
+        if (event.target.value) {
+            setImg(event.target.value)
+        }
+    }
+>>>>>>> 4fa82ddc4c07747e2fa0b26576830dfde8991b1c
 
     function handleImage(event) {
         if (event.target.value) {
@@ -114,7 +166,10 @@ export default function CreationForm() {
             alert('Error: Ingresa los datos')
         } else if (Object.keys(error).length === 0) {
             dispatch(CREATE_PRODUCT(input));
+<<<<<<< HEAD
             console.log(input)
+=======
+>>>>>>> 4fa82ddc4c07747e2fa0b26576830dfde8991b1c
             alert('Producto creado');
         } else {
             console.log(Object.keys(error).length)
@@ -127,7 +182,11 @@ export default function CreationForm() {
             productPrice: '',
             productStock: '',
             productHighlight: '',
+<<<<<<< HEAD
             productCategories: [],
+=======
+            productCategory: [],
+>>>>>>> 4fa82ddc4c07747e2fa0b26576830dfde8991b1c
             productImage: ''
         })
     }
@@ -164,7 +223,10 @@ export default function CreationForm() {
                     <Fragment key={categ._id}>
                         <ul key={categ._id}><li>{categ.categoryName}</li></ul>
                         <select onChange={(e) => handleSelect(e)}>
+<<<<<<< HEAD
                             <option value="">Selecciona categoria</option>
+=======
+>>>>>>> 4fa82ddc4c07747e2fa0b26576830dfde8991b1c
                             {categ.childCategories?.map((child) => {
                                 return <Fragment key={child._id}>
                                     <option key={child._id} value={child._id} >{child.categoryName}</option>
@@ -175,8 +237,13 @@ export default function CreationForm() {
                 ))}
             </div>
             <div>
+<<<<<<< HEAD
                 <ul key={input.productCategories[0]}>
                     <li key={input.productCategories[0]}>{input.productCategories?.map(el => <span key={el}>{el} <button name={el} onClick={(e) => handleDeleteBtn(e)}>X</button></span>)}</li>
+=======
+                <ul key={input.productCategory[0]}>
+                    <li key={input.productCategory[0]}>{input.productCategory?.map(el => <span key={el}>{el} <button name={el} onClick={(e) => handleDeleteBtn(e)}>X</button></span>)}</li>
+>>>>>>> 4fa82ddc4c07747e2fa0b26576830dfde8991b1c
                 </ul>
             </div>
             <div>
@@ -219,9 +286,12 @@ export default function CreationForm() {
                 <button type="submit">Crear</button>
             </div>
         </form>
+<<<<<<< HEAD
         <div>
             {/* <createImage key={'imageForm'} productId={}/> */}
         </div>
+=======
+>>>>>>> 4fa82ddc4c07747e2fa0b26576830dfde8991b1c
     </div>
 
 }

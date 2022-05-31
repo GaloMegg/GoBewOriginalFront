@@ -18,10 +18,16 @@ export default function validateForm(input) {
 
     if (!input.productStock) errors.productStock = "Escriba su stock disponble"
     else if (soloNumeros.test(input.productStock)) errors.productPrice = "El stock debe contener solo numeros"
+<<<<<<< HEAD
     else if (input.productStock < 0) errors.productStock = "El stock no puede ser menor a 0"
     else if (input.productStock > 10000000) errors.productStock = "El stock es muy alto, verifique el numero"
 
     if (!input.productCategories) errors.productCategories = "Seleccione a que categoria pertenece"
+=======
+    else if (input.productStock< 0) errors.productStock = "El stock no puede ser menor a 0"
+
+    if (!input.productCategory) errors.productCategory = "Seleccione a que categoria pertenece"
+>>>>>>> 4fa82ddc4c07747e2fa0b26576830dfde8991b1c
 
     return errors;
 }
