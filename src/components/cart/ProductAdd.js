@@ -5,14 +5,14 @@ import { SET_TOTAL, ADD_TO_CART } from '../../redux/actions'
 const ProductAdd = ({ stock, price, product }) => {
     const dispatch = useDispatch()
     const { cart, totalCart } = useSelector(state => state.clientReducer)
-    const [localCount, setLocalCount] = useState(0)
+    const [localCount, setLocalCount] = useState(1)
     const addQuantity = () => {
         if (localCount < stock) {
             setLocalCount(localCount + 1)
         }
     }
     const removeQuantity = () => {
-        if (localCount > 0) {
+        if (localCount > 1) {
             setLocalCount(localCount - 1)
         }
     }
@@ -21,7 +21,7 @@ const ProductAdd = ({ stock, price, product }) => {
         console.log(product)
         dispatch(ADD_TO_CART(product, localCount))
         dispatch(SET_TOTAL(totalCart + (localCount * price)))
-        setLocalCount(0)
+        setLocalCount(1)
     }
     useEffect(() => {
         localStorage.setItem('cart', JSON.stringify(cart))

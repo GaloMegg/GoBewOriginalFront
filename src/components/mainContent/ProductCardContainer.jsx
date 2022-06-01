@@ -6,7 +6,7 @@ import styles from '../styles/ProductCard.module.css'
 
 export default function ProductCardContainer() {
 
-    const { products, isFiltered } = useSelector((store) => store.clientReducer)
+    const { products, isFiltered, cart } = useSelector((store) => store.clientReducer)
     const dispatch = useDispatch();
 
 
@@ -17,8 +17,12 @@ export default function ProductCardContainer() {
     }, [dispatch])
 
     useEffect(() => {
-        dispatch(SET_CART(JSON.parse(localStorage.getItem('cart'))))
-        dispatch(SET_TOTAL(JSON.parse(localStorage.getItem('totalCart'))))
+        if (cart.length < 1) {
+            let cartStorage = JSON.parse(localStorage.getItem('cart'))
+            cartStorage && dispatch(SET_CART(cartStorage))
+            let totalCartStorage = JSON.parse(localStorage.getItem('totalCart'))
+            totalCartStorage && dispatch(SET_TOTAL(totalCartStorage))
+        }
     }, [dispatch])
     return (
         <div className={styles.cardsCotainer}>

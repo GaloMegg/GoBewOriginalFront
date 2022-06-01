@@ -64,3 +64,8 @@ export const SET_CART = createAction('SET_CART', (cart) => {
         payload: cart
     }
 })
+export const REMOVE_FROM_CART = createAction('REMOVE_FROM_CART', (id) => {
+    return {
+        payload: id
+    }
+})

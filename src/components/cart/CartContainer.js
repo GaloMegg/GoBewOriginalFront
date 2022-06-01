@@ -7,15 +7,19 @@ const CartContainer = () => {
     const { cart, totalCart } = useSelector(state => state.clientReducer)
     const dispatch = useDispatch()
     useEffect(() => {
-        dispatch(SET_CART(JSON.parse(localStorage.getItem('cart'))))
-        dispatch(SET_TOTAL(JSON.parse(localStorage.getItem('totalCart'))))
+        if (cart.length < 1) {
+            let cartStorage = JSON.parse(localStorage.getItem('cart'))
+            cartStorage && dispatch(SET_CART(cartStorage))
+            let totalCartStorage = JSON.parse(localStorage.getItem('totalCart'))
+            totalCartStorage > 0 && dispatch(SET_TOTAL(totalCartStorage))
+        }
     }, [dispatch])
-
     return (
         <section>
-            <h1>Cart</h1>
-            <Cart cart={cart} totalCart={totalCart} />
-        </section>
+            {cart.length < 1 ? < h1 > No hay productos en el carrito</h1> :
+                <Cart cart={cart} totalCart={totalCart} />
+            }
+        </section >
     )
 }
 
