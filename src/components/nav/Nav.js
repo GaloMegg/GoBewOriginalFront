@@ -37,10 +37,10 @@ const Nav = ({ showSearch, showCategories }) => {
                         <p className={styles.navp}>Carrito</p>
                     </Link>
                     <Link to={`/login`}>
-                        <div className={styles.navIconpContainer} >
-                            <img className={styles.navIcons} src={User} alt='img not found' />
-                            <p className={styles.navp}>{user}</p>
-                        </div>
+                    <div className={styles.navIconpContainer} >
+                        <img className={styles.navIcons} src={User} alt='img not found' />
+                        <p className={styles.navp}>{user}</p>
+                    </div>
                     </Link>
                 </div>
             </div>
