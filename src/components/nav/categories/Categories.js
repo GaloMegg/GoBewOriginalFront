@@ -5,7 +5,6 @@ const Categories = ({ categories }) => {
     return (
         <>
             <option value="" defaultValue={true}>Categorías</option>
-            {/* {categories?.map(category => <optgroup key={category._id} value={category._id} label={category.categoryName}> {category.childCategories.map(c => <option key={c._id} value={c._id}>{c.categoryName}</option>)}</optgroup>)} */}
             {
                 categories.map(category => <>
                     <option key={category._id} value={category._id}>{category.categoryName}</option>
