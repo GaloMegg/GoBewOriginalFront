@@ -16,6 +16,7 @@ const CartContainer = () => {
     }, [dispatch])
     return (
         <section>
+
             {cart.length < 1 ? < h1 > No hay productos en el carrito</h1> :
                 <Cart cart={cart} totalCart={totalCart} />
             }

@@ -69,3 +69,18 @@ export const REMOVE_FROM_CART = createAction('REMOVE_FROM_CART', (id) => {
         payload: id
     }
 })
+export const ADD_ONE_CART = createAction('ADD_ONE_CART', (id) => {
+    return {
+        payload: id
+    }
+})
+export const REMOVE_ONE_CART = createAction('REMOVE_ONE_CART', (id) => {
+    return {
+        payload: id
+    }
+})
+export const CLEAN_CART = createAction('CLEAN_CART', () => {
+    return {
+        payload: []
+    }
+})
