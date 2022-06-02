@@ -7,8 +7,8 @@ import { Navigate } from 'react-router-dom';
 
 const Login = () => {
     const [user, setUser] = useState({
-        email: '',
-        password: ''
+        userEmail: '',
+        userPassword: ''
     })
     const [errors, setErrors] = useState({});
     const [charging, setCharging] = useState(false);
@@ -44,7 +44,7 @@ const Login = () => {
         }
     }
 
-    if(userResponse===''){
+    if(userResponse.message===''){
         var chargingResponse = <p>Cargando...</p>
     }else if (userResponse==='Usuario no encontrado'){
         chargingResponse = <p>Usuario no encontrado, verifique que el correo y la contraseña sean correctas</p>
@@ -57,9 +57,9 @@ const Login = () => {
         <form onSubmit={handleSubmit}>
             <h1>Hola! ingresa tus datos</h1>
             <label>E-mail</label>
-            <input type="text" name='email' value={user.email} onChange={handleInput}/>
+            <input type="text" name='email' value={user.userEmail} onChange={handleInput}/>
             <label>Contraseña</label>
-            <input type="password" name='password' value={user.password} onChange={handleInput}/>
+            <input type="password" name='password' value={user.userPassword} onChange={handleInput}/>
             {Boolean(Object.values(errors).length) && (<p>{Object.values(errors)[0]}</p>)}
             {charging && chargingResponse}
             {btnCharging && <button onClick={()=>{setCharging(false);setBtnCharging(false);dispatch(CLEAN_USER_RESPONSE())}}>Ok</button>}

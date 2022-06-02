@@ -1,14 +1,14 @@
 export default function validate(user) {
     let errors = {};
-    if (!user.email) {
+    if (!user.userEmail) {
         errors.email = 'Se requiere un correo electrónico';
-    }else if (!/\S+@\S+\.\S+/.test(user.email)) {
+    }else if (!/\S+@\S+\.\S+/.test(user.userEmail)) {
         errors.username = 'El email es inválido';
     }
 
-    if (!user.password) {
+    if (!user.userPassword) {
     errors.password = 'Se requiere una contraseña';
-    } else if (user.password.length<6) {
+    } else if (user.userPassword.length<6) {
     errors.password = 'La contraseña es muy corta';
     }
     return errors;
