@@ -1,4 +1,5 @@
 import { createAsyncThunk, createAction } from '@reduxjs/toolkit'
+import axios from 'axios';
 const { REACT_APP_APIURL } = process.env
 
 export const GET_PRODUCTS = createAsyncThunk(
@@ -83,4 +84,14 @@ export const CLEAN_CART = createAction('CLEAN_CART', () => {
     return {
         payload: []
     }
+export const POST_USER = createAsyncThunk(
+    'POST_USER', async (user) => {
+        console.log(user)
+        const response = await axios.post(`${REACT_APP_APIURL}users/auth`, user)
+        return await response.data
+    }
+)
+export const CLEAN_USER_RESPONSE = createAction('CLEAN_USER_RESPONSE', () => {
+    return {payload : {ok: ''}}
+
 })

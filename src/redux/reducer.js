@@ -1,5 +1,5 @@
 import { createReducer } from "@reduxjs/toolkit"
-import { GET_CATEGORIES, REMOVE_ONE_CART, ADD_ONE_CART, CLEAN_CART, REMOVE_FROM_CART, GET_PRODUCTS, SET_TOTAL, SET_CART, SEARCH_PRODUCT, ADD_TO_CART, ORDER_PRODUCTS, GET_PRODUCTS_BYCATEGORY, GET_HIGHLIGHTED, GET_PRODUCT_BY_ID, CLEAN_UP_DETAILS } from "./actions"
+import { GET_CATEGORIES, GET_PRODUCTS,SEARCH_PRODUCT, ORDER_PRODUCTS, GET_PRODUCTS_BYCATEGORY,   GET_HIGHLIGHTED, GET_PRODUCT_BY_ID,CLEAN_UP_DETAILS , REMOVE_ONE_CART, ADD_ONE_CART, CLEAN_CART, REMOVE_FROM_CART,  SET_TOTAL, SET_CART, ADD_TO_CART,  POST_USER, CLEAN_USER_RESPONSE } from "./actions"
 
 const initialState = {
     products: [],
@@ -9,6 +9,7 @@ const initialState = {
     cart: [],
     totalCart: 0,
     isFiltered: false,
+    userResponse: {ok: ''},
 }
 export const clientReducer = createReducer(initialState, (builder) => {
     builder.addCase(GET_PRODUCT_BY_ID.fulfilled, (state, action) => {
@@ -80,5 +81,10 @@ export const clientReducer = createReducer(initialState, (builder) => {
     builder.addCase(CLEAN_CART, (state, action) => {
         state.cart = action.payload
         state.totalCart = 0
+    builder.addCase(POST_USER.fulfilled, (state, action) => {
+        state.userResponse = action.payload
+    })
+    builder.addCase(CLEAN_USER_RESPONSE, (state, action) => {
+        state.userResponse = action.payload
     })
 })
