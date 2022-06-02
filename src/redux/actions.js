@@ -51,10 +51,11 @@ export const CLEAN_UP_DETAILS = createAction('CLEAN_UP_DETAILS', () => {
 })
 export const POST_USER = createAsyncThunk(
     'POST_USER', async (user) => {
-        const response = await axios.post(`${REACT_APP_APIURL}/users/auth`, user)
+        console.log(user)
+        const response = await axios.post(`${REACT_APP_APIURL}users/auth`, user)
         return await response.data
     }
 )
 export const CLEAN_USER_RESPONSE = createAction('CLEAN_USER_RESPONSE', () => {
-    return {payload : ''}
+    return {payload : {ok: ''}}
 })

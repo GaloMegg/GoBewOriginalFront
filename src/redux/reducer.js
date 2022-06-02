@@ -7,7 +7,7 @@ const initialState = {
     product: {},
     categories: [],
     isFiltered: false,
-    userResponse: '',
+    userResponse: {ok: ''},
 }
 export const clientReducer = createReducer(initialState, (builder) => {
     builder.addCase(GET_PRODUCT_BY_ID.fulfilled, (state, action) => {

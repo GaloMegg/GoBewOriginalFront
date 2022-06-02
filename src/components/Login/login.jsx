@@ -12,7 +12,7 @@ const Login = () => {
     })
     const [errors, setErrors] = useState({});
     const [charging, setCharging] = useState(false);
-    const [redirect, setRedirect] = useState(false);
+    let redirect=false
     let   [btnCharging, setBtnCharging] = useState(false);
     const dispatch = useDispatch()
     const userResponse = useSelector(store => store.clientReducer.userResponse)
@@ -44,22 +44,22 @@ const Login = () => {
         }
     }
 
-    if(userResponse.message===''){
+    if(userResponse.ok===''){
         var chargingResponse = <p>Cargando...</p>
-    }else if (userResponse==='Usuario no encontrado'){
+    }else if (userResponse.ok===false){
         chargingResponse = <p>Usuario no encontrado, verifique que el correo y la contraseña sean correctas</p>
         btnCharging=true
-    }else if (userResponse==='Usuario encontrado'){
-        setRedirect(true)
+    }else if (userResponse.ok===true){
+        redirect=true
     }
 
     return (
         <form onSubmit={handleSubmit}>
             <h1>Hola! ingresa tus datos</h1>
             <label>E-mail</label>
-            <input type="text" name='email' value={user.userEmail} onChange={handleInput}/>
+            <input type="text" name='userEmail' value={user.userEmail} onChange={handleInput}/>
             <label>Contraseña</label>
-            <input type="password" name='password' value={user.userPassword} onChange={handleInput}/>
+            <input type="password" name='userPassword' value={user.userPassword} onChange={handleInput}/>
             {Boolean(Object.values(errors).length) && (<p>{Object.values(errors)[0]}</p>)}
             {charging && chargingResponse}
             {btnCharging && <button onClick={()=>{setCharging(false);setBtnCharging(false);dispatch(CLEAN_USER_RESPONSE())}}>Ok</button>}
