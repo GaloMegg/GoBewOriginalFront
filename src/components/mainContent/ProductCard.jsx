@@ -6,7 +6,6 @@ const { REACT_APP_CLOUDINARY_RES } = process.env
 
 export default function ProductCard({ productName, productPrice, productStock, _id, images, product }) {
     return (
-
         <div className={styles.cardCotainer}>
             <Link to={`/productDetail/${_id}`} className={styles.link}>
                 <div className={styles.productCard}>

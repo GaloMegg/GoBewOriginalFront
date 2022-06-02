@@ -4,7 +4,6 @@ import { REMOVE_FROM_CART, SET_TOTAL, ADD_ONE_CART, REMOVE_ONE_CART } from '../.
 const { REACT_APP_CLOUDINARY_RES } = process.env
 
 const CardItem = ({ _id, images, quantity, productPrice, productName, totalCart, productStock }) => {
-  console.log(productStock);
   const dispatch = useDispatch()
   const { cart } = useSelector(state => state.clientReducer)
   const [img, setImg] = useState(0)

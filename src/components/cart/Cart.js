@@ -26,6 +26,9 @@ const Cart = ({ totalCart, cart }) => {
             referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
             body: JSON.stringify(cart) // body data type must match "Content-Type" header
         }).then((order) => order.json()).then(order => setId(order.global));
+        return () => {
+            setId(null)
+        }
     }, [cart]);
 
     return (
@@ -34,7 +37,7 @@ const Cart = ({ totalCart, cart }) => {
             {cart.length > 0 && <button onClick={cleanCart}> Limpiar Carrito</button>}
             {totalCart}
             {cart?.map(i => <CardItem key={i._id} {...i} totalCart={totalCart} />)}
-            {id && <Checkout id={id} />}
+            {id ? <Checkout id={id} /> : <h1>Loading</h1>}
         </div >
     )
 }

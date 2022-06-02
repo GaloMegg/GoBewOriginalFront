@@ -31,9 +31,6 @@ export default function ProductCardContainer() {
                 <h1>
                     No hay productos de la categoria seleccionada
                 </h1>
-
-
-
             }
         </div>
     )

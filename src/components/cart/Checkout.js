@@ -8,11 +8,12 @@ export default function Checkout({ id }) {
         script.type = 'text/javascript';
         script.src =
             'https://www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js';
-        script.setAttribute('data-preference-id', id);
-        const form = document.getElementById(FORM_ID);
-        form.appendChild(script);
+        script?.setAttribute('data-preference-id', id);
+        const form = document?.getElementById(FORM_ID);
+        form?.appendChild(script);
         return () => {
-            document.getElementById(FORM_ID).removeChild(script);
+            const formu = document?.getElementById(FORM_ID)
+            formu?.removeChild(script);
         }
     }, [id]);
 
