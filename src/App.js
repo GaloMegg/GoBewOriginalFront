@@ -13,15 +13,13 @@ function App() {
   // const [ViewCategories, setViewCategories] = useState(true);
 
   return (
-    <div >
-      <Routes>
-        <Route exact path='/' element={<> <Nav showSearch={true} showCategories={true} /><ProductCardContainer /></>} />
-        <Route exact path='/cart' element={<> <Nav showSearch={false} showCategories={false} /> <CartContainer /></>} />
-        <Route exact path='/productDetail/:id' element={<><Nav showSearch={false} showCategories={false} /> <ProductDetailContainer /> </>} />
-        <Route exact path='/admin/new' element={<CreationForm />} />
-        <Route exact path='/login' element={<Login />} />
-      </Routes>
-    </div>
+    <Routes>
+      <Route exact path='/' element={<> <Nav showSearch={true} showCategories={true} /><ProductCardContainer /></>} />
+      <Route exact path='/cart' element={<> <Nav showSearch={false} showCategories={false} /> <CartContainer /></>} />
+      <Route exact path='/productDetail/:id' element={<><Nav showSearch={false} showCategories={false} /> <ProductDetailContainer /> </>} />
+      <Route exact path='/admin/new' element={<CreationForm />} />
+      <Route exact path='/login' element={<Login />} />
+    </Routes>
   );
 }
 
