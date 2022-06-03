@@ -1,4 +1,5 @@
 import { createAsyncThunk, createAction } from '@reduxjs/toolkit'
+import axios from 'axios';
 const { REACT_APP_APIURL } = process.env
 
 export const GET_PRODUCTS = createAsyncThunk(
@@ -38,13 +39,61 @@ export const GET_PRODUCTS_BYCATEGORY = createAction(
 )
 export const ORDER_PRODUCTS = createAction('ORDER_PRODUCTS', (productsSorted) => {
     return {
-        //payload tiene que existir para que el reducer funcione    
         payload: productsSorted
     }
 })
 export const CLEAN_UP_DETAILS = createAction('CLEAN_UP_DETAILS', () => {
     return {
-        //payload tiene que existir para que el reducer funcione    
         payload: {}
     }
+})
+export const SET_TOTAL = createAction('SET_TOTAL', (price) => {
+    return {
+        payload: price
+    }
+})
+export const ADD_TO_CART = createAction('ADD_TO_CART', (product, quantity) => {
+    return {
+        payload: {
+            product,
+            quantity
+        }
+    }
+})
+export const SET_CART = createAction('SET_CART', (cart) => {
+    return {
+        payload: cart
+    }
+})
+export const REMOVE_FROM_CART = createAction('REMOVE_FROM_CART', (id) => {
+    return {
+        payload: id
+    }
+})
+export const ADD_ONE_CART = createAction('ADD_ONE_CART', (id) => {
+    return {
+        payload: id
+    }
+})
+export const REMOVE_ONE_CART = createAction('REMOVE_ONE_CART', (id) => {
+    return {
+        payload: id
+    }
+})
+export const CLEAN_CART = createAction('CLEAN_CART', () => {
+    return {
+        payload: []
+    }
+})
+
+export const POST_USER = createAsyncThunk(
+    'POST_USER', async (user) => {
+        console.log(user)
+        const response = await axios.post(`${REACT_APP_APIURL}users/auth`, user)
+        return await response.data
+    }
+)
+export const CLEAN_USER_RESPONSE = createAction('CLEAN_USER_RESPONSE', () => {
+    return { payload: { ok: '' } }
+
 })
