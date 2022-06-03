@@ -14,9 +14,14 @@ function App() {
   return (
     <div >
       <Routes>
-        <Route exact path='/logIn' element= {<LogInGoogle/>} />
+        <Route exact path='/logInGoogle' element= {<LogInGoogle/>} />
         <Route exact path='/' element={<><Nav /> <ProductCardContainer /></>} />
         <Route exact path='/productDetail/:id' element={<><NavBarDetail/> <ProductDetailContainer /> </>} />
+        <Route exact path='/' element={<> <Nav showSearch={true} showCategories={true} /><ProductCardContainer /></>} />
+        <Route exact path='/cart' element={<> <Nav showSearch={false} showCategories={false} /> <CartContainer /></>} />
+        <Route exact path='/productDetail/:id' element={<><Nav showSearch={false} showCategories={false} /> <ProductDetailContainer /> </>} />
+        <Route exact path='/admin/new' element={<CreationForm />} />
+        <Route exact path='/login' element={<Login />} />
       </Routes>
     </div>
   );
