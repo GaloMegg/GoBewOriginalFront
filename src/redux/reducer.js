@@ -86,13 +86,12 @@ export const clientReducer = createReducer(initialState, (builder) => {
     })
     builder.addCase(POST_USER.fulfilled, (state, action) => {
         state.userResponse = action.payload
-        sessionStorage.setItem('token', JSON.stringify(action.payload.token))
     })
     builder.addCase(CLEAN_USER_RESPONSE, (state, action) => {
         state.userResponse = action.payload
     })
     builder.addCase(CHECK_LOGIN.fulfilled, (state, action) => {
-        localStorage.setItem("token", JSON.stringify(action.payload.token))
+        state.userResponse = { ...action.payload, ok: true }
         state.userId = action.payload.userId
         state.userFirstName = action.payload.userFirstName
     })

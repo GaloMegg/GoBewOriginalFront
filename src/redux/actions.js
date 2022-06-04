@@ -88,9 +88,9 @@ export const CLEAN_CART = createAction('CLEAN_CART', () => {
 
 export const POST_USER = createAsyncThunk(
     'POST_USER', async (user) => {
-        console.log(user)
         const response = await axios.post(`${REACT_APP_APIURL}users/auth`, user)
-        localStorage.setItem('token', JSON.stringify(response.data.token))
+        localStorage.removeItem('token')
+        localStorage.setItem('token', response.data.token)
         return await response.data
     }
 )
@@ -137,14 +137,12 @@ export const CHECK_LOGIN = createAsyncThunk(
             const response = await fetchConToken(`users/renew`);
             const body = await response.json();
             if (body.ok) {
-                console.log(body)
+                localStorage.setItem('token', body.token)
                 return {
-                    payload: {
-                        token: body.token,
-                        userId: body.userId,
-                        userFirstName: body.userFirstName,
-                        tokenInitDate: new Date().getTime(),
-                    }
+                    userId: body.userId,
+                    userFirstName: body.userFirstName,
+                    tokenInitDate: new Date().getTime(),
+
                 }
             }
             else {
