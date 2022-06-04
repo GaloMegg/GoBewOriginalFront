@@ -1,1 +1,26 @@
-//los modulos se escriben con guion bajo al principio
+@use "../variables" as v;
+
+.productCard {
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    height: 60vh;
+    margin: 1%;
+    border: 1px v.$Primary solid;
+    border-radius: 16px;
+
+    .productCard__link {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .productCard__img {
+            height: 40vh;
+            max-width: 100%;
+            border-radius: 16px;
+            object-fit: cover;
+        }
+    }
+}

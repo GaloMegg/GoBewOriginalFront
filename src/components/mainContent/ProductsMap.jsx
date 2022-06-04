@@ -5,9 +5,9 @@ export default function ProductsMap({ products }) {
     return (
         <>
             {
-                products?.map((prod) => {
-                    return <ProductCard key={prod.productId} {...prod} product={prod} />
-                })
+                products?.map((prod) => <ProductCard key={prod._id} {...prod} product={prod} />
+
+                )
             }
         </>
     )

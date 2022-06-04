@@ -1,0 +1,17 @@
+@use "../variables" as v;
+@import "./productCard";
+
+.products {
+    width: 80%;
+    display: flex;
+    flex-wrap: wrap;
+    
+    .products__noProducts {
+        width: 100%;
+        text-align: center;
+        font-size: 1.5rem;
+        font-weight: bold;
+        margin-top: 4%;
+        color: v.$Primary ;
+    }
+}

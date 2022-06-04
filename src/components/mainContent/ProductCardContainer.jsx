@@ -25,14 +25,14 @@ export default function ProductCardContainer() {
         }
     }, [dispatch])
     return (
-        <div className={styles.cardsCotainer}>
+        <section className='products' >
             {products.length > 0 ?
                 <ProductsMap products={products} /> :
-                <h1>
+                <p className='products__noProducts'>
                     No hay productos de la categoria seleccionada
-                </h1>
+                </p>
             }
-        </div>
+        </section>
     )
 }
 
