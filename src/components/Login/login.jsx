@@ -36,7 +36,6 @@ const Login = () => {
         if (!Object.values(user).includes('') && Object.keys(errors).length === 0) {
             setCharging(true);
             dispatch(POST_USER(user))
-
             setUser({
                 email: '',
                 password: ''
@@ -66,7 +65,6 @@ const Login = () => {
             {btnCharging && <button onClick={() => { setCharging(false); setBtnCharging(false); dispatch(CLEAN_USER_RESPONSE()) }}>Ok</button>}
             <button type='submit'>Ingresar</button>
             <button >Crear cuenta</button>
-
             {/* {redirect && <Navigate to="/" />} */}
         </form>
     )
