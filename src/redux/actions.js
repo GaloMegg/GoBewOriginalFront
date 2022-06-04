@@ -97,3 +97,10 @@ export const CLEAN_USER_RESPONSE = createAction('CLEAN_USER_RESPONSE', () => {
     return { payload: { ok: '' } }
 
 })
+export const CREATION_USER_LOGIN = createAsyncThunk (
+    "CREATION_USER_LOGIN", async (user) => {
+        console.log(user)
+    const response = await axios.post (`${REACT_APP_APIURL}users/new`, user)
+    return await response.data
+    }
+)

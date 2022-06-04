@@ -3,8 +3,10 @@ import { Route, Routes } from 'react-router-dom';
 import "./scss/main.scss";
 import Nav from './components/nav/Nav';
 import ProductCardContainer from './components/mainContent/ProductCardContainer';
+// import CreationForm from './admin/components/products/CreationForm';
 import ProductDetailContainer from './components/productDetail/ProductDetailContainer';
-import NavBarDetail from './components/productDetail/NavBarDetail';
+import CartContainer from './components/cart/CartContainer';
+import Login from './components/Login/login'
 import LogInGoogle from './components/logInGoogle/LogInGoogle';
 // import CategoriesNew from './components/nav/categories/CategoriesNew.jsx';
 function App() {
@@ -13,15 +15,12 @@ function App() {
 
   return (
     <div >
-      <Routes>
-        <Route exact path='/logInGoogle' element= {<LogInGoogle/>} />
-        <Route exact path='/' element={<><Nav /> <ProductCardContainer /></>} />
-        <Route exact path='/productDetail/:id' element={<><NavBarDetail/> <ProductDetailContainer /> </>} />
+    <Routes>
         <Route exact path='/' element={<> <Nav showSearch={true} showCategories={true} /><ProductCardContainer /></>} />
         <Route exact path='/cart' element={<> <Nav showSearch={false} showCategories={false} /> <CartContainer /></>} />
         <Route exact path='/productDetail/:id' element={<><Nav showSearch={false} showCategories={false} /> <ProductDetailContainer /> </>} />
-        <Route exact path='/admin/new' element={<CreationForm />} />
-        <Route exact path='/login' element={<Login />} />
+        {/* <Route exact path='/admin/new' element={<CreationForm />} /> */}
+        <Route exact path='/login' element={<><Login /> <LogInGoogle/> </>} />
       </Routes>
     </div>
   );
