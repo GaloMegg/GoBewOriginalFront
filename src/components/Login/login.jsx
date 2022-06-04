@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import validate from './validate.js';
 import { POST_USER, CLEAN_USER_RESPONSE } from '../../redux/actions';
-import { useNavigate,Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 
 const Login = () => {
+    const navigate = useNavigate()
     const { userResponse } = useSelector(store => store.clientReducer)
     const Navi = useNavigate();
     const [user, setUser] = useState({
@@ -39,7 +40,7 @@ const Login = () => {
                 email: '',
                 password: ''
             })
-            Navi("/")
+            navigate("/")
         }
     }
 
@@ -48,7 +49,9 @@ const Login = () => {
     } else if (userResponse.ok === false) {
         chargingResponse = <p>Usuario no encontrado, verifique que el correo y la contraseña sean correctas</p>
         btnCharging = true
-    } 
+    } else if (userResponse.ok === true) {
+
+    }
 
     return (
         <form onSubmit={handleSubmit}>
@@ -61,7 +64,8 @@ const Login = () => {
             {charging && chargingResponse}
             {btnCharging && <button onClick={() => { setCharging(false); setBtnCharging(false); dispatch(CLEAN_USER_RESPONSE()) }}>Ok</button>}
             <button type='submit'>Ingresar</button>
-            <Link to= "/logInForm"><button >Crear cuenta</button></Link>
+            <button >Crear cuenta</button>
+            {/* {redirect && <Navigate to="/" />} */}
         </form>
     )
 }
