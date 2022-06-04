@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { SET_TOTAL, ADD_TO_CART } from '../../redux/actions'
-
+import { toast, success } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const ProductAdd = ({ stock, price, product }) => {
     const dispatch = useDispatch()
-    const { cart, totalCart } = useSelector(state => state.clientReducer)
+    const { cart, totalCart, userResponse } = useSelector(state => state.clientReducer)
     const [localCount, setLocalCount] = useState(1)
     const addQuantity = () => {
         if (localCount < stock) {
@@ -22,10 +23,18 @@ const ProductAdd = ({ stock, price, product }) => {
         dispatch(ADD_TO_CART(product, localCount))
         dispatch(SET_TOTAL(totalCart + (localCount * price)))
         setLocalCount(1)
+        toast.success(
+            `${product.productName} agregado al carrito`,
+        )
     }
     useEffect(() => {
-        localStorage.setItem('cart', JSON.stringify(cart))
-        localStorage.setItem('totalCart', JSON.stringify(totalCart))
+        if (userResponse.ok) {
+            //dispatch de actualizacion de carrito
+        }
+        else {
+            localStorage.setItem('cart', JSON.stringify(cart))
+            localStorage.setItem('totalCart', JSON.stringify(totalCart))
+        }
     }, [cart, totalCart])
 
     return (

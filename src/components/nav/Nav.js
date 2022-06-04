@@ -9,7 +9,7 @@ import User from '../../images/user-icon.png'
 import { Link } from 'react-router-dom'
 
 const Nav = ({ showSearch, showCategories }) => {
-    const userResponse = useSelector(store => store.clientReducer.userResponse)
+    const { userResponse, cart } = useSelector(store => store.clientReducer)
     if (userResponse.ok === true) {
         var user = userResponse.userFirstName
     } else {
@@ -23,25 +23,20 @@ const Nav = ({ showSearch, showCategories }) => {
                     <img className='nav__logo--img' src={Logo} alt='img not found' />
                 </Link>
             </div>
-
             {/* //! FILTERS */}
-            <div className='nav__filters'>
+            {/* <div className='nav__filters'> */}
                 {/* CATEGORIES FILTERS */}
-                <div className='nav__filters--categ'>
-                    {showCategories && <CategoriesContainer />}
-                </div>
+                {/* {showCategories && <CategoriesContainer />} */}
                 {/* SEARCHBAR */}
-                <div className='nav__filters--search'>
-                    {showSearch && <SearchBar />}
-                </div>
-            </div>
-
+                {/* {showSearch && <SearchBar />} */}
+            {/* </div> */}
             <div className='nav__loginCart'>
-
                 {/* //! CART */}
                 <Link className='nav__loginCart--cart' to="/cart">
                     <img className='nav__loginCart--cart-img' src={Carrito} alt='img not found' />
-                    <p className='nav__loginCart--cart-text'>Carrito</p>
+                    <div className='nav__loginCart--cart-circle'>
+                        <p className='nav__loginCart--cart-text'>{cart.reduce((a, b) => { return a + b.quantity }, 0)}</p>
+                    </div>
                 </Link>
                 {/* //! LOGIN */}
                 <Link className='nav__loginCart--login' to={`/login`} >
