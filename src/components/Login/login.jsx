@@ -2,18 +2,18 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import validate from './validate.js';
 import { POST_USER, CLEAN_USER_RESPONSE } from '../../redux/actions';
-import { Navigate,Link } from 'react-router-dom';
+import { useNavigate,Link } from 'react-router-dom';
 
 
 const Login = () => {
     const { userResponse } = useSelector(store => store.clientReducer)
+    const Navi = useNavigate();
     const [user, setUser] = useState({
         userEmail: '',
         userPassword: ''
     })
     const [errors, setErrors] = useState({});
     const [charging, setCharging] = useState(false);
-    let redirect = false
     let [btnCharging, setBtnCharging] = useState(false);
     const dispatch = useDispatch()
 
@@ -35,11 +35,11 @@ const Login = () => {
         if (!Object.values(user).includes('') && Object.keys(errors).length === 0) {
             setCharging(true);
             dispatch(POST_USER(user))
-            
             setUser({
                 email: '',
                 password: ''
             })
+            Navi("/")
         }
     }
 
@@ -48,9 +48,7 @@ const Login = () => {
     } else if (userResponse.ok === false) {
         chargingResponse = <p>Usuario no encontrado, verifique que el correo y la contraseña sean correctas</p>
         btnCharging = true
-    } else if (userResponse.ok === true) {
-        redirect = true
-    }
+    } 
 
     return (
         <form onSubmit={handleSubmit}>
@@ -62,7 +60,6 @@ const Login = () => {
             {Boolean(Object.values(errors).length) && (<p>{Object.values(errors)[0]}</p>)}
             {charging && chargingResponse}
             {btnCharging && <button onClick={() => { setCharging(false); setBtnCharging(false); dispatch(CLEAN_USER_RESPONSE()) }}>Ok</button>}
-            {redirect && <Navigate to="/" />}
             <button type='submit'>Ingresar</button>
             <Link to= "/logInForm"><button >Crear cuenta</button></Link>
         </form>

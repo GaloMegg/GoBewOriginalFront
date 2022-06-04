@@ -98,7 +98,6 @@ export const CLEAN_USER_RESPONSE = createAction('CLEAN_USER_RESPONSE', () => {
     return { payload: { ok: '' } }
 
 })
-<<<<<<< HEAD
 export const CREATION_USER_LOGIN = createAsyncThunk (
     "CREATION_USER_LOGIN", async (user) => {
         console.log(user)
@@ -114,7 +113,6 @@ export const CREATION_USERFORM = createAsyncThunk (
     return await response.data
     }
 )
-=======
 
 //action qeu se dispatche cada vez que se renderiza cualquier componente
 // {
@@ -187,4 +185,3 @@ export const CHECK_LOGIN = createAsyncThunk(
         }
     }
 );
->>>>>>> a930450122a668f1a9d927af10dad51ef8167e3c
