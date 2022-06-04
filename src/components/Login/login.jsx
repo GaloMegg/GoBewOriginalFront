@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import validate from './validate.js';
 import { POST_USER, CLEAN_USER_RESPONSE } from '../../redux/actions';
-import { Navigate } from 'react-router-dom';
+import { Navigate,Link } from 'react-router-dom';
 
 
 const Login = () => {
@@ -65,7 +65,7 @@ const Login = () => {
             {btnCharging && <button onClick={()=>{setCharging(false);setBtnCharging(false);dispatch(CLEAN_USER_RESPONSE())}}>Ok</button>}
             {redirect && <Navigate to="/"/>}
             <button type='submit'>Ingresar</button>
-            <button >Crear cuenta</button>
+            <Link to= "/logInForm"><button >Crear cuenta</button></Link>
         </form>
     )
 }

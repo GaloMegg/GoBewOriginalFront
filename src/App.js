@@ -6,8 +6,9 @@ import ProductCardContainer from './components/mainContent/ProductCardContainer'
 // import CreationForm from './admin/components/products/CreationForm';
 import ProductDetailContainer from './components/productDetail/ProductDetailContainer';
 import CartContainer from './components/cart/CartContainer';
-import Login from './components/Login/login'
-import LogInGoogle from './components/logInGoogle/LogInGoogle';
+import Login from './components/login/login'
+import LogInGoogle from './components/login/LogInGoogle';
+import CreateUserForm from './components/login/CreateUserForm';
 // import CategoriesNew from './components/nav/categories/CategoriesNew.jsx';
 function App() {
 
@@ -21,6 +22,7 @@ function App() {
         <Route exact path='/productDetail/:id' element={<><Nav showSearch={false} showCategories={false} /> <ProductDetailContainer /> </>} />
         {/* <Route exact path='/admin/new' element={<CreationForm />} /> */}
         <Route exact path='/login' element={<><Login /> <LogInGoogle/> </>} />
+        <Route exact path='/logInForm' element= {<CreateUserForm/>} />
       </Routes>
     </div>
   );

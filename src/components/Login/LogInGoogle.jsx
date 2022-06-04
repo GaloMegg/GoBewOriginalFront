@@ -6,14 +6,6 @@ import { CREATION_USER_LOGIN } from "../../redux/actions"
 
 export default function LogInGoogle(){
     const [user,setuser] = useState({})
-    const [input,setinput] = useState({
-        userEmail:"",
-        userIsActive:"",
-        userIsGoogle:"",
-        userFirstName:"",
-        userLastName:"",
-        userImage:"",
-    })
     const dispatch = useDispatch()
 
     function handleCalBackResponse(response){
@@ -55,9 +47,9 @@ export default function LogInGoogle(){
         <div>
             <div id="signInDiv"></div>
         {user.email_verified === true  && <div>
-            <h3> Has iniciado sesión con exitó </h3>
-            <button onClick={(e) => handleClick(e)} Link to="/"> Continuar</button>
-             </div>}
+            <h3> Has iniciado sesión con exito </h3>
+            <Link to= "/"><button onClick={(e) => handleClick(e)}> Continuar</button></Link> 
+            </div>}
         </div>
     )
 }

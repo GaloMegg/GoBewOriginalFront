@@ -100,7 +100,15 @@ export const CLEAN_USER_RESPONSE = createAction('CLEAN_USER_RESPONSE', () => {
 export const CREATION_USER_LOGIN = createAsyncThunk (
     "CREATION_USER_LOGIN", async (user) => {
         console.log(user)
+    const response = await axios.post (`${REACT_APP_APIURL}users/newGoogle`, user)
+    return await response.data
+    }
+)
+export const CREATION_USERFORM = createAsyncThunk (
+    "CREATION_USERFORM", async (user) => {
+        console.log(user)
     const response = await axios.post (`${REACT_APP_APIURL}users/new`, user)
+    console.log(response.data)
     return await response.data
     }
 )
