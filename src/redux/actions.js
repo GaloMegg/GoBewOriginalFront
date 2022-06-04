@@ -100,9 +100,40 @@ export const CLEAN_USER_RESPONSE = createAction('CLEAN_USER_RESPONSE', () => {
 })
 export const CREATION_USER_LOGIN = createAsyncThunk (
     "CREATION_USER_LOGIN", async (user) => {
-        console.log(user)
-    const response = await axios.post (`${REACT_APP_APIURL}users/newGoogle`, user)
-    return await response.data
+        try {
+        const response = await axios.post (`${REACT_APP_APIURL}users/authGoogle`, user)
+        console.log(response.data)
+        if (response.data.ok) {
+            localStorage.setItem('token', response.data.token)
+            return {
+                userId: response.data.userId,
+                userFirstName: response.data.userFirstName,
+                tokenInitDate: new Date().getTime(),
+
+            }
+        }
+        else {
+            console.log("entro");
+            return {
+                payload: {
+                    token: '',
+                    ok: ""
+                }
+            }
+        }
+        
+    } catch (error) {
+        return {
+            ok: false,
+            msg: 'Token no válido',
+            userId: '',
+            userEmail: '',
+            userFirstName: '',
+            userLastName: '',
+            userIsAdmin: false,
+            userIsSuperAdmin: false,
+        }
+    }
     }
 )
 export const CREATION_USERFORM = createAsyncThunk (
@@ -110,7 +141,38 @@ export const CREATION_USERFORM = createAsyncThunk (
         console.log(user)
     const response = await axios.post (`${REACT_APP_APIURL}users/new`, user)
     console.log(response.data)
-    return await response.data
+    try {
+        if (response.data.ok) {
+            localStorage.setItem('token', response.data.token)
+            return {
+                userId: response.data.userId,
+                userFirstName: response.data.userFirstName,
+                tokenInitDate: new Date().getTime(),
+
+            }
+        }
+        else {
+            console.log("entro");
+            return {
+                payload: {
+                    token: '',
+                    ok: ""
+                }
+            }
+        }
+
+    } catch (error) {
+        return {
+            ok: false,
+            msg: 'Token no válido',
+            userId: '',
+            userEmail: '',
+            userFirstName: '',
+            userLastName: '',
+            userIsAdmin: false,
+            userIsSuperAdmin: false,
+        }
+    }
     }
 )
 

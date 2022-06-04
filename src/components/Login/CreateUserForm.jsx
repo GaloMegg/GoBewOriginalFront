@@ -4,8 +4,11 @@ import { Form, Formik } from 'formik';
 import { TextInput } from '../form/TextInput';
 import * as Yup from 'yup';
 import { CREATION_USERFORM } from '../../redux/actions';
+import { toast, success } from 'react-toastify';
+import { Link, useNavigate } from 'react-router-dom';
 
 export default function CreateUserForm () {
+  const back = useNavigate();
     const dispatch = useDispatch();
     const resUser = useSelector((state)=> state.clientReducer.userResponse)
     return (
@@ -35,6 +38,8 @@ export default function CreateUserForm () {
     }
     onSubmit={(values, actions) => {
       dispatch(CREATION_USERFORM(values))
+      toast.success("Usuario creado con exito")
+      back("/logIn")
     }}
     >
         {props => (
@@ -44,7 +49,7 @@ export default function CreateUserForm () {
           <TextInput label="nombre" name= "userFirstName" type="nombre" placeholder= "nombre"/>
           <TextInput label="apellido" name= "userLastName" type="apellido" placeholder= "apellido"/>
           <button type="submit">Continuar</button>
-          {resUser.ok === true && alert("Has creado un usuario con exito")}
+          {resUser.ok && toast.success("Usuario creado con exito")}
           
 
         </Form>
