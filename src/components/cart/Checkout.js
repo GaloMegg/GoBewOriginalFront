@@ -1,6 +1,16 @@
 import React, { useEffect } from 'react';
 const FORM_ID = 'payment-form';
 
+// ! test CARD = {
+// !   num: 5031 7557 3453 0604   ,
+// !    cvv: 123,
+// !    vencimiento: 11 / 25,
+// ! }
+// ! Martinez Mirtha
+// ! 23011111114
+
+
+
 export default function Checkout({ id }) {
     useEffect(() => {
         // con el preferenceId en mano, inyectamos el script de mercadoPago
@@ -16,8 +26,6 @@ export default function Checkout({ id }) {
             formu?.removeChild(script);
         }
     }, [id]);
+    return (< form id={FORM_ID} method="GET" />);
 
-    return (
-        <form id={FORM_ID} method="GET" />
-    );
 }

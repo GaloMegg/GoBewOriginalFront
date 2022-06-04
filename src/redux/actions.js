@@ -88,8 +88,9 @@ export const CLEAN_CART = createAction('CLEAN_CART', () => {
 
 export const POST_USER = createAsyncThunk(
     'POST_USER', async (user) => {
-        console.log(user)
         const response = await axios.post(`${REACT_APP_APIURL}users/auth`, user)
+        localStorage.removeItem('token')
+        localStorage.setItem('token', response.data.token)
         return await response.data
     }
 )
@@ -97,6 +98,7 @@ export const CLEAN_USER_RESPONSE = createAction('CLEAN_USER_RESPONSE', () => {
     return { payload: { ok: '' } }
 
 })
+<<<<<<< HEAD
 export const CREATION_USER_LOGIN = createAsyncThunk (
     "CREATION_USER_LOGIN", async (user) => {
         console.log(user)
@@ -112,3 +114,77 @@ export const CREATION_USERFORM = createAsyncThunk (
     return await response.data
     }
 )
+=======
+
+//action qeu se dispatche cada vez que se renderiza cualquier componente
+// {
+//     "ok": true,
+//     "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MjlhNTMwOTM5ZjdjMTgxM2Y3ZjZmODgiLCJuYW1lIjoiU29sZWRhZCIsImlhdCI6MTY1NDI4MTcxOCwiZXhwIjoxNjU0Mjg4OTE4fQ.7J-BoA2EDHMd0kU3qNWxlxZ0cI3L4BP4t6w-ReIIAh4",
+//     "userId": "629a530939f7c1813f7f6f88",
+//     "userFirstName": "Soledad"
+// }
+export const fetchConToken = (endpoint, data, method = 'GET') => {
+
+    const url = `${REACT_APP_APIURL}${endpoint}`;
+    const token = localStorage.getItem('token') || '';
+    //por si regresa null que devuelva vacío
+    if (method === 'GET') {
+        return fetch(url, {
+            method,
+            headers: {
+                'x-token': token
+            }
+        });
+    } else {
+        return fetch(url, {
+            method,
+            headers: {
+                'Content-type': 'application/json',
+                'x-token': token
+            },
+            body: JSON.stringify(data)
+
+        });
+    }
+
+}
+export const CHECK_LOGIN = createAsyncThunk(
+    'CHECK_LOGIN', async () => {
+        try {
+            const response = await fetchConToken(`users/renew`);
+            const body = await response.json();
+            if (body.ok) {
+                localStorage.setItem('token', body.token)
+                return {
+                    userId: body.userId,
+                    userFirstName: body.userFirstName,
+                    tokenInitDate: new Date().getTime(),
+
+                }
+            }
+            else {
+                console.log("entro");
+                return {
+                    payload: {
+                        token: '',
+                        ok: ""
+                    }
+                }
+            }
+            return body;
+
+        } catch (error) {
+            return {
+                ok: false,
+                msg: 'Token no válido',
+                userId: '',
+                userEmail: '',
+                userFirstName: '',
+                userLastName: '',
+                userIsAdmin: false,
+                userIsSuperAdmin: false,
+            }
+        }
+    }
+);
+>>>>>>> a930450122a668f1a9d927af10dad51ef8167e3c
