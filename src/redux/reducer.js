@@ -1,5 +1,9 @@
 import { createReducer } from "@reduxjs/toolkit"
+<<<<<<< HEAD
 import { GET_CATEGORIES, GET_PRODUCTS, SEARCH_PRODUCT, ORDER_PRODUCTS, GET_PRODUCTS_BYCATEGORY, GET_HIGHLIGHTED, GET_PRODUCT_BY_ID, CLEAN_UP_DETAILS, REMOVE_ONE_CART, ADD_ONE_CART, CLEAN_CART, REMOVE_FROM_CART, SET_TOTAL, SET_CART, ADD_TO_CART, POST_USER, CLEAN_USER_RESPONSE, CHECK_LOGIN } from "./actions"
+=======
+import { GET_CATEGORIES, GET_PRODUCTS, SEARCH_PRODUCT, ORDER_PRODUCTS, GET_PRODUCTS_BYCATEGORY, GET_HIGHLIGHTED, GET_PRODUCT_BY_ID, CLEAN_UP_DETAILS, REMOVE_ONE_CART, ADD_ONE_CART, CLEAN_CART, REMOVE_FROM_CART, SET_TOTAL, SET_CART, ADD_TO_CART, POST_USER, CLEAN_USER_RESPONSE, CREATION_USER_LOGIN, CREATION_USERFORM,CHECK_LOGIN  } from "./actions"
+>>>>>>> 2754e1c26045d3dd50030f1c7986b4f3e028e602
 
 const initialState = {
     products: [],
@@ -90,6 +94,19 @@ export const clientReducer = createReducer(initialState, (builder) => {
     builder.addCase(CLEAN_USER_RESPONSE, (state, action) => {
         state.userResponse = action.payload
     })
+<<<<<<< HEAD
+=======
+    builder.addCase(CREATION_USER_LOGIN.fulfilled, (state,action)=> {
+        state.userResponse = { ...action.payload, ok: true }
+        state.userId = action.payload.userId
+        state.userFirstName = action.payload.userFirstName
+    })
+    builder.addCase(CREATION_USERFORM.fulfilled,(state,action)=> {
+        state.userResponse = { ...action.payload, ok: true }
+        state.userId = action.payload.userId
+        state.userFirstName = action.payload.userFirstName
+    })
+>>>>>>> 2754e1c26045d3dd50030f1c7986b4f3e028e602
     builder.addCase(CHECK_LOGIN.fulfilled, (state, action) => {
         state.userResponse = { ...action.payload, ok: true }
         state.userId = action.payload.userId
