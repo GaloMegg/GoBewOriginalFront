@@ -2,9 +2,19 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { GET_CATEGORIES, GET_PRODUCTS, GET_PRODUCTS_BYCATEGORY } from '../../../redux/actions'
 import Categories from './Categories'
-import styles from '../../styles/nav.module.css'
+// import styles from '../../styles/nav.module.css'
 
-const CategoriesContainer = () => {
+// req.body = {
+//     userId: userResponse.userId,
+//     orderTotal: totalCart,
+//     orderState: 0,
+//     shippingAddress: null,
+//     zip: null,
+//     cart
+// }
+
+
+const CategoriesContainer = ({ handleReset }) => {
     //get categories
     const dispatch = useDispatch()
     const { categories, productsToFilter, isFiltered } = useSelector(state => state.clientReducer)
@@ -13,19 +23,22 @@ const CategoriesContainer = () => {
 
     }, [dispatch, isFiltered])
     const handleChanges = (e) => {
-        if (!e.target.value) {
+        if (!e.target.id) {
             dispatch(GET_PRODUCTS())
+            handleReset()
+
             return
         }
-        let filteredProducts = productsToFilter.filter(product => product.categories[0]?.categorySupId === e.target.value || product.categories[0]?._id === e.target.value)
+        let filteredProducts = productsToFilter.filter(product => product.categories[0]?.categorySupId === e.target.id || product.categories[0]?._id === e.target.id)
         dispatch(GET_PRODUCTS_BYCATEGORY(filteredProducts))
+        handleReset()
     }
     return (
-        <div >
-            <select className={styles.inputCategories} onClick={handleChanges}>
-                <Categories categories={categories} />
-            </select>
-        </div>
+        <>
+            <div className='categories' >
+                <Categories categories={categories} handleChanges={handleChanges} />
+            </div>
+        </>
     )
 }
 

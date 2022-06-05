@@ -1,0 +1,40 @@
+@use "../variables" as v;
+
+.productDetail {
+    margin: 5%;
+    width: 80%;
+    display: flex;
+    justify-content: space-around;
+    border-radius: 16px;
+    border: 1px v.$Primary solid;
+    padding: 5%;
+
+    .productDetail--img {
+        max-height: 40vh;
+        border-radius: 16px;
+        object-fit: cover;
+        margin: 2%;
+    }
+
+    .productDetail--container {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        width: 100%;
+        margin: 2%;
+
+        .productDetail__productName {
+            font-size: 1.7rem;
+            font-weight: bold;
+            color: v.$Primary;
+        }
+    }
+
+    .productDetail--container-btn {
+        width: 60%;
+        display: flex;
+        justify-content: center;
+    }
+
+}

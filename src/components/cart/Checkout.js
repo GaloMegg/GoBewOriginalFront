@@ -1,23 +1,41 @@
-import React, { useEffect } from 'react';
-const FORM_ID = 'payment-form';
+import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import MPButton from './MPButton';
+const { REACT_APP_APIURL } = process.env
 
-export default function Checkout({ id }) {
+// ! test CARD = {
+// !   num: 5031 7557 3453 0604   ,
+// !    cvv: 123,
+// !    vencimiento: 11 / 25,
+// ! }
+// ! Martinez Mirtha
+// ! 23011111114
+
+
+
+export default function Checkout({ }) {
+    const { cart, userId, orderId, totalCart } = useSelector(state => state.clientReducer)
+    const [id, setId] = useState("")
     useEffect(() => {
-        // con el preferenceId en mano, inyectamos el script de mercadoPago
-        const script = document.createElement('script');
-        script.type = 'text/javascript';
-        script.src =
-            'https://www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js';
-        script?.setAttribute('data-preference-id', id);
-        const form = document?.getElementById(FORM_ID);
-        form?.appendChild(script);
-        return () => {
-            const formu = document?.getElementById(FORM_ID)
-            formu?.removeChild(script);
+        if (cart && userId && orderId && totalCart) {
+            fetch(`${REACT_APP_APIURL}payments/pay`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                redirect: 'follow',
+                referrerPolicy: 'no-referrer',
+                body: JSON.stringify({ cart, orderId, totalCart })
+            }).then((order) => order.json()).then(order => {
+                setId(order.global)
+            });
         }
-    }, [id]);
+        return () => {
+            setId(null)
 
-    return (
-        <form id={FORM_ID} method="GET" />
-    );
+        }
+    }, []);
+    return <div className='checkoutContainer' >{id ? <MPButton id={id} /> : <p className='checkoutContainer__loading' > Cargando...</p>}
+    </div>
 }
+
