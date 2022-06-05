@@ -9,7 +9,6 @@ const Cart = ({ totalCart, cart }) => {
     const dispatch = useDispatch()
     const cleanCart = () => {
         if (userId) {
-            //dispatch para la orden
             dispatch(DELETE_USER_CART({ orderId, token: localStorage.getItem('token') }))
             return
         } else {
