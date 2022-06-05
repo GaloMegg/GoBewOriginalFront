@@ -358,6 +358,18 @@ export const REMOVE_ONE_USER_CART = createAsyncThunk(
     'REMOVE_ONE_USER_CART', async (data) => {
         try {
             let arr = [...data.cart]
+            if (arr.length === 1 && arr[0].quantity == 1) {
+                const delResp = await fetch(`${REACT_APP_APIURL}payments/order/${data.orderId}`, {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'x-token': data.token
+                    }
+                })
+                const delBody = await delResp.json();
+                return delBody
+            }
+
             let index = arr.findIndex(e => e._id === data.productId)
             console.log(index)
             if (arr[index].quantity === 1) {
@@ -429,6 +441,76 @@ export const ADD_ONE_USER_CART = createAsyncThunk('ADD_ONE_USER_CART', async (da
         console.log(e);
     }
 })
+export const DELETE_USER_CART = createAsyncThunk('DELETE_USER_CART', async (data) => {
+    try {
+
+        const response = await fetch(`${REACT_APP_APIURL}payments/order/${data.orderId}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                'x-token': data.token
+            }
+        })
+        const res = await response.json()
+        if (res.ok) {
+            return {
+                orderId: "",
+            }
+        } else {
+            console.log(res)
+        }
+    }
+    catch (e) {
+        console.log(e);
+    }
+
+})
+//*SACAR UN PRODUCTO COMPLETO DEL CARRITO DE USUARIO
+export const DELETE_PRODUCT_USER = createAsyncThunk('DELETE_PRODUCT_USER', async (data) => {
+    try {
+        let arr = [...data.cart]
+
+        if (arr.length === 1) {
+            const delResp = await fetch(`${REACT_APP_APIURL}payments/order/${data.orderId}`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'x-token': data.token
+                }
+            })
+            const delBody = await delResp.json();
+            return delBody
+        }
+        let filteredArr = arr.filter(e => e._id !== data.productId)
+        let total = arr?.reduce((a, b) => { return a + b.quantity * b.productPrice }, 0);
+        const response = await fetch(`${REACT_APP_APIURL}payments/order/updatecarrito`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'x-token': data.token
+            },
+            body: JSON.stringify({
+                userId: data.userId,
+                orderTotal: filteredArr ? total : 0,
+                orderId: data.orderId,
+                shippingAddressId: '',
+                cart: filteredArr?.map(item => ({
+                    _id: item._id,
+                    quantity: item.quantity,
+                    productPrice: item.productPrice,
+                    productName: item.productName
+                })),
+            })
+        })
+        const body = await response.json();
+        return body
+    }
+    catch (e) {
+        console.log(e);
+    }
+})
+
+
 export const POST_USER_ADDRESS = createAsyncThunk('POST_USER_ADDRESS', async (data) => {
     try {
         let token = localStorage.getItem('token')

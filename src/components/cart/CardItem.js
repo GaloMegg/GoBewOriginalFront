@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { REMOVE_FROM_CART, SET_TOTAL, ADD_ONE_CART, REMOVE_ONE_CART, REMOVE_ONE_USER_CART, ADD_ONE_USER_CART, GET_USER_CART } from '../../redux/actions'
+import { REMOVE_FROM_CART, SET_TOTAL, ADD_ONE_CART, REMOVE_ONE_CART, REMOVE_ONE_USER_CART, ADD_ONE_USER_CART, GET_USER_CART, DELETE_PRODUCT_USER } from '../../redux/actions'
 const { REACT_APP_CLOUDINARY_RES } = process.env
 
 const CardItem = ({ _id, images, quantity, productPrice, productName, totalCart, productStock, }) => {
@@ -47,6 +47,12 @@ const CardItem = ({ _id, images, quantity, productPrice, productName, totalCart,
     if (totalCart > 0) dispatch(SET_TOTAL(totalCart - productPrice))
   }
   const removeFromCart = () => {
+    if (userId) {
+      if (orderId) {
+        let token = localStorage.getItem('token')
+        dispatch(DELETE_PRODUCT_USER({ userId, totalCart, cart, productId: _id, token, orderId }))
+      }
+    }
     localStorage.removeItem('cart')
     localStorage.removeItem('totalCart')
     dispatch(REMOVE_FROM_CART(_id))

@@ -1,5 +1,5 @@
 import { createReducer } from "@reduxjs/toolkit"
-import { GET_CATEGORIES, GET_PRODUCTS, SEARCH_PRODUCT, ORDER_PRODUCTS, GET_PRODUCTS_BYCATEGORY, GET_HIGHLIGHTED, GET_PRODUCT_BY_ID, CLEAN_UP_DETAILS, REMOVE_ONE_CART, ADD_ONE_CART, CLEAN_CART, REMOVE_FROM_CART, SET_TOTAL, SET_CART, ADD_TO_CART, POST_USER, CLEAN_USER_RESPONSE, CREATION_USER_LOGIN, CREATION_USERFORM, CHECK_LOGIN, CREATE_USER_CART, GET_USER_CART } from "./actions"
+import { GET_CATEGORIES, GET_PRODUCTS, SEARCH_PRODUCT, ORDER_PRODUCTS, GET_PRODUCTS_BYCATEGORY, GET_HIGHLIGHTED, GET_PRODUCT_BY_ID, CLEAN_UP_DETAILS, REMOVE_ONE_CART, ADD_ONE_CART, CLEAN_CART, REMOVE_FROM_CART, SET_TOTAL, SET_CART, ADD_TO_CART, POST_USER, CLEAN_USER_RESPONSE, CREATION_USER_LOGIN, CREATION_USERFORM, CHECK_LOGIN, CREATE_USER_CART, GET_USER_CART, DELETE_USER_CART } from "./actions"
 
 const initialState = {
     products: [],
@@ -95,6 +95,11 @@ export const clientReducer = createReducer(initialState, (builder) => {
         state.cart = action.payload?.obj?.cart ? action.payload?.obj?.cart.map(e => ({ quantity: e.productCant, productName: e.productName, productPrice: e.productPrice, _id: e.productId })) : []
         state.totalCart = action.payload?.obj?.orderTotal
         state.orderId = action.payload?.obj?.orderId
+    })
+    builder.addCase(DELETE_USER_CART.fulfilled, (state, action) => {
+        state.cart = []
+        state.totalCart = 0
+        state.orderId = ""
     })
     //*LOGINS
     builder.addCase(POST_USER.fulfilled, (state, action) => {
