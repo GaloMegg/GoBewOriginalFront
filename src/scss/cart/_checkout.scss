@@ -1,0 +1,29 @@
+@use "../variables" as v;
+
+.checkoutContainer {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .checkoutContainer__loading {
+        font-size: 2rem;
+
+    }
+
+    .checkoutContainer--btn {
+        width: 60%;
+        display: flex;
+        justify-content: center;
+
+        &>button {
+            font-size: 1.2rem;
+            width: 50%;
+            @include btn(100%);
+            text-align: center;
+
+        }
+    }
+}

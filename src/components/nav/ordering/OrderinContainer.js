@@ -1,17 +1,15 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { ORDER_PRODUCTS } from '../../../redux/actions'
 
 
-const OrderinContainer = () => {
+const OrderinContainer = ({ priceActive, alphabeticalActive, setAlphabeticalActive, setPriceActive }) => {
     const { products } = useSelector(state => state.clientReducer)
     const dispatch = useDispatch()
     //!Alphabetical
-    const [alphabeticalActive, setAlphabeticalActive] = useState(false)
     const [alphabeticalDirection, setAlphabeticalDirection] = useState(false)
 
     //!PRICE
-    const [priceActive, setPriceActive] = useState(false)
     const [priceDirection, setPriceDirection] = useState(false)
     //!DIRECTION
     const handlePriceClick = () => {
@@ -62,15 +60,17 @@ const OrderinContainer = () => {
             })
         dispatch(ORDER_PRODUCTS(sortedProducts))
     }
+
+
     return (
-        <>
-            <button onClick={handlePriceClick}>
-                Precio {priceActive && <span>{priceDirection ? "ᐱ" : "ᐯ"}</span>}
+        <div className='orderButtons'>
+            <button onClick={handlePriceClick} className='orderButtons__price'>
+                Precio {priceActive && <span >{priceDirection ? "ᐱ" : "ᐯ"}</span>}
             </button>
-            <button onClick={handleAlphabetClick}>
+            <button onClick={handleAlphabetClick} className='orderButtons__alph'>
                 A-Z{alphabeticalActive && <span>{alphabeticalDirection ? "ᐱ" : "ᐯ"}</span>}
             </button>
-        </>
+        </div>
     )
 }
 

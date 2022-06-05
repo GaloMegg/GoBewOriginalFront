@@ -5,8 +5,7 @@ export default function ProductsMap({ products }) {
     return (
         <>
             {
-                products?.map((prod) => <ProductCard key={prod._id} {...prod} product={prod} />
-
+                products?.map((prod) => prod.productIsActive && <ProductCard key={prod._id} {...prod} product={prod} />
                 )
             }
         </>

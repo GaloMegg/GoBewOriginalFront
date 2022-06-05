@@ -1,15 +1,32 @@
-import React from 'react'
-import { useSelector } from 'react-redux';
-// import OrderinContainer from './ordering/OrderinContainer'
-import SearchBar from './SearchBar'
-import CategoriesContainer from "./categories/CategoriesContainer"
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
 import Logo from '../../images/Logo-GoBew.png'
 import Carrito from '../../images/carrito-compras.png'
 import User from '../../images/user-icon.png'
 import { Link } from 'react-router-dom'
+import { CHECK_LOGIN, GET_USER_CART, SET_CART, SET_TOTAL } from '../../redux/actions';
 
-const Nav = ({ showSearch, showCategories }) => {
-    const { userResponse, cart } = useSelector(store => store.clientReducer)
+const Nav = () => {
+    const { userResponse, cart, userId } = useSelector(store => store.clientReducer)
+    const dispatch = useDispatch()
+    useEffect(() => {
+        let token = localStorage.getItem('token')
+        if (token) {
+            if (userId) {
+                dispatch(CHECK_LOGIN());
+                dispatch(GET_USER_CART(userId))
+            }
+        } else {
+            let cartStorage = JSON.parse(localStorage.getItem('cart'))
+            let totalCartStorage = JSON.parse(localStorage.getItem('totalCart'))
+            if (cartStorage && totalCartStorage) {
+                dispatch(SET_CART(cartStorage))
+                dispatch(SET_TOTAL(totalCartStorage))
+            }
+        }
+
+    }, [userId])
+
     if (userResponse.ok === true) {
         var user = userResponse.userFirstName
     } else {
@@ -25,17 +42,17 @@ const Nav = ({ showSearch, showCategories }) => {
             </div>
             {/* //! FILTERS */}
             {/* <div className='nav__filters'> */}
-                {/* CATEGORIES FILTERS */}
-                {/* {showCategories && <CategoriesContainer />} */}
-                {/* SEARCHBAR */}
-                {/* {showSearch && <SearchBar />} */}
+            {/* CATEGORIES FILTERS */}
+            {/* {showCategories && <CategoriesContainer />} */}
+            {/* SEARCHBAR */}
+            {/* {showSearch && <SearchBar />} */}
             {/* </div> */}
             <div className='nav__loginCart'>
                 {/* //! CART */}
                 <Link className='nav__loginCart--cart' to="/cart">
                     <img className='nav__loginCart--cart-img' src={Carrito} alt='img not found' />
                     <div className='nav__loginCart--cart-circle'>
-                        <p className='nav__loginCart--cart-text'>{cart.reduce((a, b) => { return a + b.quantity }, 0)}</p>
+                        <p className='nav__loginCart--cart-text'>{cart?.reduce((a, b) => { return a + b.quantity }, 0)}</p>
                     </div>
                 </Link>
                 {/* //! LOGIN */}
