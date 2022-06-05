@@ -1,23 +1,29 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { SET_CART, SET_TOTAL } from '../../redux/actions'
+import { CHECK_LOGIN, GET_USER_CART, SET_CART, SET_TOTAL } from '../../redux/actions'
 import Cart from './Cart'
 
 const CartContainer = () => {
-    const { cart, totalCart } = useSelector(state => state.clientReducer)
+    const { cart, totalCart, userId } = useSelector(state => state.clientReducer)
     const dispatch = useDispatch()
     useEffect(() => {
-        if (cart.length < 1) {
+        if (userId) {
+            dispatch(CHECK_LOGIN())
+            dispatch(GET_USER_CART(userId))
+            localStorage.removeItem("cart")
+            return
+        } else if (!userId) {
             let cartStorage = JSON.parse(localStorage.getItem('cart'))
-            cartStorage && dispatch(SET_CART(cartStorage))
             let totalCartStorage = JSON.parse(localStorage.getItem('totalCart'))
-            totalCartStorage > 0 && dispatch(SET_TOTAL(totalCartStorage))
+            if (cartStorage && totalCartStorage) {
+                SET_CART(cartStorage)
+                SET_TOTAL(totalCartStorage)
+            }
         }
-    }, [dispatch])
+    }, [userId, dispatch])
     return (
         <section>
-
-            {cart.length < 1 ? < h1 > No hay productos en el carrito</h1> :
+            {cart.length < 1 ? <div className='cart__noItem--container'>< h1 className='cart__noItem'> No hay productos en el carrito</h1></div> :
                 <Cart cart={cart} totalCart={totalCart} />
             }
         </section >

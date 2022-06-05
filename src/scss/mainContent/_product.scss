@@ -5,7 +5,9 @@
     width: 80%;
     display: flex;
     flex-wrap: wrap;
-    
+    justify-content: center;
+    align-items: flex-start;
+
     .products__noProducts {
         width: 100%;
         text-align: center;
@@ -14,4 +16,5 @@
         margin-top: 4%;
         color: v.$Primary ;
     }
+
 }

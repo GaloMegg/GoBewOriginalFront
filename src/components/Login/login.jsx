@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import validate from './validate.js';
+import validate from './Validate.js';
 import { POST_USER, CLEAN_USER_RESPONSE } from '../../redux/actions';
 import { Link, useNavigate } from 'react-router-dom';
+import LogInGoogle from './LogInGoogle.jsx';
 
 
 const Login = () => {
@@ -53,18 +54,23 @@ const Login = () => {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
-            <h1>Hola! ingresa tus datos</h1>
-            <label>E-mail</label>
-            <input type="text" name='userEmail' value={user.userEmail} onChange={handleInput} />
-            <label>Contraseña</label>
-            <input type="password" name='userPassword' value={user.userPassword} onChange={handleInput} />
-            {Boolean(Object.values(errors).length) && (<p>{Object.values(errors)[0]}</p>)}
-            {charging && chargingResponse}
-            {btnCharging && <button onClick={() => { setCharging(false); setBtnCharging(false); dispatch(CLEAN_USER_RESPONSE()) }}>Ok</button>}
-            <button type='submit'>Ingresar</button>
-            <Link to="/logInForm"> <button >Crear cuenta</button> </Link>
-            {/* {redirect && <Navigate to="/" />} */}
+        <form onSubmit={handleSubmit} className="loginForm">
+            <div className="loginForm--container">
+                <h1 className="loginForm__greatings">Hola! ingresa tus datos</h1>
+
+                <input type="text" name='userEmail' value={user.userEmail} placeholder="Email" onChange={handleInput} className="loginForm__email" />
+                <input type="password" name='userPassword' value={user.userPassword} placeholder="Contraseña" onChange={handleInput} className="loginForm__password" />
+
+                {Object.values(errors).length > 0 && <p className="loginForm__errors">{Object.values(errors)[0]}</p>}
+                {btnCharging && <button onClick={() => { setCharging(false); setBtnCharging(false); dispatch(CLEAN_USER_RESPONSE()) }}
+                >Ok</button>}
+                <div className='loginForm__login--btn-container'>
+                    <button type='submit' className="loginForm__login--btn">Ingresar</button>
+                    <Link to="/logInForm" className="loginForm__singup--link"> <button className="loginForm__singup--btn" >Crear cuenta</button> </Link>
+                </div>
+                {/* {redirect && <Navigate to="/" />} */}
+                <LogInGoogle />
+            </div>
         </form >
     )
 }

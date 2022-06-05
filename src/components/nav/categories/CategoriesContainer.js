@@ -14,7 +14,7 @@ import Categories from './Categories'
 // }
 
 
-const CategoriesContainer = () => {
+const CategoriesContainer = ({ handleReset }) => {
     //get categories
     const dispatch = useDispatch()
     const { categories, productsToFilter, isFiltered } = useSelector(state => state.clientReducer)
@@ -25,10 +25,13 @@ const CategoriesContainer = () => {
     const handleChanges = (e) => {
         if (!e.target.id) {
             dispatch(GET_PRODUCTS())
+            handleReset()
+
             return
         }
         let filteredProducts = productsToFilter.filter(product => product.categories[0]?.categorySupId === e.target.id || product.categories[0]?._id === e.target.id)
         dispatch(GET_PRODUCTS_BYCATEGORY(filteredProducts))
+        handleReset()
     }
     return (
         <>
