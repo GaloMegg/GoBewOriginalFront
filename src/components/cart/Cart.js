@@ -5,11 +5,11 @@ import { CLEAN_CART, DELETE_USER_CART } from '../../redux/actions'
 import CardItem from './CardItem'
 
 const Cart = ({ totalCart, cart }) => {
+
     const { userId, orderId } = useSelector(state => state.clientReducer)
     const dispatch = useDispatch()
     const cleanCart = () => {
         if (userId) {
-            //dispatch para la orden
             dispatch(DELETE_USER_CART({ orderId, token: localStorage.getItem('token') }))
             return
         } else {

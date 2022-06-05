@@ -369,7 +369,6 @@ export const REMOVE_ONE_USER_CART = createAsyncThunk(
                 const delBody = await delResp.json();
                 return delBody
             }
-
             let index = arr.findIndex(e => e._id === data.productId)
             console.log(index)
             if (arr[index].quantity === 1) {
@@ -441,6 +440,7 @@ export const ADD_ONE_USER_CART = createAsyncThunk('ADD_ONE_USER_CART', async (da
         console.log(e);
     }
 })
+
 export const DELETE_USER_CART = createAsyncThunk('DELETE_USER_CART', async (data) => {
     try {
 
@@ -509,7 +509,6 @@ export const DELETE_PRODUCT_USER = createAsyncThunk('DELETE_PRODUCT_USER', async
         console.log(e);
     }
 })
-
 
 export const POST_USER_ADDRESS = createAsyncThunk('POST_USER_ADDRESS', async (data) => {
     try {
