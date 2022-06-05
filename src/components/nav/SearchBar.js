@@ -1,7 +1,7 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
 import { GET_PRODUCTS, SEARCH_PRODUCT } from '../../redux/actions'
-import styles from '../styles/nav.module.css'
+// import styles from '../styles/nav.module.css'
 
 const SearchBar = () => {
     const dispatch = useDispatch()
@@ -14,7 +14,7 @@ const SearchBar = () => {
     }
     return (
         <>
-            <input className={styles.navBar} type="text" onChange={handleChanges} placeholder="¿Qué estás buscando hoy?" />
+            <input className="searchBar" type="text" onChange={handleChanges} placeholder="¿Qué estás buscando hoy?" />
         </>
     )
 }
