@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { GET_PRODUCTS, SET_CART, SET_TOTAL } from '../../redux/actions';
+import { CHECK_LOGIN, GET_PRODUCTS, GET_USER_CART, SET_CART, SET_TOTAL } from '../../redux/actions';
 import ProductsMap from './ProductsMap';
 
 export default function ProductCardContainer() {
@@ -15,10 +15,6 @@ export default function ProductCardContainer() {
         }
     }, [dispatch])
 
-    useEffect(() => {
-        dispatch(SET_CART(JSON.parse(localStorage.getItem('cart'))))
-        dispatch(SET_TOTAL(JSON.parse(localStorage.getItem('totalCart'))))
-    }, [dispatch])
     return (
         <section className='products' >
             {products.length > 0 ?

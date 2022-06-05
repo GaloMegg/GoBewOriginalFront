@@ -7,12 +7,16 @@ const CartContainer = () => {
     const { cart, totalCart, userId } = useSelector(state => state.clientReducer)
     const dispatch = useDispatch()
     useEffect(() => {
-        if (userId) {
+        let token = localStorage.getItem('token')
+        if (token) {
             dispatch(CHECK_LOGIN())
-            dispatch(GET_USER_CART(userId))
-            localStorage.removeItem("cart")
-            return
-        } else if (!userId) {
+            if (userId) {
+                dispatch(GET_USER_CART(userId))
+
+                // localStorage.removeItem("cart")
+                return
+            }
+        } else {
             let cartStorage = JSON.parse(localStorage.getItem('cart'))
             let totalCartStorage = JSON.parse(localStorage.getItem('totalCart'))
             if (cartStorage && totalCartStorage) {

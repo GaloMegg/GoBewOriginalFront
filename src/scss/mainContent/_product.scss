@@ -1,5 +1,8 @@
 @use "../variables" as v;
 @import "./productCard";
+@import "./productDetails";
+@import "./productAdd";
+
 
 .products {
     width: 80%;

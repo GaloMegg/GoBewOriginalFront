@@ -4,15 +4,25 @@ import Logo from '../../images/Logo-GoBew.png'
 import Carrito from '../../images/carrito-compras.png'
 import User from '../../images/user-icon.png'
 import { Link } from 'react-router-dom'
-import { CHECK_LOGIN, GET_USER_CART } from '../../redux/actions';
+import { CHECK_LOGIN, GET_USER_CART, SET_CART, SET_TOTAL } from '../../redux/actions';
 
 const Nav = () => {
     const { userResponse, cart, userId } = useSelector(store => store.clientReducer)
     const dispatch = useDispatch()
     useEffect(() => {
-        if (userId) {
-            dispatch(CHECK_LOGIN());
-            dispatch(GET_USER_CART(userId))
+        let token = localStorage.getItem('token')
+        if (token) {
+            if (userId) {
+                dispatch(CHECK_LOGIN());
+                dispatch(GET_USER_CART(userId))
+            }
+        } else {
+            let cartStorage = JSON.parse(localStorage.getItem('cart'))
+            let totalCartStorage = JSON.parse(localStorage.getItem('totalCart'))
+            if (cartStorage && totalCartStorage) {
+                dispatch(SET_CART(cartStorage))
+                dispatch(SET_TOTAL(totalCartStorage))
+            }
         }
 
     }, [userId])
@@ -22,7 +32,6 @@ const Nav = () => {
     } else {
         user = 'Acceso'
     }
-    console.log(cart)
     return (
         <nav className='nav'>
             {/* //! LOGO */}

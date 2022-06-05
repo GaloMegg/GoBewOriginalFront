@@ -39,31 +39,5 @@
 
     }
 
-    .productCard__addToCart {
-        display: flex;
-        align-items: center;
-        width: 61%;
-        justify-content: space-evenly;
-
-
-        .productCard__addToCart--- {
-            @include btn($width: 10%);
-            font-size: 2rem;
-        }
-
-        .productCard__addToCart--addition {
-            @include btn($width: 40%);
-            font-size: 1.2rem;
-        }
-
-        .productCard__addToCart--count {
-            font-size: 1.2rem;
-        }
-
-        .productCard__addToCart--add {
-            @include btn($width: 30%);
-            font-size: 1.2rem;
-        }
-    }
-
+    
 }

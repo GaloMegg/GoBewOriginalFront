@@ -51,6 +51,7 @@ const CardItem = ({ _id, images, quantity, productPrice, productName, totalCart,
     localStorage.removeItem('totalCart')
     dispatch(REMOVE_FROM_CART(_id))
     dispatch(SET_TOTAL(totalCart - productPrice * quantity))
+
   }
   return (
     <article className='cartItem' >

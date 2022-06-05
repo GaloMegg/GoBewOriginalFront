@@ -11,15 +11,16 @@ const MainContentContainer = () => {
     let token = localStorage.getItem('token')
     if (token) {
       dispatch(CHECK_LOGIN())
-    }
-  }, [])
-
-  useEffect(() => {
-    if (userId) {
-      dispatch(GET_USER_CART(userId))
+      if (userId) {
+        dispatch(GET_USER_CART(userId))
+      }
     } else {
-      SET_CART(JSON.parse(localStorage.getItem('cart')));
-      SET_TOTAL(JSON.stringify(localStorage.getItem('totalCart')))
+      let cartStorage = JSON.parse(localStorage.getItem('cart'))
+      let totalCartStorage = JSON.parse(localStorage.getItem('totalCart'))
+      if (cartStorage && totalCartStorage) {
+        SET_CART(cartStorage);
+        SET_TOTAL(totalCartStorage);
+      }
     }
 
   }, [userId])

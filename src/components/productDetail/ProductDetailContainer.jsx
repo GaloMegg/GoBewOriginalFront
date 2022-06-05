@@ -18,13 +18,15 @@ export default function ProductDetailContainer() {
         }
     }, [dispatch, id])
     return (
-        <div className="">
-            <img src={REACT_APP_CLOUDINARY_RES + product[0]?.images[0].imageName} alt={product[0]?.imageAlt} className="" />
-            <div className="">
-                <h2 className="">{product[0]?.productName}</h2>
+        <div className="productDetail">
+            <img src={REACT_APP_CLOUDINARY_RES + product[0]?.images[0].imageName} alt={product[0]?.imageAlt} className="productDetail--img" />
+            <div className="productDetail--container">
+                <h2 className="productDetail__productName">{product[0]?.productName}</h2>
                 <p className="">{product[0]?.productDescription}</p>
-                <p className="">${product[0]?.productPrice}</p>
-                <ProductAdd />
+                <p className="">${product[0]?.productPrice.toLocaleString('de-DE')}</p>
+                <div className='productDetail--container-btn'>
+                    <ProductAdd price={product[0]?.productPrice} stock={product[0]?.productPrice} product={product[0]} />
+                </div>
             </div>
         </div>
     )

@@ -230,7 +230,6 @@ export const CHECK_LOGIN = createAsyncThunk(
                     }
                 }
             }
-            return body;
 
         } catch (error) {
             return {
@@ -261,7 +260,6 @@ export const GET_USER_CART = createAsyncThunk(
                 })
             const body = await response.json();
 
-            console.log(body)
             return await body
 
         } catch (error) {
@@ -305,7 +303,6 @@ export const CREATE_USER_CART = createAsyncThunk(
                 })
             })
             const body = await response.json();
-            console.log(body);
             return body
         }
         catch (e) {
