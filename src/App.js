@@ -9,6 +9,7 @@ import CartContainer from './components/cart/CartContainer';
 import Login from './components/Login/login';
 import { ToastContainer, toast } from 'react-toastify';
 import Filters from './components/mainContent/Filters';
+import 'react-toastify/dist/ReactToastify.css';
 import MainContentContainer from './components/mainContent/MainContentContainer';
 // import CategoriesNew from './components/nav/categories/CategoriesNew.jsx';
 function App() {

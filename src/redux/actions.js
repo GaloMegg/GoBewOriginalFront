@@ -146,7 +146,6 @@ export const CHECK_LOGIN = createAsyncThunk(
                 }
             }
             else {
-                console.log("entro");
                 return {
                     payload: {
                         token: '',
