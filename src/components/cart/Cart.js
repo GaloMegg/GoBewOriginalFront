@@ -5,10 +5,6 @@ import { CLEAN_CART, DELETE_USER_CART } from '../../redux/actions'
 import CardItem from './CardItem'
 
 const Cart = ({ totalCart, cart }) => {
-<<<<<<< HEAD
-=======
-
->>>>>>> 5f3cf6d2d032cb4ce97cc8062c733cd9be94c9f1
     const { userId, orderId } = useSelector(state => state.clientReducer)
     const dispatch = useDispatch()
     const cleanCart = () => {
