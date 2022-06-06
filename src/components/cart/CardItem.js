@@ -64,7 +64,9 @@ const CardItem = (props) => {
     <article className='cartItem' >
       {/* {images?.length >= 2 && <button onClick={CarouselImagesPrev}>{"<"}</button>} */}
       <Link to={`/productDetail/${_id}`} className='cartItem__img--container'>
+
         {images && <img src={`${REACT_APP_CLOUDINARY_RES}${images[0]?.imageName}`} alt={images.imageAlt} className='cartItem__img' />}
+
 
       </Link>
       {/* {images?.length >= 2 && <button onClick={CarouselImagesNext}>{">"}</button>} */}
