@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import validate from './validate.js';
 import { POST_USER, CLEAN_USER_RESPONSE } from '../../redux/actions';
@@ -40,9 +40,6 @@ const Login = () => {
 
         }
     }
-    useEffect(() => {
-    
-    }, []);
 
 
 
