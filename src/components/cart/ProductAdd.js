@@ -6,6 +6,7 @@ const ProductAdd = ({ stock, price, product }) => {
     const dispatch = useDispatch()
     const { cart, totalCart, userId, orderId } = useSelector(state => state.clientReducer)
     const [localCount, setLocalCount] = useState(1)
+    console.log(cart, "procut", product)
     const addQuantity = () => {
         if (localCount < stock) {
             setLocalCount(localCount + 1)
@@ -18,10 +19,17 @@ const ProductAdd = ({ stock, price, product }) => {
     }
     const addToCart = (e) => {
         e.preventDefault()
+        let limit = cart.find(e => e._id === product._id)
+        if (limit?.quantity >= stock) {
+            toast.info("Ya no hay stock de ese producto")
+            setLocalCount(1)
+
+            return
+        }
         dispatch(ADD_TO_CART(product, localCount))
         dispatch(SET_TOTAL(totalCart + (localCount * price)))
         setLocalCount(1)
-        toast.success(
+        toast.pink(
             `${product.productName} agregado al carrito`,
         )
         if (userId) {
