@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import validate from './Validate.js';
-import { POST_USER, CLEAN_USER_RESPONSE } from '../../redux/actions';
+import { POST_USER, CLEAN_USER_RESPONSE, CHECK_LOGIN } from '../../redux/actions';
 import { Link, useNavigate } from 'react-router-dom';
 import LogInGoogle from './LogInGoogle.jsx';
 
@@ -52,6 +52,11 @@ const Login = () => {
     } else if (userResponse.ok === true) {
 
     }
+    useEffect(() => {
+        dispatch(CHECK_LOGIN())
+
+    }, [])
+
 
     return (
         <form onSubmit={handleSubmit} className="loginForm">

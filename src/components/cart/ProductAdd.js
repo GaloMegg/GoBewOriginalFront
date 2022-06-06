@@ -24,7 +24,6 @@ const ProductAdd = ({ stock, price, product }) => {
         toast.success(
             `${product.productName} agregado al carrito`,
         )
-        console.log(userId);
         if (userId) {
             if (orderId) {
                 let token = localStorage.getItem('token')

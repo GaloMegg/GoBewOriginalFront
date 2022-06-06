@@ -256,12 +256,9 @@ export const GET_USER_CART = createAsyncThunk(
                     headers: {
                         'x-token': localStorage.getItem('token')
                     }
-
                 })
             const body = await response.json();
-
             return await body
-
         } catch (error) {
             console.log(error);
         }
@@ -370,7 +367,6 @@ export const REMOVE_ONE_USER_CART = createAsyncThunk(
                 return delBody
             }
             let index = arr.findIndex(e => e._id === data.productId)
-            console.log(index)
             if (arr[index].quantity === 1) {
                 arr.splice(index, 1)
             } else {
