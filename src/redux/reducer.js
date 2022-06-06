@@ -1,11 +1,7 @@
 import { createReducer } from "@reduxjs/toolkit"
-<<<<<<< HEAD
-import { GET_CATEGORIES, GET_PRODUCTS, SEARCH_PRODUCT, ORDER_PRODUCTS, GET_PRODUCTS_BYCATEGORY, GET_HIGHLIGHTED, GET_PRODUCT_BY_ID, CLEAN_UP_DETAILS, REMOVE_ONE_CART, ADD_ONE_CART, CLEAN_CART, REMOVE_FROM_CART, SET_TOTAL, SET_CART, ADD_TO_CART, POST_USER, CLEAN_USER_RESPONSE, CREATION_USER_LOGIN, CREATION_USERFORM,CHECK_LOGIN  } from "./actions"
-=======
 
 import { GET_CATEGORIES, GET_PRODUCTS, SEARCH_PRODUCT, ORDER_PRODUCTS, GET_PRODUCTS_BYCATEGORY, GET_HIGHLIGHTED, GET_PRODUCT_BY_ID, CLEAN_UP_DETAILS, REMOVE_ONE_CART, ADD_ONE_CART, CLEAN_CART, REMOVE_FROM_CART, SET_TOTAL, SET_CART, ADD_TO_CART, POST_USER, CLEAN_USER_RESPONSE, CREATION_USER_LOGIN, CREATION_USERFORM, CHECK_LOGIN, CREATE_USER_CART, GET_USER_CART, DELETE_USER_CART } from "./actions"
 
->>>>>>> 95987f389fddb4975a2b987bb88198d63a65c19f
 
 const initialState = {
     products: [],
@@ -109,27 +105,19 @@ export const clientReducer = createReducer(initialState, (builder) => {
     })
     //*LOGINS
     builder.addCase(POST_USER.fulfilled, (state, action) => {
-        state.userResponse = { ...action.payload, ok: true }
+        state.userResponse = { ...action.payload }
         state.userId = action.payload.userId
         state.userFirstName = action.payload.userFirstName
     })
     builder.addCase(CLEAN_USER_RESPONSE, (state, action) => {
         state.userResponse = action.payload
     })
-<<<<<<< HEAD
-    builder.addCase(CREATION_USER_LOGIN.fulfilled, (state,action)=> {
-=======
     builder.addCase(CREATION_USER_LOGIN.fulfilled, (state, action) => {
->>>>>>> 95987f389fddb4975a2b987bb88198d63a65c19f
         state.userResponse = { ...action.payload, ok: true }
         state.userId = action.payload.userId
         state.userFirstName = action.payload.userFirstName
     })
-<<<<<<< HEAD
-    builder.addCase(CREATION_USERFORM.fulfilled,(state,action)=> {
-=======
     builder.addCase(CREATION_USERFORM.fulfilled, (state, action) => {
->>>>>>> 95987f389fddb4975a2b987bb88198d63a65c19f
         state.userResponse = { ...action.payload, ok: true }
         state.userId = action.payload.userId
         state.userFirstName = action.payload.userFirstName
