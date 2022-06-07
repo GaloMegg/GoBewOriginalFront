@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import validate from './Validate.js';
+import validate from './validate.js';
 import { POST_USER, CLEAN_USER_RESPONSE } from '../../redux/actions';
 import { Link, useNavigate } from 'react-router-dom';
 import LogInGoogle from './LogInGoogle.jsx';
