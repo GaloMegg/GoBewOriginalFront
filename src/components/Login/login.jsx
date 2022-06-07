@@ -7,7 +7,6 @@ import LogInGoogle from './LogInGoogle.jsx';
 
 
 const Login = () => {
-    const navigate = useNavigate()
     const { userResponse } = useSelector(store => store.clientReducer)
     const [user, setUser] = useState({
         userEmail: '',
