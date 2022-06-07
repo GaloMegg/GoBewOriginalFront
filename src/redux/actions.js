@@ -551,3 +551,19 @@ export const POST_USER_ADDRESS = createAsyncThunk('POST_USER_ADDRESS', async (da
         console.log(e);
     }
 })
+export const LOG_OUT = createAction (
+    "LOG_OUT",() => {
+            localStorage.removeItem('token')
+                return {
+                    ok: ""
+                }
+    }
+)
+
+// export const GET_PRODUCTS_BYCATEGORY = createAction(
+//     'GET_PRODUCTS_BYCATEGORY', (products) => {
+//         return {
+//             payload: products
+//         }
+//     }
+// )

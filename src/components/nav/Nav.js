@@ -5,6 +5,7 @@ import Carrito from '../../images/carrito-compras.png'
 import User from '../../images/user-icon.png'
 import { Link } from 'react-router-dom'
 import { CHECK_LOGIN, GET_USER_CART, SET_CART, SET_TOTAL } from '../../redux/actions';
+import LogOut from '../login/LogOut';
 
 const Nav = () => {
     const { userResponse, cart, userId } = useSelector(store => store.clientReducer)
@@ -56,10 +57,12 @@ const Nav = () => {
                     </div>
                 </Link>
                 {/* //! LOGIN */}
-                <Link className='nav__loginCart--login' to={`/login`} >
-                    <img className='nav__loginCart--login-img' src={User} alt='img not found' />
-                    <p className='nav__loginCart--login-text'>{user}</p>
-                </Link>
+                {userResponse.ok ? <LogOut user = {user} User = {User}/>
+                : <Link className='nav__loginCart--login' to={`/login`} >
+                <img className='nav__loginCart--login-img' src={User} alt='img not found' />
+                <p className='nav__loginCart--login-text'>{user}</p>
+            </Link>
+                }
             </div>
             {/* ORDERING */}
             {/* <OrderinContainer /> */}
