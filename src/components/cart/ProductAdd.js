@@ -6,7 +6,6 @@ const ProductAdd = ({ stock, price, product }) => {
     const dispatch = useDispatch()
     const { cart, totalCart, userId, orderId } = useSelector(state => state.clientReducer)
     const [localCount, setLocalCount] = useState(1)
-    console.log(cart, "procut", product)
     const addQuantity = () => {
         if (localCount < stock) {
             setLocalCount(localCount + 1)
@@ -29,7 +28,7 @@ const ProductAdd = ({ stock, price, product }) => {
         dispatch(ADD_TO_CART(product, localCount))
         dispatch(SET_TOTAL(totalCart + (localCount * price)))
         setLocalCount(1)
-        toast.pink(
+        toast.success(
             `${product.productName} agregado al carrito`,
         )
         if (userId) {
@@ -46,6 +45,7 @@ const ProductAdd = ({ stock, price, product }) => {
         if (!userId) {
             localStorage.setItem('cart', JSON.stringify(cart))
             localStorage.setItem('totalCart', JSON.stringify(totalCart))
+
         } else {
             localStorage.removeItem('cart')
             localStorage.removeItem('totaCart')

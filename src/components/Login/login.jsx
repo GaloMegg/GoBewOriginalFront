@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import validate from './Validate.js';
-import { POST_USER, CLEAN_USER_RESPONSE, CHECK_LOGIN } from '../../redux/actions';
+import { POST_USER, CLEAN_USER_RESPONSE, CHECK_LOGIN, MERGE_USER_CART } from '../../redux/actions';
 import { Link, useNavigate } from 'react-router-dom';
 import LogInGoogle from './LogInGoogle.jsx';
 
 
 const Login = () => {
     const navigate = useNavigate()
-    const { userResponse } = useSelector(store => store.clientReducer)
+    const { userResponse, cart } = useSelector(store => store.clientReducer)
     const [user, setUser] = useState({
         userEmail: '',
         userPassword: ''
@@ -42,6 +42,7 @@ const Login = () => {
             })
             navigate("/")
         }
+
     }
 
     if (userResponse.ok === '') {
@@ -54,7 +55,6 @@ const Login = () => {
     }
     useEffect(() => {
         dispatch(CHECK_LOGIN())
-
     }, [])
 
 
