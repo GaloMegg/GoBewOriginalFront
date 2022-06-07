@@ -147,17 +147,6 @@ export const POST_USER = createAsyncThunk(
                             }
                         })
                     })
-
-                    // for (let i = 0; i < cart.length; i++) {
-                    //     for (let j = 0; j < localCart.length; j++) {
-                    //         if (localCart[j]._id === cart[i].productId) {
-                    //             cart[i].productCant += localCart[j].quantity
-                    //         } else {
-                    //             cart.push(localCart[j])
-                    //         }
-                    //     }
-                    // }
-                    // const total = cart.reduce((a, b) => a + b.productCant * b.productPrice, 0)
                     localStorage.setItem('totalCart', JSON.stringify(totalCartStorage))
                     localStorage.setItem('cart', JSON.stringify(cart))
                     const updatedCart = await fetch(`${REACT_APP_APIURL}payments/order/updatecarrito`, {
@@ -189,15 +178,9 @@ export const POST_USER = createAsyncThunk(
             } else {
                 return response.data
             }
-
-
         } catch (e) {
             console.log(e)
         }
-
-
-
-
     }
 )
 

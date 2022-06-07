@@ -105,7 +105,7 @@ export const clientReducer = createReducer(initialState, (builder) => {
     })
     //*LOGINS
     builder.addCase(POST_USER.fulfilled, (state, action) => {
-        state.userResponse = { ...action.payload, ok: true }
+        state.userResponse = { ...action.payload }
         state.userId = action.payload.userId
         state.userFirstName = action.payload.userFirstName
     })
