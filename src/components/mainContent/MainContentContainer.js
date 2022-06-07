@@ -13,6 +13,7 @@ const MainContentContainer = () => {
       dispatch(CHECK_LOGIN())
       if (userId) {
         dispatch(GET_USER_CART(userId))
+        
       }
     } else {
       let cartStorage = JSON.parse(localStorage.getItem('cart'))
