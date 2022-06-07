@@ -9,15 +9,8 @@ export default function LogInGoogle() {
     const dispatch = useDispatch()
 
     function handleCalBackResponse(response) {
-        // console.log("Encoded JWT ID Token: " + response.credential)
         const userObject = jwt_decode(response.credential)
-        console.log(userObject)
         setuser(userObject);
-        console.log(user)
-        // if (user.email_verified === true) {
-        //     alert("Has iniciado sesion con exito")
-        //     landing("/");
-        // }
     }
     function handleClick(e) {
         const info = {

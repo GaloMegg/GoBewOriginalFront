@@ -3,8 +3,9 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { REMOVE_FROM_CART, SET_TOTAL, ADD_ONE_CART, REMOVE_ONE_CART, REMOVE_ONE_USER_CART, ADD_ONE_USER_CART, GET_USER_CART, DELETE_PRODUCT_USER } from '../../redux/actions'
 const { REACT_APP_CLOUDINARY_RES } = process.env
-
-const CardItem = ({ _id, images, quantity, productPrice, productName, totalCart, productStock, }) => {
+// { _id, images, quantity, productPrice, productName, totalCart, productStock, }
+const CardItem = (props) => {
+  const { _id, images, quantity, productPrice, productName, totalCart, productStock, } = props
   const dispatch = useDispatch()
   const { cart, orderId, userId } = useSelector(state => state.clientReducer)
   const [img, setImg] = useState(0)
@@ -63,7 +64,9 @@ const CardItem = ({ _id, images, quantity, productPrice, productName, totalCart,
     <article className='cartItem' >
       {/* {images?.length >= 2 && <button onClick={CarouselImagesPrev}>{"<"}</button>} */}
       <Link to={`/productDetail/${_id}`} className='cartItem__img--container'>
-        {images && <img src={`${REACT_APP_CLOUDINARY_RES}${images[img].imageName}`} alt={images.imageAlt} className='cartItem__img' />}
+
+        {images && <img src={`${REACT_APP_CLOUDINARY_RES}${images[0]?.imageName}`} alt={images.imageAlt} className='cartItem__img' />}
+
 
       </Link>
       {/* {images?.length >= 2 && <button onClick={CarouselImagesNext}>{">"}</button>} */}

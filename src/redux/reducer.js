@@ -94,7 +94,7 @@ export const clientReducer = createReducer(initialState, (builder) => {
         state.orderId = action.payload.orderId
     })
     builder.addCase(GET_USER_CART.fulfilled, (state, action) => {
-        state.cart = action.payload?.obj?.cart ? action.payload?.obj?.cart.map(e => ({ quantity: e.productCant, productName: e.productName, productPrice: e.productPrice, _id: e.productId })) : []
+        state.cart = action.payload?.obj?.cart ? action.payload?.obj?.cart.map(e => ({ quantity: e.productCant, productName: e.productName, productPrice: e.productPrice, _id: e.productId, productStock: e.productStock, images: e.images })) : []
         state.totalCart = action.payload?.obj?.orderTotal
         state.orderId = action.payload?.obj?.orderId
     })
