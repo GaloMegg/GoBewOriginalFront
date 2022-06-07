@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Form, Formik } from 'formik';
 import { TextInput } from '../form/TextInput';
 import * as Yup from 'yup';
 import { CREATION_USERFORM } from '../../redux/actions';
-import { toast, success } from 'react-toastify';
-import { Link, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 
 export default function CreateUserForm() {
   const back = useNavigate();
@@ -39,7 +39,7 @@ export default function CreateUserForm() {
         }
         onSubmit={(values, actions) => {
           dispatch(CREATION_USERFORM(values))
-          toast.success("Usuario creado con exito")
+          // toast.success("Usuario creado con exito")
           resUser.ok && toast.success("Usuario creado con exito")
           back("/logIn")
         }}
