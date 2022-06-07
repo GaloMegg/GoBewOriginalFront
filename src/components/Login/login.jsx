@@ -7,8 +7,8 @@ import LogInGoogle from './LogInGoogle.jsx';
 
 
 const Login = () => {
-    const { userResponse } = useSelector(store => store.clientReducer)
-    const backToLanding = useNavigate("/");
+    const navigate = useNavigate()
+    const { userResponse, cart } = useSelector(store => store.clientReducer)
     const [user, setUser] = useState({
         userEmail: '',
         userPassword: ''
@@ -39,6 +39,7 @@ const Login = () => {
             })
 
         }
+
     }
 
     useEffect(() => {

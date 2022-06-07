@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { CHECK_LOGIN, GET_PRODUCTS, GET_USER_CART, SET_CART, SET_TOTAL } from '../../redux/actions';
+import { CHECK_LOGIN, GET_PRODUCTS } from '../../redux/actions';
 import ProductsMap from './ProductsMap';
 
 export default function ProductCardContainer() {
