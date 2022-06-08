@@ -140,14 +140,20 @@ export const LOG_IN_USER = createAsyncThunk(
                     //!IF CART EXIST AT LOCAL STORAGE &&  EXIST AT THE DB WE UPDATE IT
                     let cart = [...body.obj.cart]
                     let totalCartStorage = localStorage.getItem('totalCart')
-                    cart.forEach(item => {
-                        localCart.forEach(localItem => {
-                            if (item.productId === localItem._id) {
-                                item.productCant += localItem.quantity
-
-                            }
-                        })
+                    if (totalCartStorage && totalCartStorage !== 'undefined') {
+                        totalCartStorage = JSON.parse(totalCartStorage)
+                    }
+                    console.log(cart)
+                    localCart.forEach(localItem => {
+                        let itemExist = cart.find(item => item.productId === localItem._id)
+                        if (itemExist) {
+                            itemExist.productCant += localItem.quantity
+                        }
+                        else {
+                            cart.push(localItem)
+                        }
                     })
+
                     localStorage.setItem('totalCart', JSON.stringify(totalCartStorage))
                     localStorage.setItem('cart', JSON.stringify(cart))
                     const updatedCart = await fetch(`${REACT_APP_APIURL}payments/order/updatecarrito`, {
@@ -162,7 +168,7 @@ export const LOG_IN_USER = createAsyncThunk(
                             orderId: body.obj.orderId,
                             shippingAddressId: '',
                             cart: cart?.map(item => ({
-                                _id: item.productId,
+                                _id: item.productId || item._id,
                                 quantity: item.productCant || item.quantity,
                                 productPrice: item.productPrice,
                                 productName: item.productName
@@ -175,15 +181,11 @@ export const LOG_IN_USER = createAsyncThunk(
                         localStorage.removeItem('totalCart')
                     }
                 }
-                console.log(response.data)
                 return response.data
             } else {
-                console.log(response.data)
                 return response.data
             }
         } catch (e) {
-            console.log(e)
-            console.log(e.response.data.msg)
             return {
                 ok: false,
                 msg: e.response.data.msg,
@@ -647,13 +649,13 @@ export const POST_USER_ADDRESS = createAsyncThunk('POST_USER_ADDRESS', async (da
         console.log(e);
     }
 })
-export const LOG_OUT = createAction (
-    "LOG_OUT",() => {
-            localStorage.removeItem('token')
-            localStorage.removeItem('cart')
-            localStorage.removeItem('totalCart')
-                return {
-                    ok: ""
-                }
+export const LOG_OUT = createAction(
+    "LOG_OUT", () => {
+        localStorage.removeItem('token')
+        localStorage.removeItem('cart')
+        localStorage.removeItem('totalCart')
+        return {
+            ok: ""
+        }
     }
 )

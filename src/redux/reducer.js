@@ -134,6 +134,8 @@ export const clientReducer = createReducer(initialState, (builder) => {
         state.userId = ""
         state.userFirstName = ""
         state.orderId = ""
+        state.cart = []
+        state.totalCart = 0
     })
 
 })
