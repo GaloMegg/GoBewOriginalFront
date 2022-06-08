@@ -347,15 +347,18 @@ export const CHECK_LOGIN = createAsyncThunk(
 export const GET_USER_CART = createAsyncThunk(
     'GET_USER_CART', async (id) => {
         try {
-            const response = await fetch(`${REACT_APP_APIURL}payments/order/carrito/${id}`,
-                {
-                    method: 'GET',
-                    headers: {
-                        'x-token': localStorage.getItem('token')
-                    }
-                })
-            const body = await response.json();
-            return await body
+            let token = localStorage.getItem('token')
+            if (token) {
+                const response = await fetch(`${REACT_APP_APIURL}payments/order/carrito/${id}`,
+                    {
+                        method: 'GET',
+                        headers: {
+                            'x-token': localStorage.getItem('token')
+                        }
+                    })
+                const body = await response.json();
+                return await body
+            }
         } catch (error) {
             console.log(error);
         }
@@ -604,6 +607,7 @@ export const DELETE_PRODUCT_USER = createAsyncThunk('DELETE_PRODUCT_USER', async
 
 export const POST_USER_ADDRESS = createAsyncThunk('POST_USER_ADDRESS', async (data) => {
     try {
+        console.log(data)
         let token = localStorage.getItem('token')
         const resp = await fetch(`${REACT_APP_APIURL}address`, {
             method: 'POST',
@@ -613,8 +617,17 @@ export const POST_USER_ADDRESS = createAsyncThunk('POST_USER_ADDRESS', async (da
             },
             body: JSON.stringify({
                 userId: data.userId,
-                addressComment: data.addressComment,
                 orderId: data.orderId,
+                addressStreet: data.values.addressStreet,
+                addressNumber: data.values.addressNumber,
+                addressFloor: data.values.addressFloor,
+                addressFlat: data.values.addressFlat,
+                addressCity: data.values.addressCity,
+                addressZipCode: data.values.addressZipCode,
+                addressProvince: data.values.addressProvince,
+                addressComment: data.values.addressStreet,
+                addressIsShipping: data.values.addressStreet,
+                addressIsBilling: data.values.addressStreet,
             })
         })
     }
