@@ -46,6 +46,7 @@ const ProductAdd = ({ stock, price, product }) => {
         if (!userId) {
             localStorage.setItem('cart', JSON.stringify(cart))
             localStorage.setItem('totalCart', JSON.stringify(totalCart))
+
         } else {
             localStorage.removeItem('cart')
             localStorage.removeItem('totaCart')

@@ -18,6 +18,7 @@ const Nav = () => {
                 dispatch(GET_USER_CART(userId))
             }
         } else {
+            console.log("hola")
             let cartStorage = JSON.parse(localStorage.getItem('cart'))
             let totalCartStorage = JSON.parse(localStorage.getItem('totalCart'))
             if (cartStorage && totalCartStorage) {
