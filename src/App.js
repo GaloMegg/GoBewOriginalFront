@@ -4,9 +4,15 @@ import "./scss/main.scss";
 import Nav from './components/nav/Nav';
 import ProductDetailContainer from './components/productDetail/ProductDetailContainer';
 import CartContainer from './components/cart/CartContainer';
+<<<<<<< HEAD
 import Login from './components/login/Login'
 // import LogInGoogle from './components/login/LogInGoogle';
 import CreateUserForm from './components/login/CreateUserForm';
+=======
+import Login from './components/Login/Login'
+// import LogInGoogle from './components/Login/LogInGoogle';
+import CreateUserForm from './components/Login/CreateUserForm';
+>>>>>>> 04a3d84800ee1f2ad8769eb158b507c4e042f24d
 import { ToastContainer } from 'react-toastify';
 import MainContentContainer from './components/mainContent/MainContentContainer';
 import 'react-toastify/dist/ReactToastify.css';

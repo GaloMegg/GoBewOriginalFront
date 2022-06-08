@@ -6,7 +6,7 @@ const ProductAdd = ({ stock, price, product }) => {
     const dispatch = useDispatch()
     const { cart, totalCart, userId, orderId } = useSelector(state => state.clientReducer)
     const [localCount, setLocalCount] = useState(1)
-    console.log(cart, "procut", product)
+    // console.log(cart, "procut", product)
     const addQuantity = () => {
         if (localCount < stock) {
             setLocalCount(localCount + 1)

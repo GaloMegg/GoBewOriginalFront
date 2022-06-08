@@ -623,6 +623,7 @@ export const POST_USER_ADDRESS = createAsyncThunk('POST_USER_ADDRESS', async (da
         console.log(e);
     }
 })
+<<<<<<< HEAD
 export const LOG_OUT = createAction (
     "LOG_OUT",() => {
             localStorage.removeItem('token')
@@ -640,3 +641,5 @@ export const MERGE_USER_CART = createAsyncThunk('MERGE_USER_CART', async (data) 
 
 
 })
+=======
+>>>>>>> 04a3d84800ee1f2ad8769eb158b507c4e042f24d

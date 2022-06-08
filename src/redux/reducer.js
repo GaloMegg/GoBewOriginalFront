@@ -132,4 +132,8 @@ export const clientReducer = createReducer(initialState, (builder) => {
         state.userResponse = {...action.payload}
     })
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 04a3d84800ee1f2ad8769eb158b507c4e042f24d
 })
