@@ -16,11 +16,13 @@ const MainContentContainer = () => {
         
       }
     } else {
-      let cartStorage = JSON.parse(localStorage.getItem('cart'))
-      let totalCartStorage = JSON.parse(localStorage.getItem('totalCart'))
+      let cartStorage = localStorage.getItem('cart')
+      let totalCartStorage = localStorage.getItem('totalCart')
       if (cartStorage && totalCartStorage) {
-        SET_CART(cartStorage);
-        SET_TOTAL(totalCartStorage);
+        let cartStorageParsed = JSON.parse(cartStorage)
+        let totalCartStorageParsed = JSON.parse(totalCartStorage)
+        dispatch(SET_CART(cartStorageParsed))
+        dispatch(SET_TOTAL(totalCartStorageParsed))
       }
     }
 
