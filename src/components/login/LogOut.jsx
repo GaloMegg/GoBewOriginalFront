@@ -12,7 +12,7 @@ export default function LogOut({user, User}) {
         dispatch(LOG_OUT())
     }
     return (
-        <div onClick={(e)=>handleClick()}>
+        <div className="nav__loginCart--login" onClick={(e)=>handleClick()}>
                     <img className='nav__loginCart--login-img' src={User} alt='img not found' />
                     <p className='nav__loginCart--login-text'>{user}</p>
                     {clickUser && <div onClick={(e)=> handleLogOut()}> Cerrar sesión </div>}

@@ -86,8 +86,8 @@ export const CLEAN_CART = createAction('CLEAN_CART', () => {
     }
 })
 
-export const POST_USER = createAsyncThunk(
-    'POST_USER', async (user) => {
+export const LOG_IN_USER = createAsyncThunk(
+    'LOG_IN_USER', async (user) => {
         try {
             //!USUARIO SE LOGUEA
             const response = await axios.post(`${REACT_APP_APIURL}users/auth`, user)
@@ -135,6 +135,7 @@ export const POST_USER = createAsyncThunk(
                         localStorage.removeItem('cart')
                         localStorage.removeItem('totalCart')
                     }
+                    return response.data
                 } else if (body.ok) {
                     //!IF CART EXIST AT LOCAL STORAGE &&  EXIST AT THE DB WE UPDATE IT
                     let cart = [...body.obj.cart]
@@ -174,12 +175,21 @@ export const POST_USER = createAsyncThunk(
                         localStorage.removeItem('totalCart')
                     }
                 }
+                console.log(response.data)
                 return response.data
             } else {
+                console.log(response.data)
                 return response.data
             }
         } catch (e) {
             console.log(e)
+            console.log(e.response.data.msg)
+            return {
+                ok: false,
+                msg: e.response.data.msg,
+                userId: "",
+                UserfirstName: ""
+            }
         }
     }
 )
@@ -315,6 +325,7 @@ export const CHECK_LOGIN = createAsyncThunk(
             if (body.ok) {
                 localStorage.setItem('token', body.token)
                 return {
+                    ok: body.ok,
                     userId: body.userId,
                     userFirstName: body.userFirstName,
                     tokenInitDate: new Date().getTime(),

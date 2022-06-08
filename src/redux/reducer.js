@@ -1,6 +1,6 @@
 import { createReducer } from "@reduxjs/toolkit"
 
-import { GET_CATEGORIES, GET_PRODUCTS, SEARCH_PRODUCT, ORDER_PRODUCTS, GET_PRODUCTS_BYCATEGORY, GET_HIGHLIGHTED, GET_PRODUCT_BY_ID, CLEAN_UP_DETAILS, REMOVE_ONE_CART, ADD_ONE_CART, CLEAN_CART, REMOVE_FROM_CART, SET_TOTAL, SET_CART, ADD_TO_CART, POST_USER, CLEAN_USER_RESPONSE, CREATION_USER_LOGIN, CREATION_USERFORM, CHECK_LOGIN, CREATE_USER_CART, GET_USER_CART, DELETE_USER_CART, LOG_OUT } from "./actions"
+import { GET_CATEGORIES, GET_PRODUCTS, SEARCH_PRODUCT, ORDER_PRODUCTS, GET_PRODUCTS_BYCATEGORY, GET_HIGHLIGHTED, GET_PRODUCT_BY_ID, CLEAN_UP_DETAILS, REMOVE_ONE_CART, ADD_ONE_CART, CLEAN_CART, REMOVE_FROM_CART, SET_TOTAL, SET_CART, ADD_TO_CART, CLEAN_USER_RESPONSE, CREATION_USER_LOGIN, CREATION_USERFORM, CHECK_LOGIN, CREATE_USER_CART, GET_USER_CART, DELETE_USER_CART, LOG_OUT, LOG_IN_USER } from "./actions"
 
 
 const initialState = {
@@ -104,10 +104,12 @@ export const clientReducer = createReducer(initialState, (builder) => {
         state.orderId = ""
     })
     //*LOGINS
-    builder.addCase(POST_USER.fulfilled, (state, action) => {
+    builder.addCase(LOG_IN_USER.fulfilled, (state, action) => {
         state.userResponse = { ...action.payload }
         state.userId = action.payload.userId
         state.userFirstName = action.payload.userFirstName
+        console.log
+        console.log(state.userResponse)
     })
     builder.addCase(CLEAN_USER_RESPONSE, (state, action) => {
         state.userResponse = action.payload
@@ -130,8 +132,8 @@ export const clientReducer = createReducer(initialState, (builder) => {
     //*ADDRESS
     builder.addCase(LOG_OUT,(state,action)=> {
         state.userResponse = {...action.payload}
-        state.userId = action.payload.ok
-        state.userFirstName = action.payload.ok
+        state.userId = ""
+        state.userFirstName = ""
         state.orderId = ""
     })
 
