@@ -130,10 +130,9 @@ export const clientReducer = createReducer(initialState, (builder) => {
     //*ADDRESS
     builder.addCase(LOG_OUT,(state,action)=> {
         state.userResponse = {...action.payload}
+        state.userId = action.payload.ok
+        state.userFirstName = action.payload.ok
+        state.orderId = ""
     })
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 04a3d84800ee1f2ad8769eb158b507c4e042f24d
 })

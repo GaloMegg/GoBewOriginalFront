@@ -1,10 +1,6 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-<<<<<<< HEAD
-import { CHECK_LOGIN, GET_PRODUCTS } from '../../redux/actions';
-=======
 import { CHECK_LOGIN, GET_PRODUCTS, GET_USER_CART, SET_CART, SET_TOTAL } from '../../redux/actions';
->>>>>>> 04a3d84800ee1f2ad8769eb158b507c4e042f24d
 import ProductsMap from './ProductsMap';
 
 export default function ProductCardContainer() {

@@ -18,15 +18,9 @@ const Nav = () => {
                 dispatch(GET_USER_CART(userId))
             }
         } else {
-<<<<<<< HEAD
-            console.log("hola")
-            let cartStorage = JSON.parse(localStorage.getItem('cart'))
-            let totalCartStorage = JSON.parse(localStorage.getItem('totalCart'))
-=======
 
             let cartStorage = localStorage.getItem('cart')
             let totalCartStorage = localStorage.getItem('totalCart')
->>>>>>> 04a3d84800ee1f2ad8769eb158b507c4e042f24d
             if (cartStorage && totalCartStorage) {
                 let cartStorageParsed = JSON.parse(cartStorage)
                 let totalCartStorageParsed = JSON.parse(totalCartStorage)
@@ -66,24 +60,13 @@ const Nav = () => {
                     </div>
                 </Link>
                 {/* //! LOGIN */}
-<<<<<<< HEAD
                 {userResponse.ok ? <LogOut user = {user} User = {User}/>
                 : <Link className='nav__loginCart--login' to={`/login`} >
                 <img className='nav__loginCart--login-img' src={User} alt='img not found' />
                 <p className='nav__loginCart--login-text'>{user}</p>
             </Link>
                 }
-=======
-                <Link className='nav__loginCart--login' to={`/login`} >
-                    <img className='nav__loginCart--login-img' src={User} alt='img not found' />
-                    <p className='nav__loginCart--login-text'>{user}</p>
-                </Link>
->>>>>>> 04a3d84800ee1f2ad8769eb158b507c4e042f24d
             </div>
-            {/* ORDERING */}
-            {/* <OrderinContainer /> */}
-            {/* HIGHLITED PRODUCTS */}
-            {/* <HighLightedBtn /> */}
         </nav>
     )
 }
