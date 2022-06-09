@@ -273,7 +273,7 @@ export const CREATION_USERFORM = createAsyncThunk(
             console.log(error)
             return {
                 ok: false,
-                msg: "error",
+                msg: error.response.data.errors,
                 userId: '',
                 userEmail: '',
                 userFirstName: '',

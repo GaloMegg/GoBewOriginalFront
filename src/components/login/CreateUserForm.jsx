@@ -8,21 +8,20 @@ import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 
 export default function CreateUserForm() {
-  let usuarioExistente = false
+  let erroresMail = false
   let contraseñaInsegura = false
   const back = useNavigate();
   const dispatch = useDispatch();
   const { userResponse } = useSelector(store => store.clientReducer)
   console.log(userResponse)
-  if(userResponse.msg=== "ok" && userResponse.ok){
+  if (userResponse.msg && userResponse.msg.hasOwnProperty("userEmail")){
+    erroresMail = true
+  } else if (userResponse.msg && userResponse.msg.hasOwnProperty("userPassword")){
+    contraseñaInsegura = true
+  } else if(userResponse.msg=== "ok" && userResponse.ok){
     toast.success("Usuario creado con exito")
     back("/logIn")
-  } else if ( userResponse.msg === "error"){
-    usuarioExistente = true
   }
-  // } else if (userResponse.msg. != "object"){
-  //   contraseñaInsegura = true
-  //  }
   return (
     <div className="loginForm">
       <h1 className='loginForm__title'> Crear Usuario</h1>
@@ -67,7 +66,8 @@ export default function CreateUserForm() {
             <TextInput label="Nombre" name="userFirstName" type="nombre" placeholder="nombre" />
             <TextInput label="Apellido" name="userLastName" type="apellido" placeholder="apellido" />
             <button type="submit" className='createUser__btn'>Continuar</button>
-            {usuarioExistente && <p> Ya hay un usuario con ese email. </p>}
+            {erroresMail && <p> {userResponse.msg.userEmail.msg} </p>}
+            {contraseñaInsegura && <p>{userResponse.msg.userPassword.msg}</p>}
 
 
 
