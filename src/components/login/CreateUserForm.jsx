@@ -55,7 +55,12 @@ export default function CreateUserForm() {
         onSubmit={(values, actions) => {
           dispatch(CREATION_USERFORM(values))
           // toast.success("Usuario creado con exito")
+<<<<<<< HEAD
           console.log(userResponse)
+=======
+          resUser.ok && toast.success("Usuario creado con exito")
+          back("/logIn")
+>>>>>>> f267899acaf1452e5e6b5287e6ac04a5eb094a52
         }}
 
       >

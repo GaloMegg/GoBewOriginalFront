@@ -252,7 +252,10 @@ export const CREATION_USERFORM = createAsyncThunk(
                 localStorage.setItem('token', response.data.token)
                 return {
                     ok: true,
+<<<<<<< HEAD
                     msg: "ok",
+=======
+>>>>>>> f267899acaf1452e5e6b5287e6ac04a5eb094a52
                     userId: response.data.userId,
                     userFirstName: response.data.userFirstName,
                     tokenInitDate: new Date().getTime(),

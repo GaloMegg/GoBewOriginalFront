@@ -120,7 +120,11 @@ export const clientReducer = createReducer(initialState, (builder) => {
         state.userFirstName = action.payload.userFirstName
     })
     builder.addCase(CREATION_USERFORM.fulfilled, (state, action) => {
+<<<<<<< HEAD
         state.userResponse = {...action.payload}
+=======
+        state.userResponse = { ...action.payload}
+>>>>>>> f267899acaf1452e5e6b5287e6ac04a5eb094a52
         state.userId = action.payload.userId
         state.userFirstName = action.payload.userFirstName
     })
