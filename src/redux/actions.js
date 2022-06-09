@@ -246,14 +246,13 @@ export const CREATION_USER_LOGIN = createAsyncThunk(
 )
 export const CREATION_USERFORM = createAsyncThunk(
     "CREATION_USERFORM", async (user) => {
-        console.log(user)
-        const response = await axios.post(`${REACT_APP_APIURL}users/new`, user)
-        console.log(response.data)
         try {
+            const response = await axios.post(`${REACT_APP_APIURL}users/new`, user)
             if (response.data.ok) {
                 localStorage.setItem('token', response.data.token)
                 return {
                     ok: true,
+                    msg: "ok",
                     userId: response.data.userId,
                     userFirstName: response.data.userFirstName,
                     tokenInitDate: new Date().getTime(),
@@ -265,15 +264,16 @@ export const CREATION_USERFORM = createAsyncThunk(
                 return {
                     payload: {
                         token: '',
-                        ok: ""
+                        ok: "",
                     }
                 }
             }
 
         } catch (error) {
+            console.log(error)
             return {
                 ok: false,
-                msg: 'Token no válido',
+                msg: "error",
                 userId: '',
                 userEmail: '',
                 userFirstName: '',
