@@ -10,8 +10,8 @@ import CreateUserForm from './components/login/CreateUserForm';
 import { ToastContainer } from 'react-toastify';
 import MainContentContainer from './components/mainContent/MainContentContainer';
 import 'react-toastify/dist/ReactToastify.css';
-import Address from './components/cart/Address';
-import Checkout from './components/cart/Checkout';
+import Address from './components/cart/addressForm/Address';
+import Checkout from './components/cart/checkout/Checkout';
 // import CategoriesNew from './components/nav/categories/CategoriesNew.jsx';
 function App() {
 
@@ -19,17 +19,16 @@ function App() {
 
   return (
     <>
+      <Nav />
       <Routes>
-        <Route exact path='/' element={<> <Nav showSearch={true} showCategories={true} /><MainContentContainer /></>} />
-        <Route exact path='/cart' element={<> <Nav showSearch={false} showCategories={false} /> <CartContainer /></>} />
-        <Route exact path='/productDetail/:id' element={<><Nav showSearch={false} showCategories={false} /> <ProductDetailContainer /> </>} />
-        {/* <Route exact path='/admin/new' element={<CreationForm />} /> */}
-        <Route exact path='/address' element={<><Nav /> <Address /> </>} />
-        <Route exact path='/checkout' element={<><Nav /> <Checkout /> </>} />
-        <Route exact path='/login' element={<> <Nav /><Login />  </>} />
-        <Route exact path='/logInForm' element={<> <Nav /><CreateUserForm /></>} />
+        <Route exact path='/' element={<> <MainContentContainer /></>} />
+        <Route exact path='/cart' element={<> <CartContainer /></>} />
+        <Route exact path='/productDetail/:id' element={<><ProductDetailContainer /> </>} />
+        <Route exact path='/address' element={<> <Address /> </>} />
+        <Route exact path='/checkout' element={<><Checkout /> </>} />
+        <Route exact path='/login' element={<><Login />  </>} />
+        <Route exact path='/logInForm' element={<> <CreateUserForm /></>} />
       </Routes>
-
       <ToastContainer
         position="top-right"
         autoClose={2000}

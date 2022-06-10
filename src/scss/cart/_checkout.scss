@@ -1,4 +1,6 @@
 @use "../variables" as v;
+@import "./checkout/orderSummary";
+@import "./checkout/orderAddress";
 
 .checkoutContainer {
     height: 100vh;
