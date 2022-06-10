@@ -54,11 +54,7 @@ export default function CreateUserForm() {
         }
         onSubmit={(values, actions) => {
           dispatch(CREATION_USERFORM(values))
-          // toast.success("Usuario creado con exito")
-          userResponse.ok && toast.success("Usuario creado con exito")
-          back("/logIn")
         }}
-
       >
         {props => (
           <Form className='loginForm--container'>

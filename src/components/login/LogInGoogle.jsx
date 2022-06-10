@@ -5,23 +5,24 @@ import { useDispatch } from "react-redux"
 import { CREATION_USER_LOGIN } from "../../redux/actions"
 
 export default function LogInGoogle() {
+    const navegar = useNavigate()
     const [user, setuser] = useState({})
     const dispatch = useDispatch()
 
     function handleCalBackResponse(response) {
         const userObject = jwt_decode(response.credential)
         setuser(userObject);
-    }
-    function handleClick(e) {
-        const info = {
-            userEmail: user.email,
-            userIsActive: user.email_verified,
-            userIsGoogle: true,
-            userFirstName: user.given_name,
-            userLastName: user.family_name,
-            userImage: user.picture,
+        if (userObject) {
+            const info = {
+                userEmail: userObject.email,
+                userIsActive: userObject.email_verified,
+                userIsGoogle: true,
+                userFirstName: userObject.given_name,
+                userLastName: userObject.family_name,
+                userImage: userObject.picture,
+            }
+            dispatch(CREATION_USER_LOGIN(info));
         }
-        dispatch(CREATION_USER_LOGIN(info));
     }
 
     useEffect(() => {
@@ -41,10 +42,7 @@ export default function LogInGoogle() {
     return (
         <div className="googleForm">
             <div id="signInDiv" className="googleForm--signIn"></div>
-            {user.email_verified === true && <div className="googleFormSuccess__container">
-                <h3 className="googleFormSuccess"> Has iniciado sesión con exito </h3>
-                <Link to="/" className="googleFormSuccess--link" ><button onClick={(e) => handleClick(e)} className="googleFormSuccess--btn" >Continuar</button></Link>
-            </div>}
+            {user.email_verified === true && navegar("/") }
         </div>
     )
 }
