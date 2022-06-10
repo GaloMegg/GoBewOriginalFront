@@ -371,6 +371,7 @@ export const GET_USER_CART = createAsyncThunk(
                         }
                     })
                 const body = await response.json();
+                console.log(body);
                 return await body
             }
         } catch (error) {
@@ -644,6 +645,10 @@ export const POST_USER_ADDRESS = createAsyncThunk('POST_USER_ADDRESS', async (da
                 addressIsBilling: data.values.addressStreet,
             })
         })
+        const body = await resp.json();
+        console.log(body)
+        return body
+
     }
     catch (e) {
         console.log(e);

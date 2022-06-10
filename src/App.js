@@ -11,7 +11,7 @@ import { ToastContainer } from 'react-toastify';
 import MainContentContainer from './components/mainContent/MainContentContainer';
 import 'react-toastify/dist/ReactToastify.css';
 import Address from './components/cart/addressForm/Address';
-import Checkout from './components/cart/Checkout';
+import Checkout from './components/cart/checkout/Checkout';
 // import CategoriesNew from './components/nav/categories/CategoriesNew.jsx';
 function App() {
 

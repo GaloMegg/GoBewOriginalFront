@@ -12,8 +12,6 @@ const CartContainer = () => {
             dispatch(CHECK_LOGIN())
             if (userId) {
                 dispatch(GET_USER_CART(userId))
-              
-
                 // localStorage.removeItem("cart")
                 return
             }

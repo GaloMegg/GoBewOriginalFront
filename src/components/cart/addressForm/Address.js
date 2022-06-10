@@ -10,7 +10,6 @@ const Address = () => {
     const [userAddress, setUserAddress] = useState([])
     useEffect(() => {
         dispatch(CHECK_LOGIN())
-        dispatch(GET_USER_CART(userId))
     }, [userId])
     useEffect(() => {
         setUserAddress([])
@@ -33,7 +32,7 @@ const Address = () => {
     return (
         <section className='orderForm__container'>
             <OrderForm userId={userId} orderId={orderId} />
-            <OrderExist orderId={orderId} userAddress={userAddress} />
+            {userAddress.length > 0 && <OrderExist userAddress={userAddress} />}
         </section>
     )
 }

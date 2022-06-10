@@ -4,11 +4,12 @@ import TextInput from './TextInput'
 import * as Yup from 'yup';
 import { POST_USER_ADDRESS } from '../../../redux/actions';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
-const OrderForm = ({ userId, orderId }) => {
+const OrderForm = ({ userId, }) => {
     const navigate = useNavigate()
     const dispatch = useDispatch()
+    const { orderId } = useSelector(state => state.clientReducer)
 
     return (
         <Formik
