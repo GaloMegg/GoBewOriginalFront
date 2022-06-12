@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { CHECK_LOGIN } from '../../redux/actions'
 import OrderDetail from './OrderDetail'
-
+const { REACT_APP_APIURL } = process.env
 const OrderDetailContainer = () => {
     const { id } = useParams()
     const { userId } = useSelector(state => state.clientReducer)
@@ -15,8 +15,9 @@ const OrderDetailContainer = () => {
     useEffect(() => {
         dispatch(CHECK_LOGIN())
     }, [])
+    
     useEffect(() => {
-        fetch(`http://localhost:4000/payments/order/byId/${id}`,
+        fetch(`${REACT_APP_APIURL}payments/order/byId/${id}`,
             {
                 method: 'GET',
                 headers: {
@@ -30,7 +31,7 @@ const OrderDetailContainer = () => {
     useEffect(() => {
         if (orderData.ok) {
 
-            fetch(`http://localhost:4000/address/byOrder/${orderData.obj._id}`,
+            fetch(`${REACT_APP_APIURL}address/byOrder/${orderData.obj._id}`,
                 {
                     method: 'GET',
                     headers: {

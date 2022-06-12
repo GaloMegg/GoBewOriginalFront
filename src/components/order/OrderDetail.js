@@ -74,20 +74,10 @@ const OrderDetail = ({ orderState, orderTotal, user, addressStreet, addressNumbe
                 {addressStreet &&
                     <div>
                         <p>Direccion:</p>
-                        <p>
-                            Calle: {addressStreet}, {addressNumber}.
-                        </p>
-                        <p>
-
-                            Departamento: {addressFlat}, Piso: {addressFloor}.
-                        </p>
-                        <p>
-                            Provincia: {addressProvince}.
-                        </p>
-                        <p>
-                            Ciudad: {addressCity}, {addressZipCode}.
-
-                        </p>
+                        <p>Calle: {addressStreet}, {addressNumber}.</p>
+                        <p>Departamento: {addressFlat}, Piso: {addressFloor}.</p>
+                        <p>Provincia: {addressProvince}.</p>
+                        <p>Ciudad: {addressCity}, {addressZipCode}.</p>
                     </div>}
             </div>
 
