@@ -1,7 +1,9 @@
 import React, { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom';
 const FORM_ID = 'payment-form';
 
 const MPButton = ({ id }) => {
+    
     useEffect(() => {
         // con el preferenceId en mano, inyectamos el script de mercadoPago
         const script = document.createElement('script');

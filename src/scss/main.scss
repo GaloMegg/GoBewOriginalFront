@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
-    
+
 *,
 body,
 div,
@@ -89,3 +89,5 @@ a {
 @import "./mainContent/mainContent";
 @import "./cart/cart";
 @import "./login/login";
+@import "./order/orders";
+@import "./toast";

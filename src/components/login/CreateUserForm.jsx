@@ -1,16 +1,27 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Form, Formik } from 'formik';
 import { TextInput } from '../form/TextInput';
 import * as Yup from 'yup';
 import { CREATION_USERFORM } from '../../redux/actions';
-import { toast, success } from 'react-toastify';
-import { Link, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 
 export default function CreateUserForm() {
+  let erroresMail = false
+  let contraseñaInsegura = false
   const back = useNavigate();
   const dispatch = useDispatch();
-  const resUser = useSelector((state) => state.clientReducer.userResponse)
+  const { userResponse } = useSelector(store => store.clientReducer)
+  console.log(userResponse)
+  if (userResponse.msg && userResponse.msg.hasOwnProperty("userEmail")) {
+    erroresMail = true
+  } else if (userResponse.msg && userResponse.msg.hasOwnProperty("userPassword")) {
+    contraseñaInsegura = true
+  } else if (userResponse.msg === "ok" && userResponse.ok) {
+    toast.success("Usuario creado con exito")
+    back("/logIn")
+  }
   return (
     <div className="loginForm">
       <h1 className='loginForm__title'> Crear Usuario</h1>
@@ -26,12 +37,16 @@ export default function CreateUserForm() {
           userEmail: Yup.string()
             .email('El email es inválido.')
             .required('Requerido.'),
-          userPassword: Yup.string().min(6, 'Requerida'),
+          userPassword: Yup.string()
+            .min(6, 'La contraseña debe tener al menos 6 caracteres')
+            .required("Requerido"),
           userFirstName: Yup.string()
+            .matches(/^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$/, "El nombre debe contener letras")
             .min(2, 'El nombre es muy corto!')
             .max(50, 'El nombre es muy largo!')
             .required("Requerido."),
           userLastName: Yup.string()
+            .matches(/^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$/, "El apellido debe contener letras")
             .min(2, 'El apellido es muy corto!')
             .max(50, 'El apellido es muy largo!')
             .required("Requerido.")
@@ -39,9 +54,6 @@ export default function CreateUserForm() {
         }
         onSubmit={(values, actions) => {
           dispatch(CREATION_USERFORM(values))
-          toast.success("Usuario creado con exito")
-          resUser.ok && toast.success("Usuario creado con exito")
-          back("/logIn")
         }}
       >
         {props => (
@@ -51,6 +63,9 @@ export default function CreateUserForm() {
             <TextInput label="Nombre" name="userFirstName" type="nombre" placeholder="nombre" />
             <TextInput label="Apellido" name="userLastName" type="apellido" placeholder="apellido" />
             <button type="submit" className='createUser__btn'>Continuar</button>
+            {erroresMail && <p> {userResponse.msg.userEmail.msg} </p>}
+            {contraseñaInsegura && <p>{userResponse.msg.userPassword.msg}</p>}
+
 
 
           </Form>

@@ -86,8 +86,8 @@ export const CLEAN_CART = createAction('CLEAN_CART', () => {
     }
 })
 
-export const POST_USER = createAsyncThunk(
-    'POST_USER', async (user) => {
+export const LOG_IN_USER = createAsyncThunk(
+    'LOG_IN_USER', async (user) => {
         try {
             //!USUARIO SE LOGUEA
             const response = await axios.post(`${REACT_APP_APIURL}users/auth`, user)
@@ -135,29 +135,25 @@ export const POST_USER = createAsyncThunk(
                         localStorage.removeItem('cart')
                         localStorage.removeItem('totalCart')
                     }
+                    return response.data
                 } else if (body.ok) {
                     //!IF CART EXIST AT LOCAL STORAGE &&  EXIST AT THE DB WE UPDATE IT
                     let cart = [...body.obj.cart]
                     let totalCartStorage = localStorage.getItem('totalCart')
-                    cart.forEach(item => {
-                        localCart.forEach(localItem => {
-                            if (item.productId === localItem._id) {
-                                item.productCant += localItem.quantity
-
-                            }
-                        })
+                    if (totalCartStorage && totalCartStorage !== 'undefined') {
+                        totalCartStorage = JSON.parse(totalCartStorage)
+                    }
+                    console.log(cart)
+                    localCart.forEach(localItem => {
+                        let itemExist = cart.find(item => item.productId === localItem._id)
+                        if (itemExist) {
+                            itemExist.productCant += localItem.quantity
+                        }
+                        else {
+                            cart.push(localItem)
+                        }
                     })
 
-                    // for (let i = 0; i < cart.length; i++) {
-                    //     for (let j = 0; j < localCart.length; j++) {
-                    //         if (localCart[j]._id === cart[i].productId) {
-                    //             cart[i].productCant += localCart[j].quantity
-                    //         } else {
-                    //             cart.push(localCart[j])
-                    //         }
-                    //     }
-                    // }
-                    // const total = cart.reduce((a, b) => a + b.productCant * b.productPrice, 0)
                     localStorage.setItem('totalCart', JSON.stringify(totalCartStorage))
                     localStorage.setItem('cart', JSON.stringify(cart))
                     const updatedCart = await fetch(`${REACT_APP_APIURL}payments/order/updatecarrito`, {
@@ -172,7 +168,7 @@ export const POST_USER = createAsyncThunk(
                             orderId: body.obj.orderId,
                             shippingAddressId: '',
                             cart: cart?.map(item => ({
-                                _id: item.productId,
+                                _id: item.productId || item._id,
                                 quantity: item.productCant || item.quantity,
                                 productPrice: item.productPrice,
                                 productName: item.productName
@@ -189,15 +185,14 @@ export const POST_USER = createAsyncThunk(
             } else {
                 return response.data
             }
-
-
         } catch (e) {
-            console.log(e)
+            return {
+                ok: false,
+                msg: e.response.data.msg,
+                userId: "",
+                UserfirstName: ""
+            }
         }
-
-
-
-
     }
 )
 
@@ -253,13 +248,13 @@ export const CREATION_USER_LOGIN = createAsyncThunk(
 )
 export const CREATION_USERFORM = createAsyncThunk(
     "CREATION_USERFORM", async (user) => {
-        console.log(user)
-        const response = await axios.post(`${REACT_APP_APIURL}users/new`, user)
-        console.log(response.data)
         try {
+            const response = await axios.post(`${REACT_APP_APIURL}users/new`, user)
             if (response.data.ok) {
                 localStorage.setItem('token', response.data.token)
                 return {
+                    ok: true,
+                    msg: "ok",
                     userId: response.data.userId,
                     userFirstName: response.data.userFirstName,
                     tokenInitDate: new Date().getTime(),
@@ -271,15 +266,16 @@ export const CREATION_USERFORM = createAsyncThunk(
                 return {
                     payload: {
                         token: '',
-                        ok: ""
+                        ok: "",
                     }
                 }
             }
 
         } catch (error) {
+            console.log(error)
             return {
                 ok: false,
-                msg: 'Token no válido',
+                msg: error.response.data.errors,
                 userId: '',
                 userEmail: '',
                 userFirstName: '',
@@ -331,6 +327,7 @@ export const CHECK_LOGIN = createAsyncThunk(
             if (body.ok) {
                 localStorage.setItem('token', body.token)
                 return {
+                    ok: body.ok,
                     userId: body.userId,
                     userFirstName: body.userFirstName,
                     tokenInitDate: new Date().getTime(),
@@ -364,15 +361,19 @@ export const CHECK_LOGIN = createAsyncThunk(
 export const GET_USER_CART = createAsyncThunk(
     'GET_USER_CART', async (id) => {
         try {
-            const response = await fetch(`${REACT_APP_APIURL}payments/order/carrito/${id}`,
-                {
-                    method: 'GET',
-                    headers: {
-                        'x-token': localStorage.getItem('token')
-                    }
-                })
-            const body = await response.json();
-            return await body
+            let token = localStorage.getItem('token')
+            if (token) {
+                const response = await fetch(`${REACT_APP_APIURL}payments/order/carrito/${id}`,
+                    {
+                        method: 'GET',
+                        headers: {
+                            'x-token': localStorage.getItem('token')
+                        }
+                    })
+                const body = await response.json();
+                console.log(body);
+                return await body
+            }
         } catch (error) {
             console.log(error);
         }
@@ -621,6 +622,7 @@ export const DELETE_PRODUCT_USER = createAsyncThunk('DELETE_PRODUCT_USER', async
 
 export const POST_USER_ADDRESS = createAsyncThunk('POST_USER_ADDRESS', async (data) => {
     try {
+        console.log(data)
         let token = localStorage.getItem('token')
         const resp = await fetch(`${REACT_APP_APIURL}address`, {
             method: 'POST',
@@ -630,21 +632,35 @@ export const POST_USER_ADDRESS = createAsyncThunk('POST_USER_ADDRESS', async (da
             },
             body: JSON.stringify({
                 userId: data.userId,
-                addressComment: data.addressComment,
                 orderId: data.orderId,
+                addressStreet: data.values.addressStreet,
+                addressNumber: data.values.addressNumber,
+                addressFloor: data.values.addressFloor,
+                addressFlat: data.values.addressFlat,
+                addressCity: data.values.addressCity,
+                addressZipCode: data.values.addressZipCode,
+                addressProvince: data.values.addressProvince,
+                addressComment: data.values.addressStreet,
+                addressIsShipping: data.values.addressStreet,
+                addressIsBilling: data.values.addressStreet,
             })
         })
+        const body = await resp.json();
+        console.log(body)
+        return body
+
     }
     catch (e) {
         console.log(e);
     }
 })
-
-export const MERGE_USER_CART = createAsyncThunk('MERGE_USER_CART', async (data) => {
-
-    // const response = await axios.post(`${REACT_APP_APIURL}users/auth`, user)
-    // localStorage.removeItem('token')
-    // localStorage.setItem('token', response.data.token)
-
-
-})
+export const LOG_OUT = createAction(
+    "LOG_OUT", () => {
+        localStorage.removeItem('token')
+        localStorage.removeItem('cart')
+        localStorage.removeItem('totalCart')
+        return {
+            ok: ""
+        }
+    }
+)

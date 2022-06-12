@@ -18,9 +18,10 @@ export default function ProductDetailContainer() {
             dispatch(CLEAN_UP_DETAILS())
         }
     }, [dispatch, id])
+
     return (
         <div className="productDetail">
-            <img src={REACT_APP_CLOUDINARY_RES + product[0]?.images[0].imageName} alt={product[0]?.imageAlt} className="productDetail--img" />
+            {product && product?.length > 0 && product[0].images.length > 0 && < img src={REACT_APP_CLOUDINARY_RES + product[0]?.images[0].imageName} alt={product[0]?.imageAlt} className="productDetail--img" />}
             <div className="productDetail--container">
                 <h2 className="productDetail__productName">{product[0]?.productName}</h2>
                 <p className="">{product[0]?.productDescription}</p>
