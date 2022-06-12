@@ -1,16 +1,17 @@
+@use "../variables" as v;
 @import "./searchBar";
 @import "./categories";
 @import "./orderin";
-
 .nav {
     width: 100%;
-    background-color: black;
+    background-color: v.$Primary;
     display: flex;
     justify-content: space-between;
     align-items: center;
 
     .nav__logo {
         margin: 0.5%;
+        margin-left: 1%;
 
         .nav__logo--link {
             .nav__logo--img {

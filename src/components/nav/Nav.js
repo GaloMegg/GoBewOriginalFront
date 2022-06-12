@@ -5,9 +5,10 @@ import Carrito from '../../images/carrito-compras.png'
 import User from '../../images/user-icon.png'
 import { Link } from 'react-router-dom'
 import { CHECK_LOGIN, GET_USER_CART, SET_CART, SET_TOTAL } from '../../redux/actions';
+import LogOut from '../login/LogOut';
 
 const Nav = () => {
-    const { userResponse, cart, userId } = useSelector(store => store.clientReducer)
+    const { userResponse, cart, userId,userFirstName } = useSelector(store => store.clientReducer)
     const dispatch = useDispatch()
     useEffect(() => {
         let token = localStorage.getItem('token')
@@ -17,21 +18,25 @@ const Nav = () => {
                 dispatch(GET_USER_CART(userId))
             }
         } else {
-            let cartStorage = JSON.parse(localStorage.getItem('cart'))
-            let totalCartStorage = JSON.parse(localStorage.getItem('totalCart'))
-            if (cartStorage && totalCartStorage) {
-                dispatch(SET_CART(cartStorage))
-                dispatch(SET_TOTAL(totalCartStorage))
+
+            let cartStorage = localStorage.getItem('cart')
+            let totalCartStorage = localStorage.getItem('totalCart')
+            if (cartStorage && totalCartStorage && totalCartStorage != "undefined") {
+                let cartStorageParsed = JSON.parse(cartStorage)
+                let totalCartStorageParsed = JSON.parse(totalCartStorage)
+                dispatch(SET_CART(cartStorageParsed))
+                dispatch(SET_TOTAL(totalCartStorageParsed))
             }
         }
 
     }, [userId])
 
-    if (userResponse.ok === true) {
-        var user = userResponse.userFirstName
-    } else {
-        user = 'Acceso'
-    }
+    // if (userResponse.ok === true) {
+    //     console.log(userFirstName)
+    //     var user = userFirstName
+    // } else {
+    //     user = 'Acceso'
+    // }
     return (
         <nav className='nav'>
             {/* //! LOGO */}
@@ -56,15 +61,13 @@ const Nav = () => {
                     </div>
                 </Link>
                 {/* //! LOGIN */}
-                <Link className='nav__loginCart--login' to={`/login`} >
-                    <img className='nav__loginCart--login-img' src={User} alt='img not found' />
-                    <p className='nav__loginCart--login-text'>{user}</p>
-                </Link>
+                {userResponse.ok ? <LogOut user = {userFirstName} User = {User}/>
+                : <Link className='nav__loginCart--login' to={`/login`} >
+                <img className='nav__loginCart--login-img' src={User} alt='img not found' />
+                <p className='nav__loginCart--login-text'>Acceso</p>
+            </Link>
+                }
             </div>
-            {/* ORDERING */}
-            {/* <OrderinContainer /> */}
-            {/* HIGHLITED PRODUCTS */}
-            {/* <HighLightedBtn /> */}
         </nav>
     )
 }

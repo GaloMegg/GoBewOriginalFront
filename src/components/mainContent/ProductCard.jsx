@@ -8,6 +8,7 @@ export default function ProductCard({ productName, productPrice, productStock, _
     return (
         <div className='productCard'>
             <Link to={`/productDetail/${_id}`} className='productCard__link' >
+                {productStock < 6 && <p className='productCard__last'>¡Ultimas {productStock} unidades!</p>}
                 {images[0]?.imageName && <img src={REACT_APP_CLOUDINARY_RES + images[0]?.imageName} alt="" className='productCard__img' />}
                 <h3 className='productCard__name' >{productName}</h3>
                 <p className='productCard__price' >{"$" + productPrice?.toLocaleString('de-DE')}</p>
