@@ -37,7 +37,6 @@ function App() {
         <Route exact path='/order/:id' element={<> <OrderDetailContainer /></>} />
         <Route exact path='/orders/all' element={<> <AllOrdersContainer /></>} />
         <Route path='/reset/:userId/:hash/:userEmail' element={<ChangePassword />} />
-        {/* <Route path='/activate/:userId/:hash/:userEmail' element={<Activate />} /> */}
         <Route path='/rememberPass' element={<RememberPassword/> }/>
       </Routes>
       <ToastContainer
