@@ -12,9 +12,12 @@ import MainContentContainer from './components/mainContent/MainContentContainer'
 import 'react-toastify/dist/ReactToastify.css';
 import Address from './components/cart/addressForm/Address';
 import Checkout from './components/cart/checkout/Checkout';
+import UserProfile from './components/login/UserProfile';
 import OrderDetailContainer from './components/order/OrderDetailContainer';
 import AllOrdersContainer from './components/order/AllOrdersContainer';
 import Faqs from './components/faq/Faqs';
+import { ChangePassword } from './components/login/ChangePassword';
+import { RememberPassword } from './components/login/RememberPassword';
 // import CategoriesNew from './components/nav/categories/CategoriesNew.jsx';
 function App() {
 
@@ -31,9 +34,12 @@ function App() {
         <Route exact path='/checkout' element={<><Checkout /> </>} />
         <Route exact path='/login' element={<><Login />  </>} />
         <Route exact path='/logInForm' element={<> <CreateUserForm /></>} />
+        <Route exact path='/profile' element={<> <UserProfile/> </>} />
         <Route exact path='/order/:id' element={<> <OrderDetailContainer /></>} />
         <Route exact path='/orders/all' element={<> <AllOrdersContainer /></>} />
         <Route exact path='/faqs' element={<> <Faqs /></>} />
+        <Route path='/reset/:userId/:hash/:userEmail' element={<ChangePassword />} />
+        <Route path='/rememberPass' element={<RememberPassword/> }/>
       </Routes>
       <ToastContainer
         position="top-right"

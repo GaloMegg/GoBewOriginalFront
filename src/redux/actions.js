@@ -671,3 +671,61 @@ export const GET_FAQS = createAsyncThunk(
         return await response.json()
     }
 )
+
+export const SEARCH_BY_ID = createAsyncThunk("SEARCH_BY_ID", async (id) => {
+    try {
+        const res = await axios.get(`${REACT_APP_APIURL}users/${id}`)
+        console.log(res)
+        return res.data
+    } catch (e) {
+        console.log(e)
+    }
+})
+
+export const SEARCH_DIRECTION_BY_ID = createAsyncThunk("SEARCH_DIRECTION_BY_ID", async (id) => {
+    try {
+        let token = localStorage.getItem("token");
+        if (token) {
+            const res = await fetch(`${REACT_APP_APIURL}address/byUser/${id}`, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'x-token': token
+                }
+            })
+            let resjson = await res.json() 
+            console.log(resjson)
+             return resjson
+        } else {
+            return {
+                ok: false,
+                msg: "El usuario no esta logeado"
+            }
+        }
+
+    } catch (e) {
+        console.log(e)
+    }
+})
+// export const CHECK_LOGIN = createAsyncThunk(
+//     'CHECK_LOGIN', async () => {
+//         try {
+//             const response = await fetchConToken(`users/renew`);
+//             const body = await response.json();
+//             if (body.ok) {
+//                 localStorage.setItem('token', body.token)
+//                 return {
+//                     ok: body.ok,
+//                     userId: body.userId,
+//                     userFirstName: body.userFirstName,
+//                     tokenInitDate: new Date().getTime(),
+
+//                 }
+//             }
+//             else {
+//                 return {
+//                     token: '',
+//                     ok: "",
+//                     userId: '',
+//                 }
+//             }
+
