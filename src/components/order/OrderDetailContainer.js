@@ -12,10 +12,11 @@ const OrderDetailContainer = () => {
     const dispatch = useDispatch()
     const [orderData, setOrderData] = useState({})
     const [addressData, setAddressData] = useState({})
+    const [rev, setRev] = useState([])
     useEffect(() => {
         dispatch(CHECK_LOGIN())
     }, [])
-    
+
     useEffect(() => {
         fetch(`${REACT_APP_APIURL}payments/order/byId/${id}`,
             {
@@ -43,9 +44,16 @@ const OrderDetailContainer = () => {
         }
 
     }, [orderData])
+    useEffect(() => {
+        fetch(`${REACT_APP_APIURL}reviews/byOrder/${id}`)
+            .then(res => res.json())
+            .then(data => setRev(data.reviews))
+            .catch(err => console.log(err))
+    }, [id])
+
     return (
         <section className='orderDetails'>
-            {(userId && orderData?.obj?.userId == userId) ? <OrderDetail {...orderData.obj} {...addressData.address} /> : <h1>Estas un poco perdido... Dejame que te lleve a tus ordenes</h1>}
+            {(userId && orderData?.obj?.userId == userId) ? <OrderDetail reviews={rev} {...orderData.obj} {...addressData.address} userId={userId} /> : <h1>Estas un poco perdido... Dejame que te lleve a tus ordenes</h1>}
         </section>
     )
 }

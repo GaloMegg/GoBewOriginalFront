@@ -60,6 +60,13 @@
                     background-color: v.$Secondary;
 
                 }
+
+                &::-moz-progress-bar {
+                    border-radius: 16px;
+                    background-color: v.$Primary;
+
+                }
+
             }
 
             &>div {

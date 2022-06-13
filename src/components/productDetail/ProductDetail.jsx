@@ -31,7 +31,7 @@ export default function ProductDetail({ product, reviews }) {
                 </div>}
             </div>
             {/* //!REVIEWS */}
-{reviews?.length > 0 && <div className="productDetail__reviews">
+            {reviews?.length > 0 && <div className="productDetail__reviews">
                 <h1 className='productDetail__reviews--title'>Reviews sobre {product[0]?.productName} </h1>
                 <div className='productDetail__reviews--avg'>
                     <p className='productDetail__reviews--num'>
