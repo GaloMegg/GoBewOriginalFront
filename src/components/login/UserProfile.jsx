@@ -8,6 +8,7 @@ export default function UserProfile() {
     const { userId, userAllInfo } = useSelector(store => store.clientReducer);
     console.log(userAllInfo)
     const dispatch = useDispatch();
+
     useEffect(() => {
         dispatch(CHECK_LOGIN())
     }, []);
@@ -19,19 +20,18 @@ export default function UserProfile() {
     }, [userId]);
     return (
         <div>
-            {userAllInfo? 
+            {userAllInfo?.userFirstName? 
             <div>
                 <h3>Nombre : {userAllInfo.userFirstName} </h3>
                 <h3>Apellido : {userAllInfo.userLastName}</h3>
-                {userAllInfo.direction ? userAllInfo.direction.addresses.map((element, index) =>
+                {userAllInfo?.direction?.addresses?.length ? userAllInfo.direction.addresses.map((element, index) =>
                     <div key={element._id}><h3>Dirección {index + 1}: </h3>
                         <h4>Calle: {`${element.addressStreet} ${element.addressNumber}`}</h4>
-                        <h4> Provincia: {element.addressProvince}</h4>
-                        <h4>Codigo postal: {element.addressZipCode}</h4>
-                        <h4>Departamento: {element.addressFlat}</h4>
-                        <h4>Piso: {element.addressFloor}</h4>
-
-                        <h4>Comentario: {element.addressComment}</h4>
+                        <h4> Provincia: {element.addressProvince ? element.addressProvince : "-"}</h4>
+                        <h4>Codigo postal: {element.addressZipCode ? element.addressZipCode : "-"}</h4>
+                        <h4>Departamento: {element.addressFlat ? element.addressFlat : "-"}</h4>
+                        <h4>Piso: {element.addressFloor ? element.addressFloor : "-"}</h4>
+                        <h4>Comentario: {element.addressComment ? element.addressComment: "-"}</h4>
                     </div>
                 ) : <div> Sin dirrección </div>}
             </div>
