@@ -55,7 +55,6 @@ export default function CreateUserForm() {
         onSubmit={(values, actions) => {
           dispatch(CREATION_USERFORM(values))
         }}
-
       >
         {props => (
           <Form className='loginForm--container'>
