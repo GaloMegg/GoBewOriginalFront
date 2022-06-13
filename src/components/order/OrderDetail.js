@@ -1,6 +1,6 @@
 import React from 'react'
 
-const OrderDetail = ({ orderState, orderTotal, user, addressStreet, addressNumber, addressCity, cart, addressProvince, addressFloor, addressZipCode, addressFlat }) => {
+const OrderDetail = ({ orderState, orderTotal, user, addressComment, addressStreet, addressNumber, addressCity, cart, addressProvince, addressFloor, addressZipCode, addressFlat }) => {
     // {
     //     "orderId": "62a577b22aa7efa86b08e57f",
     //     "_id": "62a36b7930174013668f5fbe",
@@ -57,15 +57,15 @@ const OrderDetail = ({ orderState, orderTotal, user, addressStreet, addressNumbe
     //     "__v": 0
     //   }
     const orderPosibleStates = {
-        0: 'Carrito de compras',
-        1: "Pendiente",
-        2: "Pagada",
+        0: "Carrito",
+        2: "Aceptada",
         3: "Enviada",
-        4: "Rechazada",
+        4: "Recibida",
         5: "Rechazada",
-
-
+        6: "Cancelada",
+        7: "Pendiente de aprobación",
     }
+
     return (
         <>
             <div>
@@ -78,6 +78,7 @@ const OrderDetail = ({ orderState, orderTotal, user, addressStreet, addressNumbe
                         <p>Departamento: {addressFlat}, Piso: {addressFloor}.</p>
                         <p>Provincia: {addressProvince}.</p>
                         <p>Ciudad: {addressCity}, {addressZipCode}.</p>
+                        <p>Descripción: {addressComment}.</p>
                     </div>}
             </div>
 

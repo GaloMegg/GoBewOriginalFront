@@ -640,9 +640,9 @@ export const POST_USER_ADDRESS = createAsyncThunk('POST_USER_ADDRESS', async (da
                 addressCity: data.values.addressCity,
                 addressZipCode: data.values.addressZipCode,
                 addressProvince: data.values.addressProvince,
-                addressComment: data.values.addressStreet,
-                addressIsShipping: data.values.addressStreet,
-                addressIsBilling: data.values.addressStreet,
+                addressComment: data.values.addressComment,
+                addressIsShipping: true,
+                addressIsBilling: true,
             })
         })
         const body = await resp.json();
