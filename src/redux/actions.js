@@ -664,3 +664,10 @@ export const LOG_OUT = createAction(
         }
     }
 )
+
+export const GET_FAQS = createAsyncThunk(
+    'GET_FAQS', async (id) => {
+        const response = await fetch(`${REACT_APP_APIURL}faqs`)
+        return await response.json()
+    }
+)

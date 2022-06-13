@@ -1,6 +1,6 @@
 import { createReducer } from "@reduxjs/toolkit"
 
-import { GET_CATEGORIES, GET_PRODUCTS, SEARCH_PRODUCT, ORDER_PRODUCTS, GET_PRODUCTS_BYCATEGORY, GET_HIGHLIGHTED, GET_PRODUCT_BY_ID, CLEAN_UP_DETAILS, REMOVE_ONE_CART, ADD_ONE_CART, CLEAN_CART, REMOVE_FROM_CART, SET_TOTAL, SET_CART, ADD_TO_CART, CLEAN_USER_RESPONSE, CREATION_USER_LOGIN, CREATION_USERFORM, CHECK_LOGIN, CREATE_USER_CART, GET_USER_CART, DELETE_USER_CART, LOG_OUT, LOG_IN_USER, POST_USER_ADDRESS } from "./actions"
+import { GET_CATEGORIES, GET_PRODUCTS, SEARCH_PRODUCT, ORDER_PRODUCTS, GET_PRODUCTS_BYCATEGORY, GET_HIGHLIGHTED, GET_PRODUCT_BY_ID, CLEAN_UP_DETAILS, REMOVE_ONE_CART, ADD_ONE_CART, CLEAN_CART, REMOVE_FROM_CART, SET_TOTAL, SET_CART, ADD_TO_CART, CLEAN_USER_RESPONSE, CREATION_USER_LOGIN, CREATION_USERFORM, CHECK_LOGIN, CREATE_USER_CART, GET_USER_CART, DELETE_USER_CART, LOG_OUT, LOG_IN_USER, POST_USER_ADDRESS, GET_FAQS } from "./actions"
 
 
 const initialState = {
@@ -16,6 +16,7 @@ const initialState = {
     userId: "",
     userFirstName: "",
     userResponse: { ok: '' },
+    faqs: []
 
 }
 export const clientReducer = createReducer(initialState, (builder) => {
@@ -140,6 +141,9 @@ export const clientReducer = createReducer(initialState, (builder) => {
     })
     builder.addCase(POST_USER_ADDRESS.fulfilled, (state, action) => {
         state.addressId = action.payload.newAddress
+    })
+    builder.addCase(GET_FAQS.fulfilled, (state, action) => {
+        state.faqs = action.payload
     })
 
 })
