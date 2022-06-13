@@ -12,6 +12,7 @@ import MainContentContainer from './components/mainContent/MainContentContainer'
 import 'react-toastify/dist/ReactToastify.css';
 import Address from './components/cart/addressForm/Address';
 import Checkout from './components/cart/checkout/Checkout';
+import UserProfile from './components/login/UserProfile';
 // import CategoriesNew from './components/nav/categories/CategoriesNew.jsx';
 function App() {
 
@@ -28,6 +29,7 @@ function App() {
         <Route exact path='/checkout' element={<><Checkout /> </>} />
         <Route exact path='/login' element={<><Login />  </>} />
         <Route exact path='/logInForm' element={<> <CreateUserForm /></>} />
+        <Route exact path='/profile' element={<> <UserProfile/> </>} />
       </Routes>
       <ToastContainer
         position="top-right"
