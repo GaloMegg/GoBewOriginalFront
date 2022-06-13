@@ -14,11 +14,11 @@ export default function CreateUserForm() {
   const dispatch = useDispatch();
   const { userResponse } = useSelector(store => store.clientReducer)
   console.log(userResponse)
-  if (userResponse.msg && userResponse.msg.hasOwnProperty("userEmail")) {
+  if (userResponse.msg && userResponse.msg.hasOwnProperty("userEmail")){
     erroresMail = true
-  } else if (userResponse.msg && userResponse.msg.hasOwnProperty("userPassword")) {
+  } else if (userResponse.msg && userResponse.msg.hasOwnProperty("userPassword")){
     contraseñaInsegura = true
-  } else if (userResponse.msg === "ok" && userResponse.ok) {
+  } else if(userResponse.msg=== "ok" && userResponse.ok){
     toast.success("Usuario creado con exito")
     back("/logIn")
   }
@@ -38,8 +38,8 @@ export default function CreateUserForm() {
             .email('El email es inválido.')
             .required('Requerido.'),
           userPassword: Yup.string()
-            .min(6, 'La contraseña debe tener al menos 6 caracteres')
-            .required("Requerido"),
+          .min(6, 'La contraseña debe tener al menos 6 caracteres')
+          .required("Requerido"),
           userFirstName: Yup.string()
             .matches(/^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$/, "El nombre debe contener letras")
             .min(2, 'El nombre es muy corto!')

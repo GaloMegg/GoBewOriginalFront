@@ -1,4 +1,5 @@
 import React from 'react'
+
 import { Link } from 'react-router-dom'
 const OrderDetail = ({ orderState, orderTotal, user, addressComment, addressStreet, addressNumber, addressCity, orderId, cart, addressProvince, addressFloor, addressZipCode, addressFlat, reviews, userId }) => {
     const orderPosibleStates = {
@@ -10,7 +11,6 @@ const OrderDetail = ({ orderState, orderTotal, user, addressComment, addressStre
         6: "Cancelada",
         7: "Pendiente de aprobación",
     }
-
     return (
         <>
             <div>
@@ -23,13 +23,16 @@ const OrderDetail = ({ orderState, orderTotal, user, addressComment, addressStre
                         <p>Departamento: {addressFlat}, Piso: {addressFloor}.</p>
                         <p>Provincia: {addressProvince}.</p>
                         <p>Ciudad: {addressCity}, {addressZipCode}.</p>
+
                         <p>Descripción: {addressComment}.</p>
+
                     </div>}
             </div>
 
             <div>
                 <h2>Detalle de compra</h2>
                 <p>Total: {orderTotal}</p>
+
                 {cart && <p>Carrito: {cart.map(item => {
                     let exist = reviews.find(e => e.productId == item._id)
                     console.log(item._id);
@@ -39,6 +42,7 @@ const OrderDetail = ({ orderState, orderTotal, user, addressComment, addressStre
                     </div>
                 })}</p>
                 }
+
                 <p>Estado: {orderPosibleStates[orderState]}</p>
             </div>
 
