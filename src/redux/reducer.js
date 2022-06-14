@@ -111,7 +111,6 @@ export const clientReducer = createReducer(initialState, (builder) => {
         state.userResponse = { ...action.payload }
         state.userId = action.payload.userId
         state.userFirstName = action.payload.userFirstName
-        console.log(state.userResponse)
     })
     builder.addCase(CLEAN_USER_RESPONSE, (state, action) => {
         state.userResponse = action.payload

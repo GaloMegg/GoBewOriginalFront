@@ -22,7 +22,7 @@ const Address = () => {
         }
         )
             .then(res => res.json())
-            .then(data => { console.log(data); setUserAddress(data.addresses) })
+            .then(data => { setUserAddress(data.addresses) })
         return () => {
             setUserAddress([])
         }

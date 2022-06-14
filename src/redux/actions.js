@@ -143,7 +143,6 @@ export const LOG_IN_USER = createAsyncThunk(
                     if (totalCartStorage && totalCartStorage !== 'undefined') {
                         totalCartStorage = JSON.parse(totalCartStorage)
                     }
-                    console.log(cart)
                     localCart.forEach(localItem => {
                         let itemExist = cart.find(item => item.productId === localItem._id)
                         if (itemExist) {
@@ -212,7 +211,6 @@ export const CREATION_USER_LOGIN = createAsyncThunk(
     "CREATION_USER_LOGIN", async (user) => {
         try {
             const response = await axios.post(`${REACT_APP_APIURL}users/authGoogle`, user)
-            console.log(response.data)
             if (response.data.ok) {
                 localStorage.setItem('token', response.data.token)
                 return {
@@ -223,7 +221,6 @@ export const CREATION_USER_LOGIN = createAsyncThunk(
                 }
             }
             else {
-                console.log("entro");
                 return {
                     payload: {
                         token: '',
@@ -262,7 +259,6 @@ export const CREATION_USERFORM = createAsyncThunk(
                 }
             }
             else {
-                console.log("entro");
                 return {
                     payload: {
                         token: '',
@@ -272,7 +268,7 @@ export const CREATION_USERFORM = createAsyncThunk(
             }
 
         } catch (error) {
-            console.log(error)
+
             return {
                 ok: false,
                 msg: error.response.data.errors,
@@ -371,11 +367,9 @@ export const GET_USER_CART = createAsyncThunk(
                         }
                     })
                 const body = await response.json();
-                console.log(body);
                 return await body
             }
         } catch (error) {
-            console.log(error);
         }
     }
 )
@@ -418,7 +412,6 @@ export const CREATE_USER_CART = createAsyncThunk(
             return body
         }
         catch (e) {
-            console.log(e);
         }
     }
 )
@@ -462,7 +455,6 @@ export const UPDATE_USER_CART = createAsyncThunk(
             return body
         }
         catch (e) {
-            console.log(e);
         }
     })
 //* ELIMINAR UNA UNIDAD DE UN PRODUCTO DEL CARRITO DE USUARIO
@@ -513,7 +505,6 @@ export const REMOVE_ONE_USER_CART = createAsyncThunk(
             return body
         }
         catch (e) {
-            console.log(e);
         }
     })
 //*AGREGAR UNA UNIDAD DE PRODUCTO AL CARRITO DE USUARIO
@@ -548,7 +539,6 @@ export const ADD_ONE_USER_CART = createAsyncThunk('ADD_ONE_USER_CART', async (da
         return body
     }
     catch (e) {
-        console.log(e);
     }
 })
 export const DELETE_USER_CART = createAsyncThunk('DELETE_USER_CART', async (data) => {
@@ -567,11 +557,9 @@ export const DELETE_USER_CART = createAsyncThunk('DELETE_USER_CART', async (data
                 orderId: "",
             }
         } else {
-            console.log(res)
         }
     }
     catch (e) {
-        console.log(e);
     }
 
 })
@@ -616,13 +604,11 @@ export const DELETE_PRODUCT_USER = createAsyncThunk('DELETE_PRODUCT_USER', async
         return body
     }
     catch (e) {
-        console.log(e);
     }
 })
 
 export const POST_USER_ADDRESS = createAsyncThunk('POST_USER_ADDRESS', async (data) => {
     try {
-        console.log(data)
         let token = localStorage.getItem('token')
         const resp = await fetch(`${REACT_APP_APIURL}address`, {
             method: 'POST',
@@ -640,18 +626,16 @@ export const POST_USER_ADDRESS = createAsyncThunk('POST_USER_ADDRESS', async (da
                 addressCity: data.values.addressCity,
                 addressZipCode: data.values.addressZipCode,
                 addressProvince: data.values.addressProvince,
-                addressComment: data.values.addressStreet,
-                addressIsShipping: data.values.addressStreet,
-                addressIsBilling: data.values.addressStreet,
+                addressComment: data.values.addressComment,
+                addressIsShipping: true,
+                addressIsBilling: true,
             })
         })
         const body = await resp.json();
-        console.log(body)
         return body
 
     }
     catch (e) {
-        console.log(e);
     }
 })
 export const LOG_OUT = createAction(
