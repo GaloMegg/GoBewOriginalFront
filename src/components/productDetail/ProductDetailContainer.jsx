@@ -19,14 +19,13 @@ export default function ProductDetailContainer() {
         }
     }, [dispatch, id])
 
-
     useEffect(() => {
         fetch(`${REACT_APP_APIURL}reviews/byProduct/${id}`)
             .then(res => res.json())
             .then(data => {
                 setReviews(data)
             })
-            .catch(err =>  err )
+            .catch(err => err)
     }, [id])
 
     return (

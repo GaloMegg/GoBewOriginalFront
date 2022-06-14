@@ -13,7 +13,7 @@ const MainContentContainer = () => {
       dispatch(CHECK_LOGIN())
       if (userId) {
         dispatch(GET_USER_CART(userId))
-        
+
       }
     } else {
       let cartStorage = localStorage.getItem('cart')
@@ -28,12 +28,17 @@ const MainContentContainer = () => {
 
   }, [userId])
 
-  return (
+
+return (
+  <div>
     <div style={{ display: "flex" }}>
       <Filters />
       <ProductCardContainer />
     </div>
-  )
+    
+  </div>
+
+)
 }
 
 export default MainContentContainer
