@@ -57,7 +57,7 @@ const OrderExist = ({ userAddress }) => {
                         <div className='radioContainer'>
                             <input type="radio" name="direccion" id={e._id} />
                         </div>
-                        <div>
+                        <div className='direction'>
                             <p className='order__exist--mapedContainer--phone'>Provincia: {e.addressProvince}</p>
                             <p className='order__exist--mapedContainer--phone'>Ciudad: {e.addressCity}</p>
                             <p className='order__exist--mapedContainer--phone'>Código Postal: {e.addressZipCode}</p>
