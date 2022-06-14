@@ -61,7 +61,7 @@ export default function Checkout({ }) {
                 }
             }).then((order) => order.json()).then(order => {
                 setAddressInfo(order)
-            }).catch(err => console.log(err))
+            }).catch(err => err)
         }
         return () => {
             setAddressInfo({})

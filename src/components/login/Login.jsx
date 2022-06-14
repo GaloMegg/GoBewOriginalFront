@@ -68,6 +68,7 @@ const Login = () => {
                     <Link to="/logInForm" className="loginForm__singup--link"> <button className="loginForm__singup--btn" >Crear cuenta</button> </Link>
                 </div>
                 <LogInGoogle />
+                <Link to="/rememberPass"> <div > ¿Olvido su contraseña?</div> </Link>
             </div >
         </form >
     )

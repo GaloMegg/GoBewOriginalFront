@@ -23,7 +23,6 @@ const AllOrdersContainer = () => {
             .then(res => res.json())
             .then(data => {
                 setOrders(data);
-                console.log(data);
             })
         return () => {
         }

@@ -8,7 +8,7 @@ import { CHECK_LOGIN, GET_USER_CART, SET_CART, SET_TOTAL } from '../../redux/act
 import LogOut from '../login/LogOut';
 
 const Nav = () => {
-    const { userResponse, cart, userId,userFirstName } = useSelector(store => store.clientReducer)
+    const { userResponse, cart, userId, userFirstName } = useSelector(store => store.clientReducer)
     const dispatch = useDispatch()
     useEffect(() => {
         let token = localStorage.getItem('token')
@@ -31,12 +31,6 @@ const Nav = () => {
 
     }, [userId])
 
-    // if (userResponse.ok === true) {
-    //     console.log(userFirstName)
-    //     var user = userFirstName
-    // } else {
-    //     user = 'Acceso'
-    // }
     return (
         <nav className='nav'>
             {/* //! LOGO */}
@@ -46,12 +40,6 @@ const Nav = () => {
                 </Link>
             </div>
             {/* //! FILTERS */}
-            {/* <div className='nav__filters'> */}
-            {/* CATEGORIES FILTERS */}
-            {/* {showCategories && <CategoriesContainer />} */}
-            {/* SEARCHBAR */}
-            {/* {showSearch && <SearchBar />} */}
-            {/* </div> */}
             <div className='nav__loginCart'>
                 {/* //! CART */}
                 <Link className='nav__loginCart--cart' to="/cart">
@@ -61,11 +49,11 @@ const Nav = () => {
                     </div>
                 </Link>
                 {/* //! LOGIN */}
-                {userResponse.ok ? <LogOut user = {userFirstName} User = {User}/>
-                : <Link className='nav__loginCart--login' to={`/login`} >
-                <img className='nav__loginCart--login-img' src={User} alt='img not found' />
-                <p className='nav__loginCart--login-text'>Acceso</p>
-            </Link>
+                {userResponse.ok ? <LogOut user={userFirstName} User={User} />
+                    : <Link className='nav__loginCart--login' to={`/login`} >
+                        <img className='nav__loginCart--login-img' src={User} alt='img not found' />
+                        <p className='nav__loginCart--login-text'>Acceso</p>
+                    </Link>
                 }
             </div>
         </nav>
