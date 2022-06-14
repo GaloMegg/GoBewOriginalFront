@@ -13,7 +13,6 @@ export default function CreateUserForm() {
   const back = useNavigate();
   const dispatch = useDispatch();
   const { userResponse } = useSelector(store => store.clientReducer)
-  console.log(userResponse)
   if (userResponse.msg && userResponse.msg.hasOwnProperty("userEmail")) {
     erroresMail = true
   } else if (userResponse.msg && userResponse.msg.hasOwnProperty("userPassword")) {

@@ -31,11 +31,10 @@ const OrderDetail = ({ orderState, orderTotal, user, addressComment, addressStre
                 <h2>Detalle de compra</h2>
                 <p>Total: {orderTotal}</p>
                 {cart && <p>Carrito: {cart.map(item => {
-                    let exist = reviews.find(e => e.productId == item._id)
-                    console.log(item._id);
+                    let exist = reviews.find(e => e.productId == item.productId)
                     return <div>
                         {item.productName} - {item.productCant}
-                        {(orderState == 4 && !exist) && <Link to={`/review/${orderId}/${item._id}/${userId}`} disabled={exist}>Deja tu review</Link>}
+                        {(orderState == 4 && !exist) && <Link to={`/review/${orderId}/${item.productId}/${userId}`} disabled={exist}>Deja tu review</Link>}
                     </div>
                 })}</p>
                 }

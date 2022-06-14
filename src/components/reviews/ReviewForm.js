@@ -16,7 +16,6 @@ const ReviewForm = ({ orderId, productId, userId }) => {
                 orderId,
             }}
             onSubmit={(values) => {
-                console.log(values)
                 fetch(`${REACT_APP_APIURL}reviews`, {
                     method: 'POST',
                     headers: {
@@ -25,8 +24,7 @@ const ReviewForm = ({ orderId, productId, userId }) => {
                     body: JSON.stringify(values),
                 }).then(res => res.json())
                     .then(data => {
-                        console.log(data)
-                    }).catch(err => console.log(err))
+                    }).catch(err => err)
             }}
             validationSchema={Yup.object().shape({
                 reviewStars: Yup.number().min(1).max(5).required("La calificación es requerida"),

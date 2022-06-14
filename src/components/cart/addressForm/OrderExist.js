@@ -49,11 +49,10 @@ const OrderExist = ({ userAddress }) => {
             })
     }
     return (
-        <form className='order__exist' onChange={(e) => { console.log(e.target.id); setId(e.target.id); }} onSubmit={submitHandler}>
+        <form className='order__exist' onChange={(e) => { setId(e.target.id); }} onSubmit={submitHandler}>
             <p className='order__exist--title'>Elige una de tus direcciones </p>
             {
                 userAddress.length > 0 && userAddress?.map(e => {
-                    // console.log(e);
                     return <label className='order__exist--mapedContainer' htmlFor={e._id} >
                         <div className='radioContainer'>
                             <input type="radio" name="direccion" id={e._id} />

@@ -48,7 +48,7 @@ const OrderDetailContainer = () => {
         fetch(`${REACT_APP_APIURL}reviews/byOrder/${id}`)
             .then(res => res.json())
             .then(data => setRev(data.reviews))
-            .catch(err => console.log(err))
+            .catch(err => err)
     }, [id])
 
     return (
