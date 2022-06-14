@@ -27,7 +27,6 @@ export default function ProductDetailContainer() {
             })
             .catch(err => err)
     }, [id])
-
     return (
         <ProductDetail product={product} reviews={reviews.reviews} />
     )
