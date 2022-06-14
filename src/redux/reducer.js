@@ -18,6 +18,7 @@ const initialState = {
     userResponse: { ok: '' },
     faqs: [],
     userAllInfo: {},
+    productHighlight: []
 }
 
 export const clientReducer = createReducer(initialState, (builder) => {
@@ -37,7 +38,7 @@ export const clientReducer = createReducer(initialState, (builder) => {
         state.categories = action.payload
     })
     builder.addCase(GET_HIGHLIGHTED.fulfilled, (state, action) => {
-        state.products = action.payload.productList
+        state.productHighlight = action.payload
     })
     builder.addCase(GET_PRODUCTS_BYCATEGORY, (state, action) => {
         state.products = action.payload

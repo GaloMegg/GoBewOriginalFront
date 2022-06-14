@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { CHECK_LOGIN, GET_USER_CART, SET_CART, SET_TOTAL } from '../../redux/actions'
+import Highlight from '../highlight/Highlight'
 import Filters from './Filters'
 import ProductCardContainer from './ProductCardContainer'
 
@@ -29,16 +30,17 @@ const MainContentContainer = () => {
   }, [userId])
 
 
-return (
-  <div>
-    <div style={{ display: "flex" }}>
-      <Filters />
-      <ProductCardContainer />
-    </div>
-    
-  </div>
+  return (
+    <div>
+      <Highlight />
+      <div style={{ display: "flex" }}>
+        <Filters />
+        <ProductCardContainer />
+      </div>
 
-)
+    </div>
+
+  )
 }
 
 export default MainContentContainer
