@@ -1,4 +1,5 @@
-@use "../variables" as v;
+@use "../../variables" as v;
+@import "../../mixins/mixins";
 
 .newReviewForm {
     width: 100%;
@@ -46,5 +47,9 @@
         &::placeholder {
             color: #ccc;
         }
+    }
+
+    &>button {
+        @include btn()
     }
 }

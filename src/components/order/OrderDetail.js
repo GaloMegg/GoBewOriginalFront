@@ -12,33 +12,43 @@ const OrderDetail = ({ orderState, orderTotal, user, addressComment, addressStre
     }
     return (
         <>
-            <div>
-                <h2>Direccion de Envío y detalles</h2>
-                {user && <p>Usuario: {user[0]?.userFirstName}, {user[0]?.userEmail}</p>}
+            <div className='orderDetail__address'>
+                <h2 className='orderDetail__address--title'>Direccion de Envío y detalles</h2>
                 {addressStreet &&
-                    <div>
-                        <p>Direccion:</p>
-                        <p>Calle: {addressStreet}, {addressNumber}.</p>
-                        <p>Departamento: {addressFlat}, Piso: {addressFloor}.</p>
-                        <p>Provincia: {addressProvince}.</p>
-                        <p>Ciudad: {addressCity}, {addressZipCode}.</p>
-                        <p>Descripción: {addressComment}.</p>
-
+                    <div className='orderDetail__address--address'>
+                        {user && <p className='orderDetail__address--userName'> <span> Usuario:</span> {user[0]?.userFirstName}, {user[0]?.userEmail}</p>}
+                        <p className='bold'>Direccion:</p>
+                        <p><span > Calle:</span> {addressStreet}, {addressNumber}.</p>
+                        <p><span>Departamento:</span> {addressFlat}.</p>
+                        <p><span>Piso:</span> {addressFloor}.</p>
+                        <p><span>Provincia:</span> {addressProvince}.</p>
+                        <p><span>Ciudad:</span> {addressCity}, {addressZipCode}.</p>
+                        <p><span>Descripción:</span> {addressComment}.</p>
                     </div>}
             </div>
 
-            <div>
-                <h2>Detalle de compra</h2>
-                <p>Total: {orderTotal}</p>
-                {cart && <p>Carrito: {cart.map(item => {
-                    let exist = reviews.find(e => e.productId == item.productId)
-                    return <div>
-                        {item.productName} - {item.productCant}
-                        {(orderState == 4 && !exist) && <Link to={`/review/${orderId}/${item.productId}/${userId}`} disabled={exist}>Deja tu review</Link>}
-                    </div>
-                })}</p>
-                }
-                <p>Estado: {orderPosibleStates[orderState]}</p>
+            <div className='orderDetail__cart'>
+                <h2 className='orderDetail__cart--title'>Detalle de la compra:</h2>
+                <div className='orderDetail__cart--bougth'>
+                    <p><span>Total:</span> ${orderTotal?.toLocaleString("de-DE")}</p>
+                    <p className='cart'><span>Carrito:</span> </p>
+                    {cart && cart.map(item => {
+                        let exist = reviews.find(e => e.productId == item.productId)
+                        return <div key={item.productId} className="orderDetail__cart--item">
+                            <p>
+                                {item.productName}
+                            </p>
+                            <p>
+                                X
+                            </p>
+                            <p>
+                                {item.productCant}
+                            </p>
+                            {(orderState == 4 && !exist) && <Link className='Link' to={`/review/${orderId}/${item.productId}/${userId}`} disabled={exist}>Deja tu review</Link>}
+                        </div>
+                    })}
+                    <p> <span> Estado:</span> {orderPosibleStates[orderState]}</p>
+                </div>
             </div>
 
         </>

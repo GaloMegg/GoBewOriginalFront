@@ -1,3 +1,4 @@
+@use "../variables" as v;
 @import "./orderDetails";
 @import "./allOrders";
 
@@ -6,8 +7,7 @@
     height: 100vh;
     display: flex;
     justify-content: center;
-    margin: 2%;
-
+    background-color: v.$White;
     &>div {
         width: 30%;
         text-transform: capitalize;

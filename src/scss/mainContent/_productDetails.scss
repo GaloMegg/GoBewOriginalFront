@@ -43,4 +43,18 @@
         }
 
     }
+
+    .wished {
+        color: v.$Secondary;
+        padding-right: 4%;
+        width: 40px;
+        height: 40px;
+    }
+
+    .notWished {
+        color: v.$Primary;
+        padding-right: 4%;
+        width: 40px;
+        height: 40px;
+    }
 }

@@ -690,26 +690,22 @@ export const SEARCH_DIRECTION_BY_ID = createAsyncThunk("SEARCH_DIRECTION_BY_ID",
         console.log(e)
     }
 })
-// export const CHECK_LOGIN = createAsyncThunk(
-//     'CHECK_LOGIN', async () => {
-//         try {
-//             const response = await fetchConToken(`users/renew`);
-//             const body = await response.json();
-//             if (body.ok) {
-//                 localStorage.setItem('token', body.token)
-//                 return {
-//                     ok: body.ok,
-//                     userId: body.userId,
-//                     userFirstName: body.userFirstName,
-//                     tokenInitDate: new Date().getTime(),
-
-//                 }
-//             }
-//             else {
-//                 return {
-//                     token: '',
-//                     ok: "",
-//                     userId: '',
-//                 }
-//             }
+export const GET_WISHES = createAsyncThunk("GET_WISHES", async (id) => {
+    try {
+        let token = localStorage.getItem("token");
+        if (token) {
+            const res = await fetch(`${REACT_APP_APIURL}wishList/getByUser/${id}`, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'x-token': token
+                }
+            })
+            let body = await res.json()
+            return body
+        }
+    }
+    catch (e) {
+        console.log(e)
+    }
+})
 

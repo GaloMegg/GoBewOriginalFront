@@ -19,17 +19,12 @@
         .react--paginate__izq {
             margin-left: 20vw;
 
-            &>li:not(:first-child) {
-                // visibility: hidden;
-            }
+
         }
 
         .react--paginate__der {
             margin-right: 20vw;
 
-            &>li:not(:last-child) {
-                // visibility: hidden;
-            }
         }
     }
 
@@ -50,10 +45,11 @@
                 // padding: 3px;
                 // height: 16px;
                 width: 10%;
+                border-radius: 16px;
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                background-color: #b1d8de;
+                background-color: #d8ecef;
                 color: #17252A;
 
                 a {

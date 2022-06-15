@@ -11,6 +11,8 @@
     align-items: center;
     position: sticky;
     top: 0px;
+    z-index: 1000;
+
     .nav__logo {
         margin: 0.5%;
         margin-left: 1%;
@@ -106,7 +108,11 @@
                         text-decoration: none;
                         border-radius: 16px;
                         background-color: v.$Primary;
+                        transition: background-color 0.3s;
 
+                        &:hover {
+                            background-color: v.$Secondary;
+                        }
                     }
                 }
             }

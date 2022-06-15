@@ -17,9 +17,11 @@ const ReviewForm = ({ orderId, productId, userId }) => {
     })
     const handleSubmit = (e) => {
         e.preventDefault()
-
         if (values.reviewStars == 0 || values.reviewComment == '') {
             toast.error('Todos los campos son obligatorios')
+            return
+        } else if (values.reviewStars > 5 || values.reviewStars < 1) {
+            toast.error('Las estrellas deben estar entre 1 y 5')
             return
         }
         fetch(`${REACT_APP_APIURL}reviews`, {
@@ -34,15 +36,15 @@ const ReviewForm = ({ orderId, productId, userId }) => {
                     toast.error(data.error)
                 } else {
                     toast.success('Reseña agregada')
-                    navigate('/')
+                    navigate(`/order/${orderId}`)
                 }
             }).catch(err => err)
     }
     return (
 
         <form className='newReviewForm' action="" onSubmit={handleSubmit} onChange={(e) => setValues({ ...values, [e.target.name]: e.target.value })}>
+            <h1>Deja tu reseña:</h1>
             <div>
-
                 <label htmlFor="reviewStars1">
                     <BsFillStarFill className={values.reviewStars >= 1 ? "stars Selected" : "stars"} />
                     <input id="reviewStars1" type="radio" name='reviewStars' value={1} />
@@ -77,7 +79,7 @@ const ReviewForm = ({ orderId, productId, userId }) => {
             <textarea id="reviewComment" cols="30" rows="10" name="reviewComment"
                 onChange={(e) => setValues({ ...values, [e.target.id]: e.target.value })} placeholder="Tu Reseña aqui..."></textarea>
 
-            <button type="submit">Enviar Reseña</button>
+            <button type="submit" className=''>Enviar Reseña</button>
         </form>
     )
 }

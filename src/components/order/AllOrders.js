@@ -17,11 +17,12 @@ const AllOrders = ({ orders }) => {
         let dateCreation = new Date(order.orderCreationDate)
         let dateAcept = new Date(order.orderAceptDate)
         return <>
-
-
             <Link to={`/order/${order._id}`} className='allOrders__order' key={i}>
                 <h4>
-                    Fecha: {dateCreation.toLocaleDateString("es-ES")}
+                    <span>
+                        Fecha:
+                    </span>
+                    {" " + dateCreation.toLocaleDateString("es-ES")}
                 </h4>
                 <p>Total: ${order?.orderTotal.toLocaleString('de-DE')}</p>
                 {order?.orderAceptDate ? <p> Aceptada el dia: {dateAcept.toLocaleDateString("es-ES")}</p> : <p> Estado: {orderPosibleStates[order.orderState]}</p>}
