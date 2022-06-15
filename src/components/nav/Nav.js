@@ -23,7 +23,9 @@ const Nav = () => {
 
             let cartStorage = localStorage.getItem('cart')
             let totalCartStorage = localStorage.getItem('totalCart')
+
             if (cartStorage && totalCartStorage && totalCartStorage != "undefined") {
+
                 let cartStorageParsed = JSON.parse(cartStorage)
                 let totalCartStorageParsed = JSON.parse(totalCartStorage)
                 dispatch(SET_CART(cartStorageParsed))
