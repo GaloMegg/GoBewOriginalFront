@@ -3,8 +3,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { GET_HIGHLIGHTED } from "../../redux/actions"
 import HighlightCard from "./HighlightCard"
 import { useState } from "react"
-import ReactPaginate from "react-paginate";
-import { TiArrowRightThick, TiArrowLeftThick } from 'react-icons/ti'
+import { TiArrowRightThick } from 'react-icons/ti'
 import '../../scss/mainContent/_highLight.scss'
 
 export default function Highlight() {
@@ -19,16 +18,9 @@ export default function Highlight() {
     const [pageCount, setPageCount] = useState(0);
     const [itemOffset, setItemOffset] = useState(0);
     const [currPage, setCurrPage] = useState(1);
-    const itemPerPage = 5;
-
-    const handlePageClick = (e) => {
-        const selectedPage = e.selected;
-        const offset = selectedPage * itemPerPage;
-        setItemOffset(offset);
-    }
+    const itemPerPage = 3;
 
     function handleClickDer() {
-        setCurrPage(currPage)
         if (currPage === pageCount - 1) {
             setCurrPage(0)
             const offset = currPage * itemPerPage;
@@ -44,35 +36,6 @@ export default function Highlight() {
         }
     }
 
-    function handleClickIzq() {
-        console.log(currPage)
-        console.log(pageCount)
-        if (currPage === 1) {
-            console.log('hola')
-            setCurrPage(pageCount)
-            console.log(currPage)
-            const offset = currPage * itemPerPage;
-            console.log(offset)
-            setItemOffset(offset);
-            console.log(itemOffset)
-            const endOffset = itemOffset + itemPerPage;
-            console.log(endOffset)
-            setCurrentHigh(res?.slice(itemOffset, endOffset));
-            console.log(currentHigh)
-        } else {
-            setCurrPage(currPage - 1)
-            console.log(currPage)
-            const offset = currPage * itemPerPage;
-            console.log(offset)
-            setItemOffset(offset);
-            console.log(itemOffset)
-            const endOffset = itemOffset + itemPerPage;
-            console.log(endOffset)
-            setCurrentHigh(res?.slice(itemOffset, endOffset));
-            console.log(currentHigh)
-        }
-    }
-
     useEffect(() => {
         const endOffset = itemOffset + itemPerPage;
         setCurrentHigh(res?.slice(itemOffset, endOffset));
@@ -84,60 +47,20 @@ export default function Highlight() {
     }, [dispatch])
 
     return (
-        <div>
+        <div className="highlight--content__container">
+            <h2>Nuestros Productos Destacados</h2>
+            <div className="highlight--prods__container">
+                {
+                    currentHigh?.map(elem => {
+                        return <HighlightCard key={elem._id} _id={elem._id} images={elem?.images[0].imageName} productPrice={elem.productPrice} />
+                    })
+                }
 
-            <div className="highlight--content__container">
-                <h2>Productos Destacados</h2>
-                <div className="highlight--prods__container">
-                    {/* <ReactPaginate
-                    breakLabel="..."
-                    nextLabel={<TiArrowRightThick />}
-                    onPageChange={handlePageClick}
-                    pageRangeDisplayed={5}
-                    pageCount={pageCount}
-                    previousLabel={<TiArrowLeftThick />}
-                    renderOnZeroPageCount={null}
-                    className='react--paginate__izq'
-                /> */}
-                    {/* <button className="react--paginate__izq" onClick={handleClickIzq}>
-                    <TiArrowLeftThick size={40} />
-                </button> */}
-                    {
-                        currentHigh?.map(elem => {
-                            return <HighlightCard key={elem._id} _id={elem._id} images={elem?.images[0].imageName} productPrice={elem.productPrice} />
-                        })
-                    }
-
-
-                    {/* <ReactPaginate
-                    breakLabel="..."
-                    nextLabel={<TiArrowRightThick />}
-                    onPageChange={handlePageClick}
-                    pageRangeDisplayed={5}
-                    pageCount={pageCount}
-                    previousLabel={<TiArrowLeftThick />}
-                    renderOnZeroPageCount={null}
-                    className='react--paginate__der'
-                /> */}
-                </div>
-
-                {/* <div className='highlight--pagination__container'>
-                <ReactPaginate
-                    breakLabel="..."
-                    nextLabel={<TiArrowRightThick />}
-                    onPageChange={handlePageClick}
-                    pageRangeDisplayed={5}
-                    pageCount={pageCount}
-                    previousLabel={<TiArrowLeftThick />}
-                    renderOnZeroPageCount={null}
-                />
-            </div> */}
-            </div>
-            <div className="react--paginate__der">
-                <button onClick={handleClickDer}>
+                <button className="react--paginate__der" onClick={handleClickDer}>
                     <TiArrowRightThick size={40} />
                 </button>
             </div>
+
         </div>
     )
 }

@@ -41,6 +41,10 @@
             /* Don't forget this one */
             text-overflow: ellipsis;
         }
+        
+        &>p {
+            font-weight: bold;
+        }
     }
 
     .wished {
