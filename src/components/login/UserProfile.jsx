@@ -1,6 +1,7 @@
 
 import react, { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
+import { Link } from "react-router-dom";
 import { CHECK_LOGIN, GET_WISHES, SEARCH_BY_ID, SEARCH_DIRECTION_BY_ID } from "../../redux/actions";
 
 
@@ -24,13 +25,14 @@ export default function UserProfile() {
         }
     }, [userId]);
     return (
-        <div>
+        <div className="profileContainer">
             {userAllInfo?.userFirstName ?
-                <div>
+                <div className="profileContainer--profile">
                     <h3>Nombre : {userAllInfo.userFirstName} </h3>
                     <h3>Apellido : {userAllInfo.userLastName}</h3>
+                    <Link to="/orders/all">Tus Ordenes</Link>
                     {userAllInfo?.direction?.addresses?.length ? userAllInfo.direction.addresses.map((element, index) =>
-                        <div key={element._id}><h3>Dirección {index + 1}: </h3>
+                        <div className="profileContainer" key={element._id}><h3> Dirección N°{index + 1}: </h3>
                             <h4>Calle: {`${element.addressStreet} ${element.addressNumber}`}</h4>
                             <h4> Provincia: {element.addressProvince ? element.addressProvince : "-"}</h4>
                             <h4>Codigo postal: {element.addressZipCode ? element.addressZipCode : "-"}</h4>
