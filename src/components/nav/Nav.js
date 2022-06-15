@@ -4,11 +4,11 @@ import Logo from '../../images/Logo-GoBew.png'
 import Carrito from '../../images/carrito-compras.png'
 import User from '../../images/user-icon.png'
 import { Link } from 'react-router-dom'
-import { CHECK_LOGIN, GET_USER_CART, SET_CART, SET_TOTAL } from '../../redux/actions';
+import { CHECK_LOGIN, GET_USER_CART, SEARCH_BY_ID, SET_CART, SET_TOTAL } from '../../redux/actions';
 import LogOut from '../login/LogOut';
 
 const Nav = () => {
-    const { userResponse, cart, userId,userFirstName } = useSelector(store => store.clientReducer)
+    const { userResponse, cart, userId, userFirstName  } = useSelector(store => store.clientReducer)
     const dispatch = useDispatch()
     useEffect(() => {
         let token = localStorage.getItem('token')
@@ -30,6 +30,11 @@ const Nav = () => {
         }
 
     }, [userId])
+//     useEffect(() => {
+//         if(userId){
+//             dispatch(SEARCH_BY_ID(userId))
+//         }
+// }, []);
 
     // if (userResponse.ok === true) {
     //     console.log(userFirstName)
@@ -61,7 +66,7 @@ const Nav = () => {
                     </div>
                 </Link>
                 {/* //! LOGIN */}
-                {userResponse.ok ? <LogOut user = {userFirstName} User = {User}/>
+                {userResponse.ok ? <LogOut id = {userId} User = {User}/>
                 : <Link className='nav__loginCart--login' to={`/login`} >
                 <img className='nav__loginCart--login-img' src={User} alt='img not found' />
                 <p className='nav__loginCart--login-text'>Acceso</p>

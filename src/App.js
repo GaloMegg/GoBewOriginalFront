@@ -17,6 +17,8 @@ import OrderDetailContainer from './components/order/OrderDetailContainer';
 import AllOrdersContainer from './components/order/AllOrdersContainer';
 import { ChangePassword } from './components/login/ChangePassword';
 import { RememberPassword } from './components/login/RememberPassword';
+import EditNameProfile from './components/login/EditNameProfile';
+import EditDirecProfile from './components/login/EditDirecProfile';
 // import CategoriesNew from './components/nav/categories/CategoriesNew.jsx';
 function App() {
 
@@ -34,6 +36,8 @@ function App() {
         <Route exact path='/login' element={<><Login />  </>} />
         <Route exact path='/logInForm' element={<> <CreateUserForm /></>} />
         <Route exact path='/profile' element={<> <UserProfile/> </>} />
+        <Route exact path="/profile/editName/:userId" element= {<> <EditNameProfile/> </>} />
+        <Route exact path="/profile/editDirec/:direcId" element= {<> <EditDirecProfile/> </>} />
         <Route exact path='/order/:id' element={<> <OrderDetailContainer /></>} />
         <Route exact path='/orders/all' element={<> <AllOrdersContainer /></>} />
         <Route path='/reset/:userId/:hash/:userEmail' element={<ChangePassword />} />
