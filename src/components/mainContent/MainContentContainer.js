@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { CHECK_LOGIN, GET_USER_CART, SET_CART, SET_TOTAL } from '../../redux/actions'
+import { CHECK_LOGIN, GET_USER_CART, GET_WISHES, SEARCH_BY_ID, SET_CART, SET_TOTAL } from '../../redux/actions'
+import Highlight from '../highlight/Highlight'
 import Filters from './Filters'
 import ProductCardContainer from './ProductCardContainer'
 
@@ -13,7 +14,8 @@ const MainContentContainer = () => {
       dispatch(CHECK_LOGIN())
       if (userId) {
         dispatch(GET_USER_CART(userId))
-        
+        dispatch(GET_WISHES(userId))
+
       }
     } else {
       let cartStorage = localStorage.getItem('cart')
@@ -27,12 +29,27 @@ const MainContentContainer = () => {
     }
 
   }, [userId])
+  useEffect(() => {
+    if (userId) {
+        dispatch(SEARCH_BY_ID(userId))
+    }
+}, []);
+
 
   return (
-    <div style={{ display: "flex" }}>
-      <Filters />
-      <ProductCardContainer />
+    <div>
+
+      <div className='MainContent'>
+        <Filters />
+        <div>
+
+        <Highlight />
+        <ProductCardContainer />
+        </div>
+      </div>
+
     </div>
+
   )
 }
 

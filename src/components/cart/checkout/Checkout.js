@@ -28,11 +28,8 @@ export default function Checkout({ }) {
             dispatch(CHECK_LOGIN())
         }
     }, [])
-
-
-
     //! Payment Id Generator
-    useEffect(() => {
+    useEffect(() => {   
         if (cart && userId && orderId && totalCart) {
             fetch(`${REACT_APP_APIURL}payments/pay`, {
                 method: 'POST',
@@ -61,7 +58,7 @@ export default function Checkout({ }) {
                 }
             }).then((order) => order.json()).then(order => {
                 setAddressInfo(order)
-            }).catch(err => console.log(err))
+            }).catch(err => err)
         }
         return () => {
             setAddressInfo({})

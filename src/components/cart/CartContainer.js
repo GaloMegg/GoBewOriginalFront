@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { CHECK_LOGIN, GET_USER_CART, SET_CART, SET_TOTAL } from '../../redux/actions'
+import { CHECK_LOGIN, GET_USER_CART, GET_WISHES, SET_CART, SET_TOTAL } from '../../redux/actions'
 import Cart from './Cart'
 
 const CartContainer = () => {
@@ -12,6 +12,7 @@ const CartContainer = () => {
             dispatch(CHECK_LOGIN())
             if (userId) {
                 dispatch(GET_USER_CART(userId))
+                dispatch(GET_WISHES(userId))
                 // localStorage.removeItem("cart")
                 return
             }

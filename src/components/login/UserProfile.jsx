@@ -1,8 +1,8 @@
 
 import react, { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { CHECK_LOGIN, SEARCH_BY_ID, SEARCH_DIRECTION_BY_ID } from "../../redux/actions";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
+import { CHECK_LOGIN, GET_WISHES, SEARCH_BY_ID, SEARCH_DIRECTION_BY_ID } from "../../redux/actions";
 
 export default function UserProfile() {
     const { userId, userAllInfo, userDirection } = useSelector(store => store.clientReducer);
@@ -11,9 +11,14 @@ export default function UserProfile() {
 
     useEffect(() => {
         dispatch(CHECK_LOGIN())
+        if (userId) {
+            dispatch(GET_WISHES(userId))
+
+        }
+
     }, []);
     useEffect(() => {
-        if (userId){
+        if (userId) {
             dispatch(SEARCH_BY_ID(userId))
             dispatch(SEARCH_DIRECTION_BY_ID(userId))
         }

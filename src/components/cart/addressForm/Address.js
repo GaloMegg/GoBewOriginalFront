@@ -10,6 +10,8 @@ const Address = () => {
     const [userAddress, setUserAddress] = useState([])
     useEffect(() => {
         dispatch(CHECK_LOGIN())
+
+
     }, [userId])
     useEffect(() => {
         setUserAddress([])
@@ -22,7 +24,7 @@ const Address = () => {
         }
         )
             .then(res => res.json())
-            .then(data => { console.log(data); setUserAddress(data.addresses) })
+            .then(data => { setUserAddress(data.addresses) })
         return () => {
             setUserAddress([])
         }

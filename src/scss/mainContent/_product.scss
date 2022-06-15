@@ -2,10 +2,9 @@
 @import "./productCard";
 @import "./productDetails";
 @import "./productAdd";
-
+@import "./reviews/reviews";
 
 .products {
-    width: 80%;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
