@@ -19,6 +19,9 @@ const MPButton = ({ id }) => {
         }
     }, [id]);
     return (
+        // <button onClick={() => { window.open(id) }}>
+        //     Boton
+        // </button>
         < form id={FORM_ID} method="GET" className='checkoutContainer--btn' />
     )
 }

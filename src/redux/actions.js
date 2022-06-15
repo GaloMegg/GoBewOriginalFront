@@ -676,9 +676,9 @@ export const SEARCH_DIRECTION_BY_ID = createAsyncThunk("SEARCH_DIRECTION_BY_ID",
                     'x-token': token
                 }
             })
-            let resjson = await res.json() 
+            let resjson = await res.json()
             console.log(resjson)
-             return resjson
+            return resjson
         } else {
             return {
                 ok: false,

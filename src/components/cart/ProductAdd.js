@@ -58,7 +58,9 @@ const ProductAdd = ({ stock, price, product }) => {
 
     return (
         <form onSubmit={addToCart} className="productCard__addToCart" >
-            <button type="submit" className="productCard__addToCart--add" >Agregar</button>
+            <button type="submit" className="productCard__addToCart--add" >
+                Agregar
+            </button>
             <button type="button" onClick={removeQuantity} className="productCard__addToCart---" > - </button>
             <span className="productCard__addToCart--count" >{localCount}</span>
             <button type="button" onClick={addQuantity} className="productCard__addToCart--addition" > + </button>

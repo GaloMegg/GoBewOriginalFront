@@ -1,56 +1,85 @@
 import { Field, Form, Formik } from 'formik'
-import * as Yup from 'yup';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import { BsFillStarFill } from 'react-icons/bs';
+import { useState } from 'react';
 const { REACT_APP_APIURL } = process.env
 
 const ReviewForm = ({ orderId, productId, userId }) => {
+    const navigate = useNavigate()
 
+
+    const [values, setValues] = useState({
+        reviewStars: 0,
+        reviewComment: '',
+        orderId,
+        productId,
+        userId
+    })
+    const handleSubmit = (e) => {
+        e.preventDefault()
+
+        if (values.reviewStars == 0 || values.reviewComment == '') {
+            toast.error('Todos los campos son obligatorios')
+            return
+        }
+        fetch(`${REACT_APP_APIURL}reviews`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(values),
+        }).then(res => res.json())
+            .then(data => {
+                if (data.error) {
+                    toast.error(data.error)
+                } else {
+                    toast.success('Reseña agregada')
+                    navigate('/')
+                }
+            }).catch(err => err)
+    }
     return (
-        <Formik
-            enableReinitialize={true}
-            initialValues={{
-                reviewStars: "1",
-                reviewComment: "",
 
-                userId,
-                productId,
-                orderId,
-            }}
-            onSubmit={(values) => {
-                fetch(`${REACT_APP_APIURL}reviews`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(values),
-                }).then(res => res.json())
-                    .then(data => {
-                    }).catch(err => err)
-            }}
-            validationSchema={Yup.object().shape({
-                reviewStars: Yup.number().min(1).max(5).required("La calificación es requerida"),
-                reviewComment: Yup.string().required("El comentario es requerido"),
-                orderId: Yup.string().required("El id de la orden es requerido"),
-                productId: Yup.string().required("El id del producto es requerido"),
-                userId: Yup.string().required("El id del usuario es requerido")
-            })}
-        >
-            {
-                (formik) => (
-                    <Form className='New'>
-                        <p>Añade una nueva dirección</p>
-                        <Field type="radio" name="reviewStars" className={formik.values.reviewStars >= "1" ? "selected" : "nothing"} id="reviewStars" value="1" />
-                        <Field type="radio" name="reviewStars" className={formik.values.reviewStars >= "2" ? "selected" : "nothing"} id="reviewStars" value="2" />
-                        <Field type="radio" name="reviewStars" className={formik.values.reviewStars >= "3" ? "selected" : "nothing"} id="reviewStars" value="3" />
-                        <Field type="radio" name="reviewStars" className={formik.values.reviewStars >= "4" ? "selected" : "nothing"} id="reviewStars" value="4" />
-                        <Field type="radio" name="reviewStars" className={formik.values.reviewStars >= "5" ? "selected" : "nothing"} id="reviewStars" value="5" />
-                        {formik.errors.reviewStars && <p className="error">{formik.errors.reviewStars}</p>}
-                        <Field as="textarea" name="reviewComment" label='Descripción' className="textArea" placeholder='Descripción de envío' />
-                        {formik.errors.reviewComment && <p className="error">{formik.errors.reviewComment}</p>}
-                        <button type='submit'> AGREGAR NUEVA DIRECCIÓN</button>
-                    </Form >
-                )
-            }
-        </Formik >
+        <form className='newReviewForm' action="" onSubmit={handleSubmit} onChange={(e) => setValues({ ...values, [e.target.name]: e.target.value })}>
+            <div>
+
+                <label htmlFor="reviewStars1">
+                    <BsFillStarFill className={values.reviewStars >= 1 ? "stars Selected" : "stars"} />
+                    <input id="reviewStars1" type="radio" name='reviewStars' value={1} />
+                </label>
+
+
+                <label htmlFor="reviewStars2">
+                    <BsFillStarFill className={values.reviewStars >= 2 ? "stars Selected" : "stars"} />
+                    <input id="reviewStars2" type="radio" name='reviewStars' value={2} />
+                </label>
+
+
+                <label htmlFor="reviewStars3">
+                    <BsFillStarFill className={values.reviewStars >= 3 ? "stars Selected" : "stars"} />
+                    <input id="reviewStars3" type="radio" name='reviewStars' value={3} />
+                </label>
+
+
+                <label htmlFor="reviewStars4">
+                    <BsFillStarFill className={values.reviewStars >= 4 ? "stars Selected" : "stars"} />
+                    <input id="reviewStars4" type="radio" name='reviewStars' value={4} />
+                </label>
+
+
+                <label htmlFor="reviewStars5">
+                    <BsFillStarFill className={values.reviewStars >= 5 ? "stars Selected" : "stars"} />
+                    <input id="reviewStars5" type="radio" name='reviewStars' value={5} />
+                </label>
+            </div>
+
+
+            <textarea id="reviewComment" cols="30" rows="10" name="reviewComment"
+                onChange={(e) => setValues({ ...values, [e.target.id]: e.target.value })} placeholder="Tu Reseña aqui..."></textarea>
+
+            <button type="submit">Enviar Reseña</button>
+        </form>
     )
 }
 
