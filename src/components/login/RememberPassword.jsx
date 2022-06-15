@@ -3,10 +3,19 @@ import { TextInput } from '../form/TextInput';
 import * as Yup from 'yup';
 import axios from "axios";
 import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { CHECK_GOOGLE_MAIL } from '../../redux/actions';
 const { REACT_APP_APIURL } = process.env;
+import { toast } from 'react-toastify';
+
 export const RememberPassword = () => {
-  
+  const { userResponse } = useSelector(store => store.clientReducer);
+  const dispatch = useDispatch();
   const [ok, setOk] = useState('')
+  const [info, setInfo] = useState("")
+  const [check, setcheck] = useState(false);
+  let usuarioDeGoogle = ""
+  // let info = ""
 
   const sendMailResetPass = async (values) => {
     try {
@@ -25,7 +34,16 @@ export const RememberPassword = () => {
         setOk('Ha ocurrido un error, por favor intente nuevamente.')
     }
   }
-
+  if(check && userResponse.ok && userResponse.userIsGoogle){
+    usuarioDeGoogle="Usted creo su usuario con google, no puede cambiar su contraseña"
+    console.log("hola")
+    
+  } else if (check && userResponse.ok && !userResponse.userIsGoogle){
+    sendMailResetPass(info)
+    console.log(info)
+    toast.success("Mail enviado")
+    setcheck(false)
+  }
   return (
 
   <div >
@@ -39,8 +57,10 @@ export const RememberPassword = () => {
         })
     }
     onSubmit={(values, actions) => {
-      
-      sendMailResetPass(values)
+      dispatch(CHECK_GOOGLE_MAIL(values.userEmail))
+      setcheck(true)
+       setInfo(values)
+      // sendMailResetPass(values)
       
     }}
     
@@ -56,6 +76,7 @@ export const RememberPassword = () => {
             </div>
             <div>
               <button type="submit">Enviar</button>
+              {usuarioDeGoogle && <p>{usuarioDeGoogle} </p>}
             </div>
 
             

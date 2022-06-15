@@ -6,6 +6,7 @@ import { useCallback, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 const { REACT_APP_APIURL } = process.env;
+import { toast } from 'react-toastify';
 
 export const ChangePassword = () => {
   const { userId, hash, userEmail } = useParams();
@@ -67,8 +68,8 @@ export const ChangePassword = () => {
                 sessionStorage.setItem('userId', data.userId);
                 sessionStorage.setItem('userIsAdmin', data.userIsAdmin);
                 sessionStorage.setItem('userIsSuperAdmin', data.userIsSuperAdmin);
-                alert('La password fue modificada')
-                return navigate('/', {replace: true})
+                toast.success('La password fue modificada')
+                return navigate('/login', {replace: true})
             }
         } else {
           setOk({ok: false, msg: 'Usuario no encontrado'})
