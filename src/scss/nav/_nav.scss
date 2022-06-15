@@ -96,7 +96,9 @@
                         transition: background-color 0.3s;
                         cursor: default;
                         user-select: none;
-                        padding: 1%;    
+
+                        padding: 1%;
+
                         &:hover {
                             background-color: v.$Secondary;
                         }
@@ -114,6 +116,7 @@
                             background-color: v.$Secondary;
                         }
                     }
+
                     .nav__loginCart--login-fav {
                         width: 100%;
                         color: white;

@@ -34,10 +34,14 @@ const MainContentContainer = () => {
 
   return (
     <div>
-      <Highlight />
-      <div style={{ display: "flex" }}>
+
+      <div className='MainContent'>
         <Filters />
+        <div>
+
+        <Highlight />
         <ProductCardContainer />
+        </div>
       </div>
 
     </div>

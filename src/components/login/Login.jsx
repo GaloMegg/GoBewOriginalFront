@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import validate from './validate.js';
-import { CHECK_LOGIN, GET_USER_CART, LOG_IN_USER } from '../../redux/actions';
+import { CHECK_LOGIN, LOG_IN_USER } from '../../redux/actions';
 import { Link, useNavigate } from 'react-router-dom';
 import LogInGoogle from './LogInGoogle.jsx';
 
