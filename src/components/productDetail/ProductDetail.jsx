@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import ProductAdd from '../cart/ProductAdd'
 import { AiFillStar } from 'react-icons/ai'
+import WishListToggle from '../wishlist/WishListToggle'
 const { REACT_APP_CLOUDINARY_RES } = process.env
 let StarRanges = [5, 4, 3, 2, 1]
 export default function ProductDetail({ product, reviews }) {
@@ -13,7 +14,7 @@ export default function ProductDetail({ product, reviews }) {
     return (
         <div className="productDetail">
             <div className='productDetail__details' >
-
+                <WishListToggle _id={product[0]?._id} />
                 {product && product?.length > 0 && product[0].images.length > 0 && < img src={REACT_APP_CLOUDINARY_RES + product[0]?.images[0].imageName} alt={product[0]?.imageAlt} className="productDetail--img" />}
                 <div className="productDetail--container">
                     <h2 className="productDetail__productName">{product[0]?.productName}  </h2>
@@ -21,6 +22,7 @@ export default function ProductDetail({ product, reviews }) {
                     <p className="">${product[0]?.productPrice.toLocaleString('de-DE')}</p>
                     <div className='productDetail--container-btn'>
                         <ProductAdd price={product[0]?.productPrice} stock={product[0]?.productPrice} product={product[0]} />
+
                     </div>
                 </div>
                 {reviews?.length > 0 && < div style={{ alignSelf: "flex-start", display: "flex", alignItems: "center" }}>

@@ -4,7 +4,7 @@ import Logo from '../../images/Logo-GoBew.png'
 import Carrito from '../../images/carrito-compras.png'
 import User from '../../images/user-icon.png'
 import { Link } from 'react-router-dom'
-import { CHECK_LOGIN, GET_USER_CART, SET_CART, SET_TOTAL } from '../../redux/actions';
+import { CHECK_LOGIN, GET_USER_CART, GET_WISHES, SET_CART, SET_TOTAL } from '../../redux/actions';
 import LogOut from '../login/LogOut';
 
 const Nav = () => {
@@ -16,12 +16,16 @@ const Nav = () => {
             if (userId) {
                 dispatch(CHECK_LOGIN());
                 dispatch(GET_USER_CART(userId))
+                dispatch(GET_WISHES(userId))
+
             }
         } else {
 
             let cartStorage = localStorage.getItem('cart')
             let totalCartStorage = localStorage.getItem('totalCart')
+
             if (cartStorage && totalCartStorage && totalCartStorage != "undefined") {
+
                 let cartStorageParsed = JSON.parse(cartStorage)
                 let totalCartStorageParsed = JSON.parse(totalCartStorage)
                 dispatch(SET_CART(cartStorageParsed))

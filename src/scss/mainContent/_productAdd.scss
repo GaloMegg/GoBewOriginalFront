@@ -8,7 +8,7 @@
     .productCard__addToCart--- {
         @include btn($width: 10%);
         width: 20%;
-        
+
     }
 
     .productCard__addToCart--addition {
@@ -21,7 +21,8 @@
     }
 
     .productCard__addToCart--add {
-        @include btn($width: 30%);
+        @include btn();
+       min-width: 30%;
 
     }
 }

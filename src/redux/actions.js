@@ -649,6 +649,15 @@ export const LOG_OUT = createAction(
     }
 )
 
+export const POST_USER = createAsyncThunk(
+    'POST_USER', async (user) => {
+        const response = await axios.post(`${REACT_APP_APIURL}users/auth`, user)
+        localStorage.removeItem('token')
+        localStorage.setItem('token', response.data.token)
+        return await response.data
+    }
+)
+
 export const GET_FAQS = createAsyncThunk(
     'GET_FAQS', async (id) => {
         const response = await fetch(`${REACT_APP_APIURL}faqs`)
@@ -676,9 +685,9 @@ export const SEARCH_DIRECTION_BY_ID = createAsyncThunk("SEARCH_DIRECTION_BY_ID",
                     'x-token': token
                 }
             })
-            let resjson = await res.json() 
+            let resjson = await res.json()
             console.log(resjson)
-             return resjson
+            return resjson
         } else {
             return {
                 ok: false,
@@ -690,26 +699,22 @@ export const SEARCH_DIRECTION_BY_ID = createAsyncThunk("SEARCH_DIRECTION_BY_ID",
         console.log(e)
     }
 })
-// export const CHECK_LOGIN = createAsyncThunk(
-//     'CHECK_LOGIN', async () => {
-//         try {
-//             const response = await fetchConToken(`users/renew`);
-//             const body = await response.json();
-//             if (body.ok) {
-//                 localStorage.setItem('token', body.token)
-//                 return {
-//                     ok: body.ok,
-//                     userId: body.userId,
-//                     userFirstName: body.userFirstName,
-//                     tokenInitDate: new Date().getTime(),
-
-//                 }
-//             }
-//             else {
-//                 return {
-//                     token: '',
-//                     ok: "",
-//                     userId: '',
-//                 }
-//             }
+export const GET_WISHES = createAsyncThunk("GET_WISHES", async (id) => {
+    try {
+        let token = localStorage.getItem("token");
+        if (token) {
+            const res = await fetch(`${REACT_APP_APIURL}wishList/getByUser/${id}`, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'x-token': token
+                }
+            })
+            let body = await res.json()
+            return body
+        }
+    }
+    catch (e) {
+        console.log(e)
+    }
+})
 

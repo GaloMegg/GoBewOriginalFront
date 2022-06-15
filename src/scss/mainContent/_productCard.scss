@@ -2,7 +2,8 @@
 @import "../mixins/mixins";
 
 .productCard {
-    width: 300px;
+    min-width: 300px;
+    max-width: 300px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -40,12 +41,22 @@
             /* Don't forget this one */
             text-overflow: ellipsis;
         }
-
-
     }
 
-
+    .wished {
+        color: v.$Secondary;
+        align-self: flex-end;
+        padding-right: 4%;
+    }
+    
+    .notWished {
+        color: v.$Primary;
+        align-self: flex-end;
+        padding-right: 4%;
+    }
 }
+
+
 
 @-webkit-keyframes vibrate-1 {
     0% {

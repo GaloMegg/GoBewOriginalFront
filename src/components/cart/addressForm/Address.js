@@ -10,6 +10,8 @@ const Address = () => {
     const [userAddress, setUserAddress] = useState([])
     useEffect(() => {
         dispatch(CHECK_LOGIN())
+
+
     }, [userId])
     useEffect(() => {
         setUserAddress([])

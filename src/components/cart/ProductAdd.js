@@ -45,7 +45,6 @@ const ProductAdd = ({ stock, price, product }) => {
         if (!userId) {
             localStorage.setItem('cart', JSON.stringify(cart))
             localStorage.setItem('totalCart', JSON.stringify(totalCart))
-
         } else {
             localStorage.removeItem('cart')
             localStorage.removeItem('totaCart')
@@ -58,7 +57,9 @@ const ProductAdd = ({ stock, price, product }) => {
 
     return (
         <form onSubmit={addToCart} className="productCard__addToCart" >
-            <button type="submit" className="productCard__addToCart--add" >Agregar</button>
+            <button type="submit" className="productCard__addToCart--add" >
+                Agregar
+            </button>
             <button type="button" onClick={removeQuantity} className="productCard__addToCart---" > - </button>
             <span className="productCard__addToCart--count" >{localCount}</span>
             <button type="button" onClick={addQuantity} className="productCard__addToCart--addition" > + </button>

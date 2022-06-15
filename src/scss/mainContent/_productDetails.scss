@@ -43,4 +43,16 @@
         }
 
     }
+
+    .wished {
+        color: v.$Secondary;
+        width: 40px;
+        height: 40px;
+    }
+
+    .notWished {
+        color: v.$Primary;
+        width: 40px;
+        height: 40px;
+    }
 }
