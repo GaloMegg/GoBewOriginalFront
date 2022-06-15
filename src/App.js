@@ -4,7 +4,7 @@ import "./scss/main.scss";
 import Nav from './components/nav/Nav';
 import ProductDetailContainer from './components/productDetail/ProductDetailContainer';
 import CartContainer from './components/cart/CartContainer';
-import Login from './components/login/Login'
+import Login from './components/login/Login';
 import CreateUserForm from './components/login/CreateUserForm';
 import { ToastContainer } from 'react-toastify';
 import MainContentContainer from './components/mainContent/MainContentContainer';
