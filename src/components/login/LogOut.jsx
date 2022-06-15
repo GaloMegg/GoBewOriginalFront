@@ -18,11 +18,9 @@ export default function LogOut({ user, User }) {
             <p className='nav__loginCart--login-text'>{user}</p>
             {<div className={clickUser ? "nav__loginCart--login-render" : "nav__loginCart--login-hidden"}>
                 <div >
-
-                    <p onClick={(e) => handleLogOut()} className="nav__loginCart--login-logout">
-                        Cerrar Sesión
-                    </p>
                     <Link to="/profile" className="nav__loginCart--login-profile">Perfil</Link>
+                    <Link to="/wishList" className='nav__loginCart--login-fav'>Favoritos</Link >
+                    <p onClick={(e) => handleLogOut()} className="nav__loginCart--login-logout">Cerrar Sesión</p>
                 </div>
             </div>}
         </div>

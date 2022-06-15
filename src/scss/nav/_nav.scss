@@ -87,7 +87,7 @@
                     justify-content: space-around;
                     align-items: center;
                     flex-direction: column;
-                    height: 10vh;
+                    height: 17vh;
 
                     .nav__loginCart--login-logout {
                         width: 100%;
@@ -96,13 +96,25 @@
                         transition: background-color 0.3s;
                         cursor: default;
                         user-select: none;
-
+                        padding: 1%;    
                         &:hover {
                             background-color: v.$Secondary;
                         }
                     }
 
                     .nav__loginCart--login-profile {
+                        width: 100%;
+                        color: white;
+                        text-decoration: none;
+                        border-radius: 16px;
+                        background-color: v.$Primary;
+                        transition: background-color 0.3s;
+
+                        &:hover {
+                            background-color: v.$Secondary;
+                        }
+                    }
+                    .nav__loginCart--login-fav {
                         width: 100%;
                         color: white;
                         text-decoration: none;

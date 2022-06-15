@@ -18,6 +18,7 @@ import UserProfile from './components/login/UserProfile';
 import Faqs from './components/faq/Faqs';
 import { ChangePassword } from './components/login/ChangePassword';
 import { RememberPassword } from './components/login/RememberPassword';
+import WishListContainer from './components/wishlist/WishListContainer';
 
 function App() {
   return (
@@ -34,12 +35,13 @@ function App() {
         <Route exact path='/order/:id' element={<OrderDetailContainer />} />
         <Route exact path='/orders/all' element={<AllOrdersContainer />} />
         <Route exact path='/review/:orderId/:productId/:userId' element={<> <ReviewsFormContainer /></>} />
-        <Route exact path='/profile' element={<> <UserProfile/> </>} />
+        <Route exact path='/profile' element={<> <UserProfile /> </>} />
         <Route exact path='/order/:id' element={<> <OrderDetailContainer /></>} />
         <Route exact path='/orders/all' element={<> <AllOrdersContainer /></>} />
         <Route exact path='/faqs' element={<> <Faqs /></>} />
+        <Route exact path='/wishList' element={<> <WishListContainer /></>} />
         <Route path='/reset/:userId/:hash/:userEmail' element={<ChangePassword />} />
-        <Route path='/rememberPass' element={<RememberPassword/> }/>
+        <Route path='/rememberPass' element={<RememberPassword />} />
       </Routes>
       <ToastContainer
         position="top-right"
