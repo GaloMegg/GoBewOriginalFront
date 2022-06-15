@@ -699,6 +699,91 @@ export const SEARCH_DIRECTION_BY_ID = createAsyncThunk("SEARCH_DIRECTION_BY_ID",
         console.log(e)
     }
 })
+export const CHANGE_NAME = createAsyncThunk(
+    "CHANGE_NAME", async (objUser) => {
+
+        try {
+            const res = await axios.put(`${REACT_APP_APIURL}users/`, objUser);
+            const data = res.data
+            console.log(res.data)
+            if (data.ok) {
+                return data
+            } else {
+                return {
+                    ok: false,
+                    msg: data
+                }
+            }
+        } catch (e) {
+            return e
+        }
+    }
+)
+export const CHANGE_DIRECTION = createAsyncThunk(
+    "CHANGE_DIRECTION", async (values) => {
+        try {
+            let token = localStorage.getItem("token");
+            if (token) {
+                console.log(values)
+                // const res = await axios.put(`${REACT_APP_APIURL}address/${values.userId}`,values)
+                const res = await fetch(`${REACT_APP_APIURL}address/${values.addressId}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'x-token': token
+                    },
+                    body: JSON.stringify(values)
+                })
+                let resjson = await res.json()
+                console.log(resjson)
+                return resjson
+            } else {
+                return {
+                    ok: false,
+                    msg: "El usuario no esta logeado"
+                }
+            }
+            // const data = res.data
+            // console.log(data)
+        } catch (e) {
+            console.log(e)
+        }
+    }
+)
+export const CHECK_GOOGLE_MAIL = createAsyncThunk(
+    "CHECK_GOOGLE_MAIL", async (userEmail) =>{
+        try{
+            const response = await axios.get(`${REACT_APP_APIURL}users/userIsGoogleByMail/${userEmail}`)
+            const data = response.data
+            console.log (data)
+            return data
+        } catch(e){
+            console.log(e)
+        }
+    }
+)
+// export const CHECK_LOGIN = createAsyncThunk(
+//     'CHECK_LOGIN', async () => {
+//         try {
+//             const response = await fetchConToken(`users/renew`);
+//             const body = await response.json();
+//             if (body.ok) {
+//                 localStorage.setItem('token', body.token)
+//                 return {
+//                     ok: body.ok,
+//                     userId: body.userId,
+//                     userFirstName: body.userFirstName,
+//                     tokenInitDate: new Date().getTime(),
+
+//                 }
+//             }
+//             else {
+//                 return {
+//                     token: '',
+//                     ok: "",
+//                     userId: '',
+//                 }
+//             }
 export const GET_WISHES = createAsyncThunk("GET_WISHES", async (id) => {
     try {
         let token = localStorage.getItem("token");

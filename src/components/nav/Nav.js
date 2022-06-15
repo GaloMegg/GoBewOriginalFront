@@ -34,6 +34,11 @@ const Nav = () => {
         }
 
     }, [userId])
+//     useEffect(() => {
+//         if(userId){
+//             dispatch(SEARCH_BY_ID(userId))
+//         }
+// }, []);
 
     return (
         <nav className='nav'>
@@ -53,11 +58,11 @@ const Nav = () => {
                     </div>
                 </Link>
                 {/* //! LOGIN */}
-                {userResponse.ok ? <LogOut user={userFirstName} User={User} />
-                    : <Link className='nav__loginCart--login' to={`/login`} >
-                        <img className='nav__loginCart--login-img' src={User} alt='img not found' />
-                        <p className='nav__loginCart--login-text'>Acceso</p>
-                    </Link>
+                {userResponse.ok ? <LogOut id = {userId} User = {User}/>
+                : <Link className='nav__loginCart--login' to={`/login`} >
+                <img className='nav__loginCart--login-img' src={User} alt='img not found' />
+                <p className='nav__loginCart--login-text'>Acceso</p>
+            </Link>
                 }
             </div>
         </nav>

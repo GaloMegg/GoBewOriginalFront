@@ -13,6 +13,10 @@ import Address from './components/cart/addressForm/Address';
 import Checkout from './components/cart/checkout/Checkout';
 import OrderDetailContainer from './components/order/OrderDetailContainer';
 import AllOrdersContainer from './components/order/AllOrdersContainer';
+import EditNameProfile from './components/login/EditNameProfile';
+import EditDirecProfile from './components/login/EditDirecProfile';
+// import CategoriesNew from './components/nav/categories/CategoriesNew.jsx';
+  // const [ViewCategories, setViewCategories] = useState(true);
 import ReviewsFormContainer from './components/reviews/ReviewsFormContainer';
 import UserProfile from './components/login/UserProfile';
 import Faqs from './components/faq/Faqs';
@@ -36,6 +40,8 @@ function App() {
         <Route exact path='/orders/all' element={<AllOrdersContainer />} />
         <Route exact path='/review/:orderId/:productId/:userId' element={<> <ReviewsFormContainer /></>} />
         <Route exact path='/profile' element={<> <UserProfile /> </>} />
+        <Route exact path="/profile/editName/:userId" element= {<> <EditNameProfile/> </>} />
+        <Route exact path="/profile/editDirec/:direcId" element= {<> <EditDirecProfile/> </>} />
         <Route exact path='/order/:id' element={<> <OrderDetailContainer /></>} />
         <Route exact path='/orders/all' element={<> <AllOrdersContainer /></>} />
         <Route exact path='/faqs' element={<> <Faqs /></>} />
