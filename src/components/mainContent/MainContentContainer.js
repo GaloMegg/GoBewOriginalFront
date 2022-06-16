@@ -7,7 +7,7 @@ import ProductCardContainer from './ProductCardContainer'
 
 const MainContentContainer = () => {
   const dispatch = useDispatch()
-  const { userId } = useSelector(state => state.clientReducer)
+  const { userId, isFiltered } = useSelector(state => state.clientReducer)
   useEffect(() => {
     let token = localStorage.getItem('token')
     if (token) {
@@ -31,25 +31,21 @@ const MainContentContainer = () => {
   }, [userId])
   useEffect(() => {
     if (userId) {
-        dispatch(SEARCH_BY_ID(userId))
+      dispatch(SEARCH_BY_ID(userId))
     }
-}, []);
+  }, []);
 
 
   return (
     <div>
-
       <div className='MainContent'>
         <Filters />
         <div>
-
-        <Highlight />
-        <ProductCardContainer />
+          {!isFiltered && <Highlight />}
+          <ProductCardContainer />
         </div>
       </div>
-
     </div>
-
   )
 }
 

@@ -6,12 +6,12 @@
     justify-content: space-around;
 
     .orderButtons__price {
-        @include btn(0%);
+        @include btn();
         width: 40%;
     }
 
     .orderButtons__alph {
-        @include btn(0%);
+        @include btn();
         width: 40%;
     }
 }

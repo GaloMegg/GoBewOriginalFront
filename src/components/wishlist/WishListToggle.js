@@ -9,6 +9,7 @@ const WishListToggle = ({ _id }) => {
     const dispatch = useDispatch()
     const [isWished, setIsWished] = useState(Boolean(wishes.find(wish => wish.productId === _id)))
     const handleClick = () => {
+        setIsWished(!isWished)
         fetch(`${REACT_APP_APIURL}wishlist/new`, {
             method: 'POST',
             headers: {

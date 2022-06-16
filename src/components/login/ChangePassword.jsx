@@ -5,8 +5,8 @@ import axios from "axios";
 import { useCallback, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect } from 'react';
-const { REACT_APP_APIURL } = process.env;
 import { toast } from 'react-toastify';
+const { REACT_APP_APIURL } = process.env;
 
 export const ChangePassword = () => {
   const { userId, hash, userEmail } = useParams();
