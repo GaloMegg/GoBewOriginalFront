@@ -28,12 +28,12 @@ export default function UserProfile() {
             {userAllInfo?.userFirstName ?
                 <div className="userProfile__flex">
                     <div className="userProfile__profile">
-                        <h3>
-                            <span>Nombre : </span>{userAllInfo.userFirstName} </h3>
+                        <h3><span>Nombre : </span>{userAllInfo.userFirstName} </h3>
                         <h3><span> Apellido :</span> {userAllInfo.userLastName}</h3>
-                        <Link to={`/profile/editName/${userId}`}>
+                        {/* <Link to={`/profile/editName/${userId}`}>
                             Editar nombre
-                        </Link>
+                        </Link> */}
+
                     </div>
                     <div className="userProfile__address">
                         {userDirection?.addresses?.length ? userDirection.addresses.map((element, index) =>

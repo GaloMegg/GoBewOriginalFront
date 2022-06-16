@@ -20,9 +20,11 @@ const initialState = {
     userResponse: { ok: '' },
     faqs: [],
     userAllInfo: {},
-    userDirection:[],
+
+    userDirection: [],
+
     productHighlight: [],
-    wishes:[]
+    wishes: []
 }
 
 export const clientReducer = createReducer(initialState, (builder) => {
@@ -150,27 +152,28 @@ export const clientReducer = createReducer(initialState, (builder) => {
     builder.addCase(GET_FAQS.fulfilled, (state, action) => {
         state.faqs = action.payload
     })
-    builder.addCase(SEARCH_BY_ID.fulfilled, (state, action)=>{
-        state.userAllInfo= action.payload
+    builder.addCase(SEARCH_BY_ID.fulfilled, (state, action) => {
+        state.userAllInfo = action.payload
         console.log(action.payload)
         state.userFirstName = action.payload.userFirstName
     })
-    builder.addCase(SEARCH_DIRECTION_BY_ID.fulfilled, (state, action)=>{
+    builder.addCase(SEARCH_DIRECTION_BY_ID.fulfilled, (state, action) => {
         state.userDirection = action.payload
     })
-    builder.addCase(CHANGE_NAME.fulfilled, (state, action)=>{
+    builder.addCase(CHANGE_NAME.fulfilled, (state, action) => {
         console.log(action.payload.user.userFirstName)
         state.userFirstName = action.payload.user.userFirstName
         console.log(state.userFirstName)
-        state.userResponse = action.payload.ok
-    })
-    builder.addCase(CHANGE_DIRECTION.fulfilled,(state,action)=>{
-    state.userResponse = action.payload.ok
-    })
-    builder.addCase(CHECK_GOOGLE_MAIL.fulfilled,(state,action)=>{
         state.userResponse = action.payload
     })
-    builder.addCase(GET_WISHES.fulfilled, (state, action)=>{
+    builder.addCase(CHANGE_DIRECTION.fulfilled, (state, action) => {
+        // state.userResponse = action.payload.ok
+    })
+    builder.addCase(CHECK_GOOGLE_MAIL.fulfilled, (state, action) => {
+
+        state.userResponse = action.payload
+    })
+    builder.addCase(GET_WISHES.fulfilled, (state, action) => {
         state.wishes = action.payload.wishList
     })
 })

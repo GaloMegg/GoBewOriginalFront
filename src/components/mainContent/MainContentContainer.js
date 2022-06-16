@@ -33,9 +33,6 @@ const MainContentContainer = () => {
       dispatch(SEARCH_BY_ID(userId))
     }
   }, []);
-
-
-
   return (
     <div>
       <div className='MainContent'>
@@ -46,7 +43,6 @@ const MainContentContainer = () => {
         </div>
       </div>
     </div>
-
   )
 }
 
