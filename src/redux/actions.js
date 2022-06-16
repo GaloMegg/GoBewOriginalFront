@@ -707,14 +707,15 @@ export const CHANGE_NAME = createAsyncThunk(
             const data = res.data
             console.log(res.data)
             if (data.ok) {
-                return data
+                return { ok: data.ok, ...data.user }
             } else {
                 return {
                     ok: false,
                     msg: data
                 }
             }
-        } catch (e) {
+        }
+        catch (e) {
             return e
         }
     }
@@ -751,13 +752,13 @@ export const CHANGE_DIRECTION = createAsyncThunk(
     }
 )
 export const CHECK_GOOGLE_MAIL = createAsyncThunk(
-    "CHECK_GOOGLE_MAIL", async (userEmail) =>{
-        try{
+    "CHECK_GOOGLE_MAIL", async (userEmail) => {
+        try {
             const response = await axios.get(`${REACT_APP_APIURL}users/userIsGoogleByMail/${userEmail}`)
             const data = response.data
-            console.log (data)
+            console.log(data)
             return data
-        } catch(e){
+        } catch (e) {
             console.log(e)
         }
     }

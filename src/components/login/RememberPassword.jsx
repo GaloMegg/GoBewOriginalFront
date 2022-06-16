@@ -67,19 +67,11 @@ export const RememberPassword = () => {
       >
         {props => (
           <section >
-            <Form >
-              <div >
-                <h1>REESTABLECER CONTRASEÑA</h1>
-              </div>
-              <div >
-                <TextInput name='userEmail' type='email' placeholder='e-mail' />
-              </div>
-              <div>
-                <button type="submit">Enviar</button>
-                {usuarioDeGoogle && <p>{usuarioDeGoogle} </p>}
-              </div>
-
-
+            <Form className='changePasswordForm' >
+              <h1>REESTABLECER CONTRASEÑA</h1>
+              <TextInput name='userEmail' type='email' placeholder='e-mail' />
+              <button type="submit">Enviar</button>
+              {usuarioDeGoogle && <p>{usuarioDeGoogle} </p>}
             </Form>
           </section>
         )}
