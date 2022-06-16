@@ -15,8 +15,6 @@ import OrderDetailContainer from './components/order/OrderDetailContainer';
 import AllOrdersContainer from './components/order/AllOrdersContainer';
 import EditNameProfile from './components/login/EditNameProfile';
 import EditDirecProfile from './components/login/EditDirecProfile';
-// import CategoriesNew from './components/nav/categories/CategoriesNew.jsx';
-  // const [ViewCategories, setViewCategories] = useState(true);
 import ReviewsFormContainer from './components/reviews/ReviewsFormContainer';
 import UserProfile from './components/login/UserProfile';
 import Faqs from './components/faq/Faqs';

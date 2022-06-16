@@ -4,7 +4,6 @@
     width: 61%;
     justify-content: space-evenly;
 
-
     .productCard__addToCart--- {
         @include btn();
         width: 20%;
@@ -23,6 +22,5 @@
     .productCard__addToCart--add {
         @include btn();
         min-width: 30%;
-
     }
 }

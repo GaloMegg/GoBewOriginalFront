@@ -7,6 +7,7 @@ import { CHECK_LOGIN, GET_WISHES, SEARCH_BY_ID, SEARCH_DIRECTION_BY_ID } from ".
 export default function UserProfile() {
     const { userId, userAllInfo, userDirection } = useSelector(store => store.clientReducer);
     console.log(userDirection)
+
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -22,7 +23,6 @@ export default function UserProfile() {
         }
     }, [userId]);
     return (<>
-
         <Link to="/orders/all" className="ordersAll"> Ver todas mis Compras </Link>
         <div className="userProfile__container">
             {userAllInfo?.userFirstName ?

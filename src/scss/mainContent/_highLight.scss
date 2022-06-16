@@ -12,6 +12,7 @@
         // text-decoration: underline;
         text-transform: uppercase;
         margin-top: 2%;
+
     }
 
     .highlight--prods__container {
@@ -34,6 +35,7 @@
                 animation: heartbeat 1s ease-in-out infinite both;
             }
         }
+
 
     }
 
@@ -85,6 +87,7 @@
     max-height: 20vh;
     min-height: 30vh;
     margin: 3%;
+
 
     a {
         display: flex;
@@ -172,3 +175,4 @@
               animation-timing-function: ease-out;
     }
   }
+

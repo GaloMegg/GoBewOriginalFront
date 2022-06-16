@@ -15,7 +15,6 @@ export const RememberPassword = () => {
   const [info, setInfo] = useState("")
   const [check, setcheck] = useState(false);
   let usuarioDeGoogle = ""
-  // let info = ""
 
   const sendMailResetPass = async (values) => {
     try {
@@ -23,7 +22,9 @@ export const RememberPassword = () => {
       console.log(values)
       const response = await axios.post(`${REACT_APP_APIURL}users/resetPass`, values);
       console.log(response)
+
       if (response.data.ok) {
+
         setOk(response.data.msg)
       } else {
         setOk(response.data.msg)
@@ -76,7 +77,6 @@ export const RememberPassword = () => {
           </section>
         )}
       </Formik>
-
     </div>
   )
 };
