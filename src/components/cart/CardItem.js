@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { REMOVE_FROM_CART, SET_TOTAL, ADD_ONE_CART, REMOVE_ONE_CART, REMOVE_ONE_USER_CART, ADD_ONE_USER_CART, DELETE_PRODUCT_USER } from '../../redux/actions'
 const { REACT_APP_CLOUDINARY_RES } = process.env
-// { _id, images, quantity, productPrice, productName, totalCart, productStock, }
 const CardItem = (props) => {
   const { _id, images, quantity, productPrice, productName, totalCart, productStock, } = props
   const dispatch = useDispatch()
@@ -15,7 +14,6 @@ const CardItem = (props) => {
       localStorage.setItem('totalCart', JSON.stringify(totalCart))
     }
   }, [cart, totalCart])
-
   const CarouselImagesPrev = () => {
     if (img > 0) {
       setImg(img - 1)
@@ -58,20 +56,15 @@ const CardItem = (props) => {
     localStorage.removeItem('totalCart')
     dispatch(REMOVE_FROM_CART(_id))
     dispatch(SET_TOTAL(totalCart - productPrice * quantity))
-
   }
   return (
     <article className='cartItem' >
       {/* {images?.length >= 2 && <button onClick={CarouselImagesPrev}>{"<"}</button>} */}
       <Link to={`/productDetail/${_id}`} className='cartItem__img--container'>
-
         {images && <img src={`${REACT_APP_CLOUDINARY_RES}${images[0]?.imageName}`} alt={images.imageAlt} className='cartItem__img' />}
-
-
       </Link>
       {/* {images?.length >= 2 && <button onClick={CarouselImagesNext}>{">"}</button>} */}
       <p className='cartItem__productName' >{productName}</p>
-
       <p className='cartItem__productPrice' >${productPrice?.toLocaleString('de-DE')}</p>
       <button onClick={removeOneOfCart} className='cartItem__less' > - </button>
       <p className='cartItem__productQuantity' >{quantity}</p>

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { SET_TOTAL, ADD_TO_CART, CREATE_USER_CART, UPDATE_USER_CART, SET_CART } from '../../redux/actions'
+import { SET_TOTAL, ADD_TO_CART, CREATE_USER_CART, UPDATE_USER_CART } from '../../redux/actions'
 import { toast } from 'react-toastify';
 const ProductAdd = ({ stock, price, product }) => {
     const dispatch = useDispatch()

@@ -15,38 +15,26 @@ export const RememberPassword = () => {
   const [info, setInfo] = useState("")
   const [check, setcheck] = useState(false);
   let usuarioDeGoogle = ""
-
   const sendMailResetPass = async (values) => {
     try {
-      console.log(`${REACT_APP_APIURL}users/resetPass`)
-      console.log(values)
       const response = await axios.post(`${REACT_APP_APIURL}users/resetPass`, values);
-      console.log(response)
-
       if (response.data.ok) {
-
         setOk(response.data.msg)
       } else {
         setOk(response.data.msg)
       }
-
     } catch (error) {
-      console.log(error)
       setOk('Ha ocurrido un error, por favor intente nuevamente.')
     }
   }
   if (check && userResponse.ok && userResponse.userIsGoogle) {
     usuarioDeGoogle = "Usted creo su usuario con google, no puede cambiar su contraseña"
-    console.log("hola")
-
   } else if (check && userResponse.ok && !userResponse.userIsGoogle) {
     sendMailResetPass(info)
-    console.log(info)
     toast.success("Mail enviado")
     setcheck(false)
   }
   return (
-
     <div >
       <span>{ok}</span>
       <Formik
@@ -61,10 +49,7 @@ export const RememberPassword = () => {
           dispatch(CHECK_GOOGLE_MAIL(values.userEmail))
           setcheck(true)
           setInfo(values)
-          // sendMailResetPass(values)
-
         }}
-
       >
         {props => (
           <section >

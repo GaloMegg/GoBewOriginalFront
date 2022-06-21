@@ -10,7 +10,6 @@ const AllOrdersContainer = () => {
     useEffect(() => {
         dispatch(CHECK_LOGIN())
     }, [dispatch])
-
     useEffect(() => {
         fetch(`${REACT_APP_APIURL}payments/order/getAll/ByUser/${userId}`
             , {
@@ -27,13 +26,10 @@ const AllOrdersContainer = () => {
         return () => {
         }
     }, [userId])
-
-
     return (
         <article className='allOrders'>
             <AllOrders orders={orders} setOrders={setOrders} />
         </article>
     )
 }
-
 export default AllOrdersContainer

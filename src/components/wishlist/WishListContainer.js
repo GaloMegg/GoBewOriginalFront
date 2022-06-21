@@ -6,11 +6,9 @@ const { REACT_APP_APIURL } = process.env
 const WishListContainer = () => {
     const dispatch = useDispatch()
     const { userId } = useSelector(store => store.clientReducer)
-
     const [wishes, setWishes] = useState([])
     useEffect(() => {
         if (userId) {
-
             fetch(`${REACT_APP_APIURL}wishList/getAllByUser/${userId}`,
                 {
                     method: 'GET',
@@ -27,12 +25,9 @@ const WishListContainer = () => {
             dispatch(CHECK_LOGIN())
         }
     }, [userId])
-
     let mapedWishes = wishes.map((wish) => {
         return { ...wish.product, images: wish.images, productIsActive: true }
     })
-
-
     return (
         <div className='wishList'>
             <h1>Favoritos:</h1>
@@ -42,5 +37,4 @@ const WishListContainer = () => {
         </div>
     )
 }
-
 export default WishListContainer

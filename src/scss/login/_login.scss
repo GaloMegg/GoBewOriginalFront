@@ -14,7 +14,6 @@
 
     .loginForm__title {
         margin-top: 3%;
-
     }
 
     .loginForm--container {
@@ -59,7 +58,7 @@
             .loginForm__login--btn {
                 @include btn();
                 width: 40%;
-            }
+            }       
 
             .loginForm__singup--link {
                 width: 40%;

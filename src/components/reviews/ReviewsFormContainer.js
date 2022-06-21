@@ -8,9 +8,9 @@ const ReviewsFormContainer = () => {
     const data = useParams()
     const dispatch = useDispatch()
     const [orderReview, setorderReview] = useState([])
-    useEffect(()=>{
+    useEffect(() => {
         dispatch(CHECK_LOGIN())
-    },[])
+    }, [])
     useEffect(() => {
         fetch(`${REACT_APP_APIURL}reviews/byOrder/${data.orderId}`)
             .then(res => res.json())
@@ -26,5 +26,4 @@ const ReviewsFormContainer = () => {
         </div>
     )
 }
-
 export default ReviewsFormContainer

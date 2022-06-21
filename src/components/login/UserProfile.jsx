@@ -6,10 +6,7 @@ import { CHECK_LOGIN, GET_WISHES, SEARCH_BY_ID, SEARCH_DIRECTION_BY_ID } from ".
 
 export default function UserProfile() {
     const { userId, userAllInfo, userDirection } = useSelector(store => store.clientReducer);
-    console.log(userDirection)
-
     const dispatch = useDispatch();
-
     useEffect(() => {
         dispatch(CHECK_LOGIN())
         if (userId) {

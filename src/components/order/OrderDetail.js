@@ -50,7 +50,6 @@ const OrderDetail = ({ orderState, orderTotal, user, addressComment, addressStre
                     <p> <span> Estado:</span> {orderPosibleStates[orderState]}</p>
                 </div>
             </div>
-
         </>
     )
 }

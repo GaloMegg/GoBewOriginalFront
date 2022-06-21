@@ -26,15 +26,12 @@ const MainContentContainer = () => {
         dispatch(SET_TOTAL(totalCartStorageParsed))
       }
     }
-
   }, [userId])
   useEffect(() => {
     if (userId) {
       dispatch(SEARCH_BY_ID(userId))
     }
   }, []);
-
-
   return (
     <div>
       <div className='MainContent'>

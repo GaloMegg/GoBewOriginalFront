@@ -10,7 +10,6 @@ export default function ProductDetail({ product, reviews }) {
     useEffect(() => {
         setMapedReviews(reviews)
     }, [reviews])
-
     return (
         <div className="productDetail">
             <div className='productDetail__details' >
@@ -22,7 +21,6 @@ export default function ProductDetail({ product, reviews }) {
                     <p className="">${product[0]?.productPrice.toLocaleString('de-DE')}</p>
                     <div className='productDetail--container-btn'>
                         <ProductAdd price={product[0]?.productPrice} stock={product[0]?.productPrice} product={product[0]} />
-
                     </div>
                 </div>
                 {reviews?.length > 0 && < div style={{ alignSelf: "flex-start", display: "flex", alignItems: "center" }}>
@@ -32,7 +30,6 @@ export default function ProductDetail({ product, reviews }) {
                     <AiFillStar className='' style={{ color: "#17252a" }} />
                 </div>}
             </div>
-            {/* //!REVIEWS */}
             {reviews?.length > 0 && <div className="productDetail__reviews">
                 <h1 className='productDetail__reviews--title'>Reviews sobre {product[0]?.productName} </h1>
                 <div className='productDetail__reviews--avg'>
@@ -43,9 +40,7 @@ export default function ProductDetail({ product, reviews }) {
                     </p>
                     <AiFillStar className='productDetail__reviews--star' />
                 </div>
-
                 <div className='productDetail__reviews-stars-container'>
-
                     {reviews && StarRanges?.map((a) => {
                         return <div className='productDetail__reviews--stars'>
                             <progress className='productDetail__reviews--stars-bar' value={reviews?.filter(e => e.reviewStars == a).length} max={reviews ? reviews.length : 0} >
@@ -77,6 +72,5 @@ export default function ProductDetail({ product, reviews }) {
                 })}
             </div>}
         </div >
-
     )
 }

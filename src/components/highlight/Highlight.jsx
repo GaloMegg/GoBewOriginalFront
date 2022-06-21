@@ -5,21 +5,15 @@ import HighlightCard from "./HighlightCard"
 import { useState } from "react"
 import { TiArrowRightThick } from 'react-icons/ti'
 import '../../scss/mainContent/_highLight.scss'
-
 export default function Highlight() {
-
     let dispatch = useDispatch()
     let highlightProd = useSelector((state) => state.clientReducer.productHighlight)
-
     let res = highlightProd.productList
-
-    //!PAGINATION 
     const [currentHigh, setCurrentHigh] = useState(res);
     const [pageCount, setPageCount] = useState(0);
     const [itemOffset, setItemOffset] = useState(0);
     const [currPage, setCurrPage] = useState(1);
     const itemPerPage = 3;
-
     function handleClickDer() {
         if (currPage === pageCount - 1) {
             setCurrPage(0)
@@ -35,17 +29,14 @@ export default function Highlight() {
             setCurrentHigh(res?.slice(itemOffset, endOffset));
         }
     }
-
     useEffect(() => {
         const endOffset = itemOffset + itemPerPage;
         setCurrentHigh(res?.slice(itemOffset, endOffset));
         setPageCount(Math.ceil(res?.length / itemPerPage));
     }, [res, itemOffset, itemPerPage]);
-
     useEffect(() => {
         dispatch(GET_HIGHLIGHTED())
     }, [dispatch])
-
     return (
         <div className="highlight--content__container">
             <h2>Nuestros Productos Destacados</h2>

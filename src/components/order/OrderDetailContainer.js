@@ -16,7 +16,6 @@ const OrderDetailContainer = () => {
     useEffect(() => {
         dispatch(CHECK_LOGIN())
     }, [])
-
     useEffect(() => {
         fetch(`${REACT_APP_APIURL}payments/order/byId/${id}`,
             {
@@ -28,10 +27,8 @@ const OrderDetailContainer = () => {
             }
         ).then(res => res.json()).then(data => { setOrderData(data) })
     }, [id])
-
     useEffect(() => {
         if (orderData.ok) {
-
             fetch(`${REACT_APP_APIURL}address/byOrder/${orderData.obj._id}`,
                 {
                     method: 'GET',
@@ -42,7 +39,6 @@ const OrderDetailContainer = () => {
                 }
             ).then(res => res.json()).then(data => setAddressData(data))
         }
-
     }, [orderData])
     useEffect(() => {
         fetch(`${REACT_APP_APIURL}reviews/byOrder/${id}`)
@@ -50,7 +46,6 @@ const OrderDetailContainer = () => {
             .then(data => setRev(data.reviews))
             .catch(err => err)
     }, [id])
-
     return (
         <section className='orderDetails'>
             {(userId && orderData?.obj?.userId == userId) ? <OrderDetail reviews={rev} {...orderData.obj} {...addressData.address} userId={userId} /> : <h1>Estas un poco perdido... Dejame que te lleve a tus ordenes</h1>}
