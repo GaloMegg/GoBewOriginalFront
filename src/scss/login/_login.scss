@@ -1,5 +1,10 @@
 @use "../variables" as v;
 @import "./loginGoogle";
+@import "./profile";
+@import "./changeAddress";
+
+@import "./changepass";
+
 
 .loginForm {
     display: flex;
@@ -27,7 +32,7 @@
         justify-content: space-around;
 
         .createUser__btn {
-            @include btn(40%);
+            @include btn();
             width: 20%;
         }
 
@@ -54,7 +59,7 @@
             justify-content: space-around;
 
             .loginForm__login--btn {
-                @include btn(40%);
+                @include btn();
                 width: 40%;
             }
 
@@ -62,7 +67,7 @@
                 width: 40%;
 
                 .loginForm__singup--btn {
-                    @include btn(100%);
+                    @include btn();
                     width: 100%;
                 }
             }

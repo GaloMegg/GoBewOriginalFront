@@ -12,8 +12,8 @@
 
     .cart__cleanCart {
         align-self: flex-end;
-        @include btn(40%);
-        padding: 1.5%;
+        @include btn();
+        padding: 1%;
     }
 
     .cart__link {
@@ -24,7 +24,7 @@
         margin: 2%;
 
         .cart__link--button {
-            @include btn(100%);
+            @include btn();
             margin: 0%;
 
         }

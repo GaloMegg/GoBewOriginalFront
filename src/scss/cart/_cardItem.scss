@@ -38,17 +38,17 @@
     }
 
     .cartItem__less {
-        @include btn(100%);
+        @include btn();
         padding: 1.5%;
     }
 
     .cartItem__more {
-        @include btn(100%);
+        @include btn();
         padding: 1.5%;
     }
 
     .cartItem__erase {
-        @include btn(100%);
+        @include btn();
         padding: 1.5%;
     }
 }

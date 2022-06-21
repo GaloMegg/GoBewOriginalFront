@@ -21,7 +21,7 @@
             width: 60%;
 
             .googleFormSuccess--btn {
-                @include btn(100%);
+                @include btn();
                 width: 100%;
             }
         }

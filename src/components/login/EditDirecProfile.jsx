@@ -17,7 +17,7 @@ export default function EditDirecProfile() {
     const [ok, setOk] = useState({
         ok: '',
         msg: ''
-      })
+    })
     //   console.log(direcId)
     let direcActual = []
     const { userId, userAllInfo, userDirection, userResponse } = useSelector(store => store.clientReducer);
@@ -29,9 +29,9 @@ export default function EditDirecProfile() {
     });
     if (userResponse.ok && check) {
         // toast.success("Se ha cambiado tu direccion con exito")
-        alert("Se ha cambiado la direccion con exito")
+        toast.success("Se ha cambiado la direccion con exito")
         navigate("/")
-    } 
+    }
     // else if (!userResponse.ok && check){
     //     setOk({ok: false, msg: 'Usuario no encontrado'})
     // }
@@ -93,19 +93,20 @@ export default function EditDirecProfile() {
         >
             {
                 (formik) => (
-                    <Form className='newAddressForm'>
-                        <p>Añade una nueva dirección</p>
-
-                        <TextInput label='Provincia*' name='addressProvince' type='text' placeholder='Provincia *' />
-                        <TextInput label='Ciudad *' name='addressCity' type='text' placeholder='Ciudad *' />
-                        <TextInput label='Código postal*' name='addressZipCode' type='number' placeholder='Código postal' />
-                        <TextInput label='Calle *' name='addressStreet' type='text' placeholder='Calle *' />
-                        <TextInput label='Numero *' name='addressNumber' type='number' placeholder='Numero *' />
-                        <TextInput label='Piso *' name='addressFloor' type='number' placeholder='Piso *' />
-                        <TextInput label='Departamento *' name='addressFlat' type='text' placeholder='Departamento *' />
-                        <Field as="textarea" name="addressComment" label='Descripción' class="textArea" placeholder='Descripción de envío' />
-                        <button className='' type='submit'> AGREGAR NUEVA DIRECCIÓN</button>
-                        {ok.ok === false && <p> {ok.msg} </p>}
+                    <Form className='changeAddressForm'>
+                        <div>
+                            <p>Editar dirección</p>
+                            <TextInput label='Provincia*' name='addressProvince' type='text' placeholder='Provincia *' />
+                            <TextInput label='Ciudad *' name='addressCity' type='text' placeholder='Ciudad *' />
+                            <TextInput label='Código postal*' name='addressZipCode' type='number' placeholder='Código postal' />
+                            <TextInput label='Calle *' name='addressStreet' type='text' placeholder='Calle *' />
+                            <TextInput label='Numero *' name='addressNumber' type='number' placeholder='Numero *' />
+                            <TextInput label='Piso *' name='addressFloor' type='number' placeholder='Piso *' />
+                            <TextInput label='Departamento *' name='addressFlat' type='text' placeholder='Departamento *' />
+                            <Field as="textarea" name="addressComment" label='Descripción' class="textArea" placeholder='Descripción de envío' />
+                            <button className='' type='submit'>GUARDAR CAMBIOS</button>
+                            {ok.ok === false && <p> {ok.msg} </p>}
+                        </div>
                     </Form >
                 )
             }

@@ -1,18 +1,23 @@
-import react, {useState} from "react"
+
+import react, { useState } from "react"
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux"
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { LOG_OUT, SEARCH_BY_ID } from "../../redux/actions";
 
 export default function LogOut({ userId,User}) {
     const {userAllInfo , userFirstName} = useSelector(store => store.clientReducer);
+
     const dispatch = useDispatch();
+    const navigate = useNavigate()
     const [clickUser, setClickUser] = useState(false)
     const handleClick = () => {
         setClickUser(!clickUser)
     }
     const handleLogOut = () => {
         dispatch(LOG_OUT())
+        navigate("/")
+
     }
     // useEffect(() => {
     //     if (userId){

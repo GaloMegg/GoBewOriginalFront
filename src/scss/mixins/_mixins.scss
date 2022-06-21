@@ -1,6 +1,6 @@
 @use "../variables" as v;
 
-@mixin btn ($width: 40%) {
+@mixin btn () {
     height: 5vh;
     padding: 2%;
     margin: 1%;

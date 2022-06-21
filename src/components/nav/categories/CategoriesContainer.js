@@ -29,7 +29,7 @@ const CategoriesContainer = ({ handleReset }) => {
 
             return
         }
-        let filteredProducts = productsToFilter.filter(product => product.categories[0]?.categorySupId === e.target.id || product.categories[0]?._id === e.target.id)
+        let filteredProducts = productsToFilter.filter(product => product.categories[0]?.categorySupId === e.target.id || product?.productCategories?.includes(e.target.id))
         dispatch(GET_PRODUCTS_BYCATEGORY(filteredProducts))
         handleReset()
     }

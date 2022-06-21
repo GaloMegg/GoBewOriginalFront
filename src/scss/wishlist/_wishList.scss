@@ -4,11 +4,11 @@
     justify-content: space-evenly;
     width: 99%;
     align-items: center;
-    &>div{
-        display: flex;
 
+    &>div {
+        display: flex;
+        justify-content: space-around;
+        align-items: flex-start;
+        flex-wrap: wrap;
     }
-    // .productard{
-    //     max-width:30% ;
-    // }
 }

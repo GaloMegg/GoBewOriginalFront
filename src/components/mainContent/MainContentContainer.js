@@ -15,7 +15,6 @@ const MainContentContainer = () => {
       if (userId) {
         dispatch(GET_USER_CART(userId))
         dispatch(GET_WISHES(userId))
-
       }
     } else {
       let cartStorage = localStorage.getItem('cart')
@@ -34,14 +33,14 @@ const MainContentContainer = () => {
       dispatch(SEARCH_BY_ID(userId))
     }
   }, []);
-
-
   return (
     <div>
       <div className='MainContent'>
         <Filters />
-        <Highlight />
-        <ProductCardContainer />
+        <div>
+          {!isFiltered && <Highlight />}
+          <ProductCardContainer />
+        </div>
       </div>
     </div>
   )

@@ -55,7 +55,6 @@ export default function Highlight() {
                         return <HighlightCard key={elem._id} _id={elem._id} images={elem?.images[0].imageName} productPrice={elem.productPrice} />
                     })
                 }
-
                 <button className="react--paginate__der" onClick={handleClickDer}>
                     <TiArrowRightThick size={40} />
                 </button>
