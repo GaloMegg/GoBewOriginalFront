@@ -152,6 +152,7 @@ export const clientReducer = createReducer(initialState, (builder) => {
         state.userResponse = action.payload
     })
     builder.addCase(CHECK_GOOGLE_MAIL.fulfilled, (state, action) => {
+        state.userFirstName = action.payload.user.userFirstName
         state.userResponse = action.payload
     })
     builder.addCase(GET_WISHES.fulfilled, (state, action) => {
