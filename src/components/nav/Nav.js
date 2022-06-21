@@ -21,14 +21,14 @@ const Nav = () => {
         } else {
             let cartStorage = localStorage.getItem('cart')
             let totalCartStorage = localStorage.getItem('totalCart')
-            if (cartStorage && totalCartStorage && totalCartStorage != "undefined") {
+            if (cartStorage && totalCartStorage && totalCartStorage !== "undefined") {
                 let cartStorageParsed = JSON.parse(cartStorage)
                 let totalCartStorageParsed = JSON.parse(totalCartStorage)
                 dispatch(SET_CART(cartStorageParsed))
                 dispatch(SET_TOTAL(totalCartStorageParsed))
             }
         }
-    }, [userId])
+    }, [userId, dispatch])
     return (
         <nav className='nav'>
             <div className='nav__logo'>

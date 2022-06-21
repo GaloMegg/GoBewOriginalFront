@@ -1,15 +1,10 @@
-<<<<<<< HEAD
-=======
-
->>>>>>> 80d1d69a33501ad04bc46a9cd0627c1d0f943289
-import react, { useState } from "react"
-import { useEffect } from "react";
+import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { Link, useNavigate } from "react-router-dom";
-import { LOG_OUT, SEARCH_BY_ID } from "../../redux/actions";
+import { LOG_OUT } from "../../redux/actions";
 
 export default function LogOut({ userId, User }) {
-    const { userAllInfo, userFirstName } = useSelector(store => store.clientReducer);
+    const { userFirstName } = useSelector(store => store.clientReducer);
     const dispatch = useDispatch();
     const navigate = useNavigate()
     const [clickUser, setClickUser] = useState(false)

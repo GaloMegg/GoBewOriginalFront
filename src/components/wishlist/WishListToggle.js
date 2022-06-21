@@ -28,7 +28,7 @@ const WishListToggle = ({ _id }) => {
         setIsWished(Boolean(wishes.find(wish => wish.productId === _id)))
         return () => {
         }
-    }, [wishes])
+    }, [wishes, _id])
     return (<>
         {userId && <BsSuitHeartFill onClick={handleClick} className={isWished ? 'wished' : "notWished"} style={{ margin: "1%" }} />}
     </>

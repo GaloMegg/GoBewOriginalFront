@@ -416,7 +416,7 @@ export const REMOVE_ONE_USER_CART = createAsyncThunk(
     'REMOVE_ONE_USER_CART', async (data) => {
         try {
             let arr = [...data.cart]
-            if (arr.length === 1 && arr[0].quantity == 1) {
+            if (arr.length === 1 && arr[0].quantity === 1) {
                 const delResp = await fetch(`${REACT_APP_APIURL}payments/order/${data.orderId}`, {
                     method: 'DELETE',
                     headers: {

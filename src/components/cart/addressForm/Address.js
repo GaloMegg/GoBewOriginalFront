@@ -10,7 +10,7 @@ const Address = () => {
     const [userAddress, setUserAddress] = useState([])
     useEffect(() => {
         dispatch(CHECK_LOGIN())
-    }, [userId])
+    }, [userId, dispatch])
     useEffect(() => {
         setUserAddress([])
         fetch(`${REACT_APP_APIURL}address/byUser/${userId}`, {

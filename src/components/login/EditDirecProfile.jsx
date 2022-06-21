@@ -32,7 +32,7 @@ export default function EditDirecProfile() {
     useEffect(() => {
         dispatch(CHECK_LOGIN())
         dispatch(SEARCH_BY_ID(userId))
-    }, [])
+    }, [userId, dispatch])
     return (
         <Formik
             enableReinitialize={true}

@@ -24,7 +24,7 @@ const WishListContainer = () => {
         } else {
             dispatch(CHECK_LOGIN())
         }
-    }, [userId])
+    }, [userId, dispatch])
     let mapedWishes = wishes.map((wish) => {
         return { ...wish.product, images: wish.images, productIsActive: true }
     })

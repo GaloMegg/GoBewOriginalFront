@@ -14,7 +14,7 @@ const ReviewForm = ({ orderId, productId, userId }) => {
     })
     const handleSubmit = (e) => {
         e.preventDefault()
-        if (values.reviewStars == 0 || values.reviewComment == '') {
+        if (values.reviewStars === 0 || values.reviewComment === '') {
             toast.error('Todos los campos son obligatorios')
             return
         } else if (values.reviewStars > 5 || values.reviewStars < 1) {

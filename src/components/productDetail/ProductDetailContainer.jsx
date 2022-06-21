@@ -18,10 +18,10 @@ export default function ProductDetailContainer() {
         return () => {
             dispatch(CLEAN_UP_DETAILS())
         }
-    }, [dispatch, id])
+    }, [dispatch, userId, id])
     useEffect(() => {
         dispatch(SEARCH_BY_ID(userId))
-    }, []);
+    }, [userId, dispatch]);
     useEffect(() => {
         fetch(`${REACT_APP_APIURL}reviews/byProduct/${id}`)
             .then(res => res.json())

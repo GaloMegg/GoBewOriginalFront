@@ -43,7 +43,7 @@ export default function ProductDetail({ product, reviews }) {
                 <div className='productDetail__reviews-stars-container'>
                     {reviews && StarRanges?.map((a) => {
                         return <div className='productDetail__reviews--stars'>
-                            <progress className='productDetail__reviews--stars-bar' value={reviews?.filter(e => e.reviewStars == a).length} max={reviews ? reviews.length : 0} >
+                            <progress className='productDetail__reviews--stars-bar' value={reviews?.filter(e => e.reviewStars === a).length} max={reviews ? reviews.length : 0} >
                             </progress>
                             <div>
                                 <p>{a}</p>
@@ -54,13 +54,13 @@ export default function ProductDetail({ product, reviews }) {
                     }
                 </div>
                 <div className='productDetail__reviews--btns'>
-                    <button id='all' className={selected == "all" && "selected"} onClick={() => { setSelected("all"); setMapedReviews(reviews) }}>
+                    <button id='all' className={selected === "all" && "selected"} onClick={() => { setSelected("all"); setMapedReviews(reviews) }}>
                         Todas
                     </button>
-                    <button id='upper' className={selected == "upper" && "selected"} onClick={() => { setSelected("upper"); setMapedReviews(reviews.filter(e => e.reviewStars >= 4)) }}>
+                    <button id='upper' className={selected === "upper" && "selected"} onClick={() => { setSelected("upper"); setMapedReviews(reviews.filter(e => e.reviewStars >= 4)) }}>
                         Positivas
                     </button>
-                    <button id="lower" className={selected == "lower" && "selected"} onClick={() => { setSelected("lower"); setMapedReviews(reviews.filter(e => e.reviewStars <= 3)) }}>
+                    <button id="lower" className={selected === "lower" && "selected"} onClick={() => { setSelected("lower"); setMapedReviews(reviews.filter(e => e.reviewStars <= 3)) }}>
                         Negativas
                     </button>
                 </div>

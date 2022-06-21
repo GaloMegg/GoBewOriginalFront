@@ -23,7 +23,7 @@ export default function EditNameProfile() {
   useEffect(() => {
     dispatch(CHECK_LOGIN())
     dispatch(SEARCH_BY_ID(userId))
-  }, [])
+  }, [dispatch, userId])
   if (check && userResponse) {
     toast.success("Se ha cambiado tu nombre con exito")
     navigate("/")

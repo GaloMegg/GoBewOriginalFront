@@ -12,11 +12,11 @@ export default function ProductCardContainer() {
         if (!isFiltered) {
             dispatch(GET_PRODUCTS())
         }
-    }, [dispatch])
+    }, [dispatch, isFiltered])
 
     useEffect(() => {
         dispatch(SEARCH_BY_ID(userId))
-    }, []);
+    }, [userId, dispatch]);
 
     return (
         <section className='products' >

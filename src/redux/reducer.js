@@ -1,5 +1,5 @@
 import { createReducer } from "@reduxjs/toolkit"
-import { GET_CATEGORIES, GET_PRODUCTS, SEARCH_PRODUCT, ORDER_PRODUCTS, GET_PRODUCTS_BYCATEGORY, GET_HIGHLIGHTED, GET_PRODUCT_BY_ID, CLEAN_UP_DETAILS, REMOVE_ONE_CART, ADD_ONE_CART, CLEAN_CART, REMOVE_FROM_CART, SET_TOTAL, SET_CART, ADD_TO_CART, CLEAN_USER_RESPONSE, CREATION_USER_LOGIN, CREATION_USERFORM, CHECK_LOGIN, CREATE_USER_CART, GET_USER_CART, DELETE_USER_CART, LOG_OUT, LOG_IN_USER, POST_USER_ADDRESS, GET_FAQS, SEARCH_BY_ID, SEARCH_DIRECTION_BY_ID, GET_WISHES, CHANGE_NAME, CHANGE_DIRECTION, CHECK_GOOGLE_MAIL } from "./actions"
+import { GET_CATEGORIES, GET_PRODUCTS, SEARCH_PRODUCT, ORDER_PRODUCTS, GET_PRODUCTS_BYCATEGORY, GET_HIGHLIGHTED, GET_PRODUCT_BY_ID, CLEAN_UP_DETAILS, REMOVE_ONE_CART, ADD_ONE_CART, CLEAN_CART, REMOVE_FROM_CART, SET_TOTAL, SET_CART, ADD_TO_CART, CLEAN_USER_RESPONSE, CREATION_USER_LOGIN, CREATION_USERFORM, CHECK_LOGIN, CREATE_USER_CART, GET_USER_CART, DELETE_USER_CART, LOG_OUT, LOG_IN_USER, POST_USER_ADDRESS, GET_FAQS, SEARCH_BY_ID, SEARCH_DIRECTION_BY_ID, GET_WISHES, CHANGE_NAME, CHECK_GOOGLE_MAIL } from "./actions"
 const initialState = {
     products: [],
     productsToFilter: [],
@@ -15,13 +15,7 @@ const initialState = {
     userResponse: { ok: '' },
     faqs: [],
     userAllInfo: {},
-<<<<<<< HEAD
     userDirection: [],
-=======
-
-    userDirection: [],
-
->>>>>>> 80d1d69a33501ad04bc46a9cd0627c1d0f943289
     productHighlight: [],
     wishes: []
 }
@@ -148,33 +142,16 @@ export const clientReducer = createReducer(initialState, (builder) => {
     })
     builder.addCase(SEARCH_BY_ID.fulfilled, (state, action) => {
         state.userAllInfo = action.payload
-<<<<<<< HEAD
-=======
-        console.log(action.payload)
->>>>>>> 80d1d69a33501ad04bc46a9cd0627c1d0f943289
         state.userFirstName = action.payload.userFirstName
     })
     builder.addCase(SEARCH_DIRECTION_BY_ID.fulfilled, (state, action) => {
         state.userDirection = action.payload
     })
     builder.addCase(CHANGE_NAME.fulfilled, (state, action) => {
-<<<<<<< HEAD
         state.userFirstName = action.payload.user.userFirstName
         state.userResponse = action.payload
     })
     builder.addCase(CHECK_GOOGLE_MAIL.fulfilled, (state, action) => {
-=======
-        console.log(action.payload.user.userFirstName)
-        state.userFirstName = action.payload.user.userFirstName
-        console.log(state.userFirstName)
-        state.userResponse = action.payload
-    })
-    builder.addCase(CHANGE_DIRECTION.fulfilled, (state, action) => {
-        // state.userResponse = action.payload.ok
-    })
-    builder.addCase(CHECK_GOOGLE_MAIL.fulfilled, (state, action) => {
-
->>>>>>> 80d1d69a33501ad04bc46a9cd0627c1d0f943289
         state.userResponse = action.payload
     })
     builder.addCase(GET_WISHES.fulfilled, (state, action) => {
