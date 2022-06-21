@@ -12,7 +12,6 @@ const HighLightedBtn = () => {
         } else {
             dispatch(GET_PRODUCTS())
         }
-
     }
     return (
         <>

@@ -2,6 +2,10 @@
 @import "./loginGoogle";
 @import "./profile";
 @import "./changeAddress";
+@import "./changepass";
+
+@import "./changepass";
+
 
 @import "./changepass";
 
@@ -16,7 +20,6 @@
 
     .loginForm__title {
         margin-top: 3%;
-
     }
 
     .loginForm--container {
@@ -61,7 +64,7 @@
             .loginForm__login--btn {
                 @include btn();
                 width: 40%;
-            }
+            }       
 
             .loginForm__singup--link {
                 width: 40%;

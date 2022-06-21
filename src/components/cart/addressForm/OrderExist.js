@@ -2,30 +2,6 @@ import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 const { REACT_APP_APIURL } = process.env
-// {
-//     "ok": true,
-//     "addresses": [
-//         {
-//             "_id": "62a0ea7652d48a1efa8a8353",
-//             "userId": "629a69731d7fbe26fa74d269",
-//             "addressStreet": "25 de mayo",-
-//             "addressNumber": 2020,-
-//             "addressFloor": "1",-
-//             "addressCity": "Gualeguaychú",-
-//             "addressFlat": "c",-
-//             "addressZipCode": "2820",-
-//             "addressProvince": "Entre ríos",
-//             "addressComment": "25 de mayo",
-//             "addressIsShipping": true,
-//             "addressIsBilling": true,
-//             "__v": 0
-//         }
-//     ]
-// }
-
-
-
-
 const OrderExist = ({ userAddress }) => {
     const navigate = useNavigate()
     const { orderId } = useSelector(state => state.clientReducer)

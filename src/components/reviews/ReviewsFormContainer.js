@@ -8,16 +8,16 @@ const ReviewsFormContainer = () => {
     const data = useParams()
     const dispatch = useDispatch()
     const [orderReview, setorderReview] = useState([])
-    useEffect(()=>{
+    useEffect(() => {
         dispatch(CHECK_LOGIN())
-    },[])
+    }, [dispatch])
     useEffect(() => {
         fetch(`${REACT_APP_APIURL}reviews/byOrder/${data.orderId}`)
             .then(res => res.json())
             .then(data => setorderReview(data.reviews))
             .catch(err => err)
-    }, [])
-    let exist = orderReview.find(item => item.orderId == data.orderId && item.productId == data.productId && item.userId == data.userId)
+    }, [data.orderId])
+    let exist = orderReview.find(item => item.orderId === data.orderId && item.productId === data.productId && item.userId === data.userId)
     return (
         <div>
             {
@@ -26,5 +26,4 @@ const ReviewsFormContainer = () => {
         </div>
     )
 }
-
 export default ReviewsFormContainer

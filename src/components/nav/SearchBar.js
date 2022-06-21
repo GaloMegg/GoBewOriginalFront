@@ -1,8 +1,6 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
 import { GET_PRODUCTS, SEARCH_PRODUCT } from '../../redux/actions'
-// import styles from '../styles/nav.module.css'
-
 const SearchBar = () => {
     const dispatch = useDispatch()
     const handleChanges = (e) => {
@@ -18,5 +16,4 @@ const SearchBar = () => {
         </>
     )
 }
-
 export default SearchBar

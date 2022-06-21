@@ -1,11 +1,8 @@
 import React, { useEffect } from 'react'
-import { useNavigate } from 'react-router-dom';
 const FORM_ID = 'payment-form';
 
 const MPButton = ({ id }) => {
-
     useEffect(() => {
-        // con el preferenceId en mano, inyectamos el script de mercadoPago
         const script = document.createElement('script');
         script.type = 'text/javascript';
         script.src =
@@ -19,9 +16,6 @@ const MPButton = ({ id }) => {
         }
     }, [id]);
     return (
-        // <button onClick={() => { window.open(id) }}>
-        //     Boton
-        // </button>
         < form id={FORM_ID} method="GET" className='checkoutContainer--btn' />
     )
 }

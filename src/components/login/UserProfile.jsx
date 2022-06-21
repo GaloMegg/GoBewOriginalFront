@@ -1,27 +1,24 @@
 
-import react, { useEffect } from "react"
+import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { Link } from "react-router-dom";
 import { CHECK_LOGIN, GET_WISHES, SEARCH_BY_ID, SEARCH_DIRECTION_BY_ID } from "../../redux/actions";
 
 export default function UserProfile() {
     const { userId, userAllInfo, userDirection } = useSelector(store => store.clientReducer);
-    console.log(userDirection)
-
     const dispatch = useDispatch();
-
     useEffect(() => {
         dispatch(CHECK_LOGIN())
         if (userId) {
             dispatch(GET_WISHES(userId))
         }
-    }, []);
+    }, [dispatch, userId]);
     useEffect(() => {
         if (userId) {
             dispatch(SEARCH_BY_ID(userId))
             dispatch(SEARCH_DIRECTION_BY_ID(userId))
         }
-    }, [userId]);
+    }, [userId, dispatch]);
     return (<>
         <Link to="/orders/all" className="ordersAll"> Ver todas mis Compras </Link>
         <div className="userProfile__container">
@@ -30,10 +27,6 @@ export default function UserProfile() {
                     <div className="userProfile__profile">
                         <h3><span>Nombre : </span>{userAllInfo.userFirstName} </h3>
                         <h3><span> Apellido :</span> {userAllInfo.userLastName}</h3>
-                        {/* <Link to={`/profile/editName/${userId}`}>
-                            Editar nombre
-                        </Link> */}
-
                     </div>
                     <div className="userProfile__address">
                         {userDirection?.addresses?.length ? userDirection.addresses.map((element, index) =>
@@ -56,6 +49,5 @@ export default function UserProfile() {
                 : <h3>Loading...</h3>}
         </div>
     </>
-
     )
 }

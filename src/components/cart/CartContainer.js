@@ -13,7 +13,6 @@ const CartContainer = () => {
             if (userId) {
                 dispatch(GET_USER_CART(userId))
                 dispatch(GET_WISHES(userId))
-                // localStorage.removeItem("cart")
                 return
             }
         } else {

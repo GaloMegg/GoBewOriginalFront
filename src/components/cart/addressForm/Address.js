@@ -1,6 +1,6 @@
 import React, { useEffect, useState, } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { CHECK_LOGIN, GET_USER_CART } from '../../../redux/actions'
+import { CHECK_LOGIN } from '../../../redux/actions'
 import OrderExist from './OrderExist'
 import OrderForm from './OrderForm'
 const { REACT_APP_APIURL } = process.env
@@ -10,9 +10,7 @@ const Address = () => {
     const [userAddress, setUserAddress] = useState([])
     useEffect(() => {
         dispatch(CHECK_LOGIN())
-
-
-    }, [userId])
+    }, [userId, dispatch])
     useEffect(() => {
         setUserAddress([])
         fetch(`${REACT_APP_APIURL}address/byUser/${userId}`, {
@@ -29,8 +27,6 @@ const Address = () => {
             setUserAddress([])
         }
     }, [userId])
-
-
     return (
         <section className='orderForm__container'>
             <OrderForm userId={userId} orderId={orderId} />

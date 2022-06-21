@@ -15,23 +15,21 @@ export default function EditNameProfile() {
   const { userId } = useParams();
   const dispatch = useDispatch();
   const { userAllInfo, userResponse } = useSelector(store => store.clientReducer);
-  const [ok, setOk] = useState({
+
+  const [ok] = useState({
+
     ok: '',
     msg: ''
   })
   const [check, setcheck] = useState(false)
-
   useEffect(() => {
     dispatch(CHECK_LOGIN())
     dispatch(SEARCH_BY_ID(userId))
-  }, [])
+  }, [dispatch, userId])
   if (check && userResponse) {
-    // SI PONES TOAST SUCCES LUGO AL SER DIRIGIDO A LA LANDING PERDES EL NOMBRE ACTUALIZADO, CON ALERT NO
-    // toast.success("Se ha cambiado tu nombre con exito")
     toast.success("Se ha cambiado tu nombre con exito")
     navigate("/")
   }
-
   return (
     <div className="loginForm">
       <h1 className='loginForm__title'> Cambiar Nombre</h1>
@@ -55,7 +53,6 @@ export default function EditNameProfile() {
         })
         }
         onSubmit={(values, actions) => {
-          // changeName(values.userFirstName,values.userLastName)
           const objUser = {
             userId,
             userFirstName: values.userFirstName,
@@ -63,7 +60,6 @@ export default function EditNameProfile() {
           }
           dispatch(CHANGE_NAME(objUser))
           setcheck(true)
-
         }}
       >
         {props => (
@@ -72,10 +68,8 @@ export default function EditNameProfile() {
             <TextInput label="Apellido" name="userLastName" type="apellido" placeholder="apellido" />
             <button type="submit" className='createUser__btn'>Continuar</button>
             {ok.ok === false && <p> {ok.msg} </p>}
-
           </Form>
         )}
-
       </Formik>
     </div>
   )

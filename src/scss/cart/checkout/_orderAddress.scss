@@ -1,9 +1,8 @@
-.orderAddress{
-    &>p{
+.orderAddress {
+    &>p {
         text-align: center;
         overflow: hidden;
         white-space: nowrap;
-        /* Don't forget this one */
         text-overflow: ellipsis;
     }
 }

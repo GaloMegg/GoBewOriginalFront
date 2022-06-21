@@ -1,35 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { CHECK_LOGIN, GET_USER_CART } from '../../../redux/actions';
+import { CHECK_LOGIN } from '../../../redux/actions';
 import MPButton from './MPButton';
 import OrderAddress from './OrderAddress';
 import OrderSummary from './OrderSummary';
 const { REACT_APP_APIURL } = process.env
-
-// ! test CARD = {
-// !   num: 5031 7557 3453 0604   ,
-// !    cvv: 123,
-// !    vencimiento: 11 / 25,
-// ! }
-// ! Martinez Mirtha
-// ! 23011111114
-
-
-
-export default function Checkout({ }) {
+export default function Checkout() {
     const { cart, userId, orderId, totalCart, addressId } = useSelector(state => state.clientReducer)
     const [id, setId] = useState("")
     const dispatch = useDispatch()
     const [orderInfo, setOrderInfo] = useState({})
     const [addressInfo, setAddressInfo] = useState({})
-
     useEffect(() => {
         if (!userId) {
             dispatch(CHECK_LOGIN())
         }
-    }, [])
-    //! Payment Id Generator
-    useEffect(() => {   
+    }, [userId, dispatch])
+    useEffect(() => {
         if (cart && userId && orderId && totalCart) {
             fetch(`${REACT_APP_APIURL}payments/pay`, {
                 method: 'POST',
@@ -46,10 +33,9 @@ export default function Checkout({ }) {
         return () => {
             setId(null)
         }
-    }, [cart]);
-    //!Address Info
+    }, [cart, userId, orderId, totalCart]);
     useEffect(() => {
-        if (orderId && Object.keys(addressId).length == 0) {
+        if (orderId && Object.keys(addressId).length === 0) {
             fetch(`${REACT_APP_APIURL}address/byOrder/${orderId}`, {
                 method: 'GET',
                 headers: {
@@ -64,21 +50,17 @@ export default function Checkout({ }) {
             setAddressInfo({})
         }
     }, [addressId, orderId])
-    //!Order Info
     useEffect(() => {
         if (cart) { setOrderInfo(cart); return }
-
         return () => {
             setOrderInfo({})
         }
     }, [cart])
-
-
     return <div className='checkoutContainer' >
         {id ? <>
             <div className='checkout__info'>
                 <OrderSummary cart={orderInfo} />
-                {Object.keys(addressId).length == 0 ? <OrderAddress {...addressInfo.address} /> : <OrderAddress {...addressId} />}
+                {Object.keys(addressId).length === 0 ? <OrderAddress {...addressInfo.address} /> : <OrderAddress {...addressId} />}
             </div>
             <MPButton id={id} />
         </>
