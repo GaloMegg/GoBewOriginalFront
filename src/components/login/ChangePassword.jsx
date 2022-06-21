@@ -68,7 +68,7 @@ export const ChangePassword = () => {
               .oneOf([Yup.ref('userPassword')], 'La contraseña y su confirmación deben coincidir.')
           })
           }
-          onSubmit={(values, actions) => {
+          onSubmit={(values) => {
             changePassword(values.userPassword)
           }}
         >

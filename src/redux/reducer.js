@@ -15,7 +15,13 @@ const initialState = {
     userResponse: { ok: '' },
     faqs: [],
     userAllInfo: {},
+<<<<<<< HEAD
     userDirection: [],
+=======
+
+    userDirection: [],
+
+>>>>>>> 80d1d69a33501ad04bc46a9cd0627c1d0f943289
     productHighlight: [],
     wishes: []
 }
@@ -142,16 +148,33 @@ export const clientReducer = createReducer(initialState, (builder) => {
     })
     builder.addCase(SEARCH_BY_ID.fulfilled, (state, action) => {
         state.userAllInfo = action.payload
+<<<<<<< HEAD
+=======
+        console.log(action.payload)
+>>>>>>> 80d1d69a33501ad04bc46a9cd0627c1d0f943289
         state.userFirstName = action.payload.userFirstName
     })
     builder.addCase(SEARCH_DIRECTION_BY_ID.fulfilled, (state, action) => {
         state.userDirection = action.payload
     })
     builder.addCase(CHANGE_NAME.fulfilled, (state, action) => {
+<<<<<<< HEAD
         state.userFirstName = action.payload.user.userFirstName
         state.userResponse = action.payload
     })
     builder.addCase(CHECK_GOOGLE_MAIL.fulfilled, (state, action) => {
+=======
+        console.log(action.payload.user.userFirstName)
+        state.userFirstName = action.payload.user.userFirstName
+        console.log(state.userFirstName)
+        state.userResponse = action.payload
+    })
+    builder.addCase(CHANGE_DIRECTION.fulfilled, (state, action) => {
+        // state.userResponse = action.payload.ok
+    })
+    builder.addCase(CHECK_GOOGLE_MAIL.fulfilled, (state, action) => {
+
+>>>>>>> 80d1d69a33501ad04bc46a9cd0627c1d0f943289
         state.userResponse = action.payload
     })
     builder.addCase(GET_WISHES.fulfilled, (state, action) => {
