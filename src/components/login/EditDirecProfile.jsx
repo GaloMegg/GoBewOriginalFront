@@ -2,7 +2,7 @@ import { Field, Form, Formik } from 'formik'
 import React from 'react'
 import { TextInput } from '../form/TextInput';
 import * as Yup from 'yup';
-import { CHANGE_DIRECTION, CHECK_LOGIN, SEARCH_BY_ID, SEARCH_DIRECTION_BY_ID } from "../../redux/actions"
+import { CHANGE_DIRECTION, CHECK_LOGIN, SEARCH_BY_ID } from "../../redux/actions"
 import { useNavigate, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
@@ -14,34 +14,25 @@ export default function EditDirecProfile() {
     const { direcId } = useParams();
     const navigate = useNavigate();
     const [check, setcheck] = useState(false)
-    const [ok, setOk] = useState({
+    const [ok] = useState({
         ok: '',
         msg: ''
     })
-    //   console.log(direcId)
     let direcActual = []
-    const { userId, userAllInfo, userDirection, userResponse } = useSelector(store => store.clientReducer);
-    // console.log(userAllInfo)
+    const { userId, userDirection, userResponse } = useSelector(store => store.clientReducer);
     userDirection?.addresses?.forEach(element => {
         if (element._id === direcId) {
             direcActual = element
         }
     });
     if (userResponse.ok && check) {
-        // toast.success("Se ha cambiado tu direccion con exito")
         toast.success("Se ha cambiado la direccion con exito")
         navigate("/")
     }
-    // else if (!userResponse.ok && check){
-    //     setOk({ok: false, msg: 'Usuario no encontrado'})
-    // }
     useEffect(() => {
         dispatch(CHECK_LOGIN())
-        // dispatch(SEARCH_DIRECTION_BY_ID(userId))
         dispatch(SEARCH_BY_ID(userId))
-    }, [])
-
-    console.log(direcActual)
+    }, [userId, dispatch])
     return (
         <Formik
             enableReinitialize={true}
@@ -59,9 +50,6 @@ export default function EditDirecProfile() {
                 addressIsBilling: direcActual.addressIsBilling
             }}
             onSubmit={(values) => {
-                // addressComment,addressStreet, addressNumber, 
-                // addressFloor, addressFlat, addressCity, addressZipCode, addressProvince
-                console.log(values)
                 const objUser = {
                     userId,
                     addressStreet: values.addressStreet,
@@ -76,7 +64,6 @@ export default function EditDirecProfile() {
                 }
                 dispatch(CHANGE_DIRECTION(objUser))
                 setcheck(true)
-                // navigate('/checkout')
             }}
             validationSchema={Yup.object().shape({
                 addressProvince: Yup.string().required("La provincia es requerida"),

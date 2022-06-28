@@ -1,18 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
 import ProductAdd from '../cart/ProductAdd'
-import { useDispatch, useSelector } from 'react-redux';
-import { GET_WISHES } from '../../redux/actions';
 import WishListToggle from '../wishlist/WishListToggle';
-
-// import styles from '../styles/ProductCard.module.css'
-const { REACT_APP_CLOUDINARY_RES, REACT_APP_APIURL } = process.env
-
+const { REACT_APP_CLOUDINARY_RES } = process.env
 export default function ProductCard({ productName, productPrice, productStock, _id, images, product }) {
-
-
-
-
     return (
         <div className='productCard'>
             <WishListToggle _id={_id} />

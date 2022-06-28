@@ -8,13 +8,9 @@ import { Link } from 'react-router-dom'
 const Filters = () => {
     const [priceActive, setPriceActive] = useState(false)
     const [alphabeticalActive, setAlphabeticalActive] = useState(false)
-
-
     const handleReset = () => {
-        //reset prev button
         setAlphabeticalActive(false)
         setPriceActive(false)
-
     }
     return (
         <aside className='filters'>

@@ -33,7 +33,7 @@ const OrderDetail = ({ orderState, orderTotal, user, addressComment, addressStre
                     <p><span>Total:</span> ${orderTotal?.toLocaleString("de-DE")}</p>
                     <p className='cart'><span>Carrito:</span> </p>
                     {cart && cart.map(item => {
-                        let exist = reviews.find(e => e.productId == item.productId)
+                        let exist = reviews.find(e => e.productId === item.productId)
                         return <div key={item.productId} className="orderDetail__cart--item">
                             <p>
                                 {item.productName}
@@ -44,13 +44,12 @@ const OrderDetail = ({ orderState, orderTotal, user, addressComment, addressStre
                             <p>
                                 {item.productCant}
                             </p>
-                            {(orderState == 4 && !exist) && <Link className='Link' to={`/review/${orderId}/${item.productId}/${userId}`} disabled={exist}>Deja tu review</Link>}
+                            {(orderState === 4 && !exist) && <Link className='Link' to={`/review/${orderId}/${item.productId}/${userId}`} disabled={exist}>Deja tu review</Link>}
                         </div>
                     })}
                     <p> <span> Estado:</span> {orderPosibleStates[orderState]}</p>
                 </div>
             </div>
-
         </>
     )
 }

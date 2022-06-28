@@ -1,7 +1,5 @@
 import React, { Fragment } from 'react'
-
 const Categories = ({ categories, handleChanges }) => {
-
     return (
         <>
             <p value="" className='categories__parent' id="" defaultValue={true} onClick={handleChanges}> Todos los productos</p>

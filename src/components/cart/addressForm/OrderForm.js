@@ -10,7 +10,6 @@ const OrderForm = ({ userId, }) => {
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const { orderId } = useSelector(state => state.clientReducer)
-
     return (
         <Formik
             enableReinitialize={true}
@@ -52,7 +51,6 @@ const OrderForm = ({ userId, }) => {
                 (formik) => (
                     <Form className='newAddressForm'>
                         <p>Añade una nueva dirección</p>
-
                         <TextInput label='Nombre' name='addressProvince' type='text' placeholder='Provincia *' />
                         <TextInput label='Precio' name='addressCity' type='text' placeholder='Ciudad *' />
                         <TextInput label='Stock' name='addressZipCode' type='number' placeholder='Código postal' />
@@ -68,8 +66,4 @@ const OrderForm = ({ userId, }) => {
         </Formik >
     )
 }
-
 export default OrderForm
-
-
-//id de order satado 1 y shipping addres
