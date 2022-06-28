@@ -17,11 +17,11 @@ export default function ProductDetail({ product, reviews }) {
             <div className='productDetail__details' >
                 <WishListToggle _id={product[0]?._id} />
                 <div className='productDetail__details' style={!product ? { justifyContent: "center" } : {}} >
-                {!product ? <BarLoader /> : <><WishListToggle _id={product[0]?._id} />{product && product?.length > 0 && product[0].images.length > 0 && < img src={REACT_APP_CLOUDINARY_RES + product[0]?.images[0].imageName} alt={product[0]?.imageAlt} className="productDetail--img" />}                    <div className="productDetail--container">                        <h2 className="productDetail__productName">{product[0]?.productName}  </h2>
+                {!product ? <BarLoader /> : <div><WishListToggle _id={product[0]?._id} />{product && product?.length > 0 && product[0].images.length > 0 && < img src={REACT_APP_CLOUDINARY_RES + product[0]?.images[0].imageName} alt={product[0]?.imageAlt} className="productDetail--img" />}                    <div className="productDetail--container">                        <h2 className="productDetail__productName">{product[0]?.productName}  </h2>
                     <p className="">{product[0]?.productDescription}</p>                        <p className="">${product[0]?.productPrice.toLocaleString('de-DE')}</p>                        <div className='productDetail--container-btn'>                            <ProductAdd price={product[0]?.productPrice} stock={product[0]?.productPrice} product={product[0]} />
                     </div>                    </div>                    {reviews?.length > 0 && < div style={{ alignSelf: "flex-start", display: "flex", alignItems: "center" }}>                        {reviews && (reviews?.reduce((a, b) => {
                         return (a + b.reviewStars)
-                    }, 0) / (reviews && reviews.length)).toFixed(2)}                        <AiFillStar className='' style={{ color: "#17252a" }} />                    </div>}                </>}
+                    }, 0) / (reviews && reviews.length)).toFixed(2)}                        <AiFillStar className='' style={{ color: "#17252a" }} />                    </div>}                </div>}
             </div>
             {reviews?.length > 0 && <div className="productDetail__reviews">
                 <h1 className='productDetail__reviews--title'>Reviews sobre {product[0]?.productName} </h1>
