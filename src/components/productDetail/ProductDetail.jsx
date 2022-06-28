@@ -15,7 +15,7 @@ export default function ProductDetail({ product, reviews }) {
         <div className="productDetail">
 
            <div className='productDetail__details' style={!product ? { justifyContent: "center" } : {}} >
-                {!product ? <BarLoader /> : <div>
+                {!product ? <BarLoader /> : <>
                     <WishListToggle _id={product[0]?._id} />
                     {product && product?.length > 0 && product[0].images.length > 0 && < img src={REACT_APP_CLOUDINARY_RES + product[0]?.images[0].imageName} alt={product[0]?.imageAlt} className="productDetail--img" />}
                     <div className="productDetail--container">
@@ -26,14 +26,15 @@ export default function ProductDetail({ product, reviews }) {
                             <ProductAdd price={product[0]?.productPrice} stock={product[0]?.productPrice} product={product[0]} />
                         </div>
                     </div>
-                    {reviews?.length > 0 && < div style={{ alignSelf: "flex-start", display: "flex", alignItems: "center" }}>
-                        {reviews && (reviews?.reduce((a, b) => {
-                            return (a + b.reviewStars)
-                        }, 0) / (reviews && reviews.length)).toFixed(2)}
-                        <AiFillStar className='' style={{ color: "#17252a" }} />
-                    </div>
+                    {reviews?.length > 0 &&
+                        < div style={{ alignSelf: "flex-start", display: "flex", alignItems: "center" }}>
+                            {reviews && (reviews?.reduce((a, b) => {
+                                return (a + b.reviewStars)
+                            }, 0) / (reviews && reviews.length)).toFixed(2)}
+                            <AiFillStar className='' style={{ color: "#17252a" }} />
+                        </div>
                     }
-                </div>
+                </>
                 }
             </div>
             {reviews?.length > 0 && <div className="productDetail__reviews">
