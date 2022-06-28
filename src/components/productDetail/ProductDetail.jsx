@@ -30,7 +30,7 @@ export default function ProductDetail({ product, reviews }) {
                         }, 0) / (reviews && reviews.length)).toFixed(2)}
                         <AiFillStar className='' style={{ color: "#17252a" }} />
                     </div>}
-</>}
+</div>}
             </div>
             {reviews?.length > 0 && <div className="productDetail__reviews">
                 <h1 className='productDetail__reviews--title'>Reviews sobre {product[0]?.productName} </h1>
