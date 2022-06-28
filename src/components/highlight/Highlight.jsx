@@ -5,10 +5,12 @@ import HighlightCard from "./HighlightCard"
 import { useState } from "react"
 import { TiArrowRightThick } from 'react-icons/ti'
 import '../../scss/mainContent/_highLight.scss'
+import BarLoader from "react-spinners/BarLoader";
 export default function Highlight() {
     let dispatch = useDispatch()
-    let highlightProd = useSelector((state) => state.clientReducer.productHighlight)
-    let res = highlightProd.productList
+    let { productHighlight } = useSelector((state) => state.clientReducer)
+    let res = productHighlight.productList
+    //!PAGINATION 
     const [currentHigh, setCurrentHigh] = useState(res);
     const [pageCount, setPageCount] = useState(0);
     const [itemOffset, setItemOffset] = useState(0);
@@ -37,6 +39,13 @@ export default function Highlight() {
     useEffect(() => {
         dispatch(GET_HIGHLIGHTED())
     }, [dispatch])
+    if (productHighlight?.length < 1) {
+        return (
+            <div className="highlight--content__container" style={{ justifyContent: "center", height: "40vh" }}>
+                <BarLoader />
+            </div>
+        )
+    }
     return (
         <div className="highlight--content__container">
             <h2>Nuestros Productos Destacados</h2>

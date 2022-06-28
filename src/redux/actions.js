@@ -43,7 +43,7 @@ export const ORDER_PRODUCTS = createAction('ORDER_PRODUCTS', (productsSorted) =>
 })
 export const CLEAN_UP_DETAILS = createAction('CLEAN_UP_DETAILS', () => {
     return {
-        payload: {}
+        payload: false
     }
 })
 export const SET_TOTAL = createAction('SET_TOTAL', (price) => {

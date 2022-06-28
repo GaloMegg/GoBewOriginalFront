@@ -1,5 +1,6 @@
 import { createReducer } from "@reduxjs/toolkit"
 import { GET_CATEGORIES, GET_PRODUCTS, SEARCH_PRODUCT, ORDER_PRODUCTS, GET_PRODUCTS_BYCATEGORY, GET_HIGHLIGHTED, GET_PRODUCT_BY_ID, CLEAN_UP_DETAILS, REMOVE_ONE_CART, ADD_ONE_CART, CLEAN_CART, REMOVE_FROM_CART, SET_TOTAL, SET_CART, ADD_TO_CART, CLEAN_USER_RESPONSE, CREATION_USER_LOGIN, CREATION_USERFORM, CHECK_LOGIN, CREATE_USER_CART, GET_USER_CART, DELETE_USER_CART, LOG_OUT, LOG_IN_USER, POST_USER_ADDRESS, GET_FAQS, SEARCH_BY_ID, SEARCH_DIRECTION_BY_ID, GET_WISHES, CHANGE_NAME, CHECK_GOOGLE_MAIL } from "./actions"
+
 const initialState = {
     products: [],
     productsToFilter: [],
@@ -15,6 +16,7 @@ const initialState = {
     userResponse: { ok: '' },
     faqs: [],
     userAllInfo: {},
+    loading: true,
     userDirection: [],
     productHighlight: [],
     wishes: []
@@ -27,6 +29,8 @@ export const clientReducer = createReducer(initialState, (builder) => {
         state.products = action.payload.productList
         state.productsToFilter = action.payload.productList
         state.isFiltered = false
+        state.loading = false
+
     })
     builder.addCase(SEARCH_PRODUCT.fulfilled, (state, action) => {
         state.products = action.payload
@@ -126,7 +130,7 @@ export const clientReducer = createReducer(initialState, (builder) => {
         state.userId = action.payload.userId
         state.userFirstName = action.payload.userFirstName
     })
-    builder.addCase(LOG_OUT, (state, action) => {
+    builder.addCase(LOG_OUT, (state, action) => {rolling the deep adele
         state.userResponse = { ...action.payload }
         state.userId = ""
         state.userFirstName = ""
@@ -142,7 +146,7 @@ export const clientReducer = createReducer(initialState, (builder) => {
     })
     builder.addCase(SEARCH_BY_ID.fulfilled, (state, action) => {
         state.userAllInfo = action.payload
-        state.userFirstName = action.payload.userFirstName
+        state.userFirstName = action?.payload?.userFirstName
     })
     builder.addCase(SEARCH_DIRECTION_BY_ID.fulfilled, (state, action) => {
         state.userDirection = action.payload

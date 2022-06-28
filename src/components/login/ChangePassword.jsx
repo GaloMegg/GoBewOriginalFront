@@ -17,14 +17,19 @@ export const ChangePassword = () => {
   const navigate = useNavigate();
   const cbCheckPass = useCallback(async () => {
     try {
+      console.log('entro')
       const response = await axios.get(`${REACT_APP_APIURL}users/checkResetPass/${userId}/${hash}/${userEmail}`);
+
       if (response.data.ok) {
         setOk({ ok: true, msg: response.data.msg })
       } else {
         setOk({ ok: false, msg: response.data.msg })
       }
+
     } catch (error) {
+
       setOk({ ok: false, msg: 'Ha ocurrido un error, por favor intente nuevamente.' })
+
     }
   }, [userId, hash, userEmail]);
   const changePassword = async (userPassword) => {
@@ -60,6 +65,7 @@ export const ChangePassword = () => {
       {ok.ok === false && <span>{ok.msg} </span>}
       {ok.ok &&
         <Formik
+
           initialValues={{ userPassword: '', userPasswordConfirm: '' }}
           validationSchema={Yup.object({
             userPassword: Yup.string().min(6, 'Requerida').required('Required'),
@@ -68,13 +74,15 @@ export const ChangePassword = () => {
               .oneOf([Yup.ref('userPassword')], 'La contraseña y su confirmación deben coincidir.')
           })
           }
-          onSubmit={(values) => {
+          onSubmit={(values, actions) => {
+            console.log(1, values)
             changePassword(values.userPassword)
           }}
         >
           {props => (
             <section >
-              <Form className='changePasswordForm' >
+              <Form  className='changePasswordForm' >
+
                 <h1>CAMBIAR CONTRASEÑA</h1>
                 <TextInput name='userPassword' type='password' placeholder='Constraseña' />
                 <TextInput name='userPasswordConfirm' type='password' placeholder='Confirmar constraseña' />

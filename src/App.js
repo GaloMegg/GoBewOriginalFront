@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Route, Routes } from 'react-router-dom';
 import "./scss/main.scss";
 import Nav from './components/nav/Nav';
@@ -21,8 +21,26 @@ import Faqs from './components/faq/Faqs';
 import { ChangePassword } from './components/login/ChangePassword';
 import { RememberPassword } from './components/login/RememberPassword';
 import WishListContainer from './components/wishlist/WishListContainer';
-
+import { useDispatch, useSelector } from 'react-redux';
+import BarLoader from "react-spinners/BarLoader";
+import { GET_PRODUCTS } from './redux/actions';
 function App() {
+  const {isFiltered, loading } = useSelector(state => state.clientReducer);
+  const dispatch = useDispatch()
+  useEffect(() => {
+    if(!isFiltered){
+
+      dispatch(GET_PRODUCTS())
+    }
+  
+    return () => {
+      
+    }
+  }, [])
+  
+  if (loading) {
+    return (<section className='loaderSection'><BarLoader className='loaderSection__spinner' color='#3f7b8d' /></section>)
+  }
   return (
     <>
       <Nav />
@@ -38,8 +56,8 @@ function App() {
         <Route exact path='/orders/all' element={<AllOrdersContainer />} />
         <Route exact path='/review/:orderId/:productId/:userId' element={<> <ReviewsFormContainer /></>} />
         <Route exact path='/profile' element={<> <UserProfile /> </>} />
-        <Route exact path="/profile/editName/:userId" element= {<> <EditNameProfile/> </>} />
-        <Route exact path="/profile/editDirec/:direcId" element= {<> <EditDirecProfile/> </>} />
+        <Route exact path="/profile/editName/:userId" element={<> <EditNameProfile /> </>} />
+        <Route exact path="/profile/editDirec/:direcId" element={<> <EditDirecProfile /> </>} />
         <Route exact path='/order/:id' element={<> <OrderDetailContainer /></>} />
         <Route exact path='/orders/all' element={<> <AllOrdersContainer /></>} />
         <Route exact path='/faqs' element={<> <Faqs /></>} />

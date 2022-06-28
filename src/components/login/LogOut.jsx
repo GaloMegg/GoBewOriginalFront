@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { LOG_OUT } from "../../redux/actions";
 export default function LogOut({ userId, User }) {
     const { userFirstName } = useSelector(store => store.clientReducer);
+
     const dispatch = useDispatch();
     const navigate = useNavigate()
     const [clickUser, setClickUser] = useState(false)

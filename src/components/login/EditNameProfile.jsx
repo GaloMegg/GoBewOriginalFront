@@ -15,9 +15,7 @@ export default function EditNameProfile() {
   const { userId } = useParams();
   const dispatch = useDispatch();
   const { userAllInfo, userResponse } = useSelector(store => store.clientReducer);
-
   const [ok] = useState({
-
     ok: '',
     msg: ''
   })
